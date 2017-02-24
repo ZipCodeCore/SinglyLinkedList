@@ -5,12 +5,10 @@ package mattern.william;
  */
 public class MyLinkedList<T> {
     public MyLink<T> start;
-    public MyLink<T> end;
     public int size;
 
     public MyLinkedList(){
         this.start = null;
-        this.end = null;
         this.size = 0;
     }
 
@@ -48,12 +46,15 @@ public class MyLinkedList<T> {
     }
 
     public void add(T t){
-
+        insertAtStart(t);
     }
 
-    private void insertAtStart(){    }
-
-    private void insertAtEnd(){}
+    private void insertAtStart(T t){
+        MyLink<T> newLink = new MyLink<T>(t);
+        newLink.setNext(start);
+        start = newLink;
+        size++;
+    }
 
     public boolean contains(T t){
         return false;
