@@ -19,28 +19,29 @@ public class MyLinkedListTest {
     @Before
     public void setUp() throws Exception {
         list = new MyLinkedList<String>();
-
-    }
-
-    @Test
-    public void isEmptyTestTrue() throws Exception {
-        assertTrue(list.isEmpty());
+        list.add(one);
     }
 
     @Test
     public void isEmptyTestFalse() throws Exception {
-        list.add(one);
         assertFalse(list.isEmpty());
     }
 
     @Test
     public void sizeTest() throws Exception {
-
+        assertEquals(1,list.size());
+        list.add(two);
+        assertEquals(2,list.size());
+        list.add(three);
+        assertEquals(3,list.size());
     }
 
     @Test
-    public void contains() throws Exception {
-
+    public void containsTest() throws Exception {
+        assertTrue(list.contains(one));
+        assertFalse(list.contains(two));
+        list.add(two);
+        assertTrue(list.contains(two));
     }
 
     @Test

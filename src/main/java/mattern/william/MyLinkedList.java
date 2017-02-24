@@ -4,8 +4,8 @@ package mattern.william;
  * Created by williammattern on 2/24/17.
  */
 public class MyLinkedList<T> {
-    public MyLink<T> start;
-    public int size;
+    private MyLink<T> start;
+    private int size;
 
     public MyLinkedList(){
         this.start = null;
@@ -57,15 +57,30 @@ public class MyLinkedList<T> {
     }
 
     public boolean contains(T t){
+        if(get(t) != null){
+            return true;
+        }
         return false;
     }
 
     public int find(T t){
-        return 0;
+        return -1;
     }
 
     private MyLink<T> get(T t){
-        return null;
+        MyLink<T> theLink = start;
+        if(!isEmpty()) {
+            while (!theLink.getData().equals(t)) {
+                if (theLink.getNext() == null) {
+                    return null;
+                } else {
+                    theLink = theLink.getNext();
+                }
+            }
+        } else {
+            System.out.println("empty list");
+        }
+        return theLink;
     }
 
     public MyLinkedList<T> copy(MyLinkedList<T> linkedList){
