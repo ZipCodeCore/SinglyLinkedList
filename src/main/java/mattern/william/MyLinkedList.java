@@ -5,10 +5,12 @@ package mattern.william;
  */
 public class MyLinkedList<T> {
     private MyLink<T> start;
+    private MyLink<T> end;
     private int size;
 
     public MyLinkedList(){
         this.start = null;
+        this.end = null;
         this.size = 0;
     }
 
@@ -46,13 +48,25 @@ public class MyLinkedList<T> {
     }
 
     public void add(T t){
-        insertAtStart(t);
+        insertAtTail(t);
     }
 
     private void insertAtStart(T t){
         MyLink<T> newLink = new MyLink<T>(t);
         newLink.setNext(start);
         start = newLink;
+        size++;
+    }
+
+    private void insertAtTail(T t){
+        MyLink<T> newLink = new MyLink<T>(t);
+        newLink.setNext(null);
+        if(isEmpty()){
+            start = newLink;
+        } else {
+            end.setNext(newLink);
+        }
+        end = newLink;
         size++;
     }
 
@@ -63,8 +77,19 @@ public class MyLinkedList<T> {
         return false;
     }
 
-    public int find(T t){
-        return -1;
+    public int find(T t){//used only when implementing insertAtTail() in the add() method
+        int index = 0;
+        MyLink<T> theLink = start;
+        if(!isEmpty()){
+            while(!theLink.getData().equals(t)){
+                if(theLink.getNext() == null){
+                    return -1;
+                }
+                index++;
+                theLink = theLink.getNext();
+            }
+        }
+        return index;
     }
 
     private MyLink<T> get(T t){
@@ -83,7 +108,18 @@ public class MyLinkedList<T> {
         return theLink;
     }
 
-    public MyLinkedList<T> copy(MyLinkedList<T> linkedList){
+    public T get(int index){//only used when implementing insertAtTail in the add method
+        MyLink<T> theLink= start;
+        while(theLink.next != null) {
+            for (int i = index; i > 0; i--) {
+                theLink = theLink.next;
+            }
+            return theLink.getData();
+        }
+        throw new IndexOutOfBoundsException();
+    }
+
+    public MyLinkedList<T> copy(){
         return null;
     }
 

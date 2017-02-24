@@ -45,13 +45,31 @@ public class MyLinkedListTest {
     }
 
     @Test
-    public void find() throws Exception {
+    public void findTest() throws Exception {
+        list.add(two);
+        list.add(three);
+        assertEquals(0,list.find(one));
+        assertEquals(2,list.find(three));
+        assertEquals(1,list.find(two));
+        assertEquals(-1,list.find(five));
+    }
 
+    @Test
+    public void getTest() throws Exception {
+        list.add(two);
+        list.add(three);
+        assertEquals(one,list.get(0));
+        assertEquals(two, list.get(1));
+        assertEquals(three,list.get(2));
     }
 
     @Test
     public void copy() throws Exception {
-
+        list.add(two);
+        list.add(three);
+        MyLinkedList<String> listCopy = list.copy();
+        String expected = "Three", actual = listCopy.get(2);
+        assertEquals(expected, actual);
     }
 
     @Test
