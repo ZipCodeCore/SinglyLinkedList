@@ -120,6 +120,16 @@ public class MyLinkedList<T> {
     }
 
     public MyLinkedList<T> copy(){
+        if(!isEmpty()) {
+            MyLinkedList<T> copyList = new MyLinkedList<T>();
+            MyLink<T> copyNode = start;
+            while(copyNode.getNext() != null){
+                copyList.add(copyNode.getData());
+                copyNode = copyNode.getNext();
+            }
+            copyList.add(copyNode.getData());
+            return copyList;
+        }
         return null;
     }
 
