@@ -16,20 +16,13 @@ public class MyLinkedListTest {
     String three = "Three";
     String four = "Four";
     String five = "Five";
-    Integer oneInt = 1;
-    Integer twoInt = 2;
-    Integer thirty = 30;
-    Integer fiveHundred = 500;
+
 
     @Before
     public void setUp() throws Exception {
         list = new MyLinkedList<String>();
         myIntList = new MyLinkedList<Integer>();
         list.add(one);
-        myIntList.add(oneInt);
-        myIntList.add(fiveHundred);
-        myIntList.add(twoInt);
-        myIntList.add(thirty);
     }
 
     @Test
@@ -81,14 +74,4 @@ public class MyLinkedListTest {
         String expected = "Three", actual = listCopy.get(2);
         assertEquals(expected, actual);
     }
-
-    @Test
-    public void sort() throws Exception {
-        myIntList.sort();
-        assertEquals(oneInt,myIntList.get(0));
-        assertEquals(twoInt,myIntList.get(1));
-        assertEquals(thirty,myIntList.get(2));
-        assertEquals(fiveHundred,myIntList.get(3));
-    }
-
 }

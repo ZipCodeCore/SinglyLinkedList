@@ -1,9 +1,11 @@
 package mattern.william;
 
+import java.util.Comparator;
+
 /**
  * Created by williammattern on 2/24/17.
  */
-public class MyLinkedList<T> {
+public class MyLinkedList<T extends Comparable> implements Comparator<T> {
     private MyLink<T> start;
     private MyLink<T> end;
     private int size;
@@ -133,5 +135,7 @@ public class MyLinkedList<T> {
         return null;
     }
 
-    public void sort(){}
+    public int compare(T o1, T o2) {
+        return 0;
+    }
 }
