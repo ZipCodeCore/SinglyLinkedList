@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
  * Created by randallcrame on 2/24/17.
  */
 public class MyListedListTest {
-    MyListedList<String> test, test2;
+    MyListedList<String> test, test2, test3;
     String item1, item2, item3;
 
 
@@ -21,6 +21,10 @@ public class MyListedListTest {
         test2.add(item1);
         test2.add(item2);
         test2.add(item3);
+        test3 = test2;
+        test3.add(item1);
+        test3.add(item2);
+        test3.add(item3);
 
     }
 
@@ -140,5 +144,29 @@ public class MyListedListTest {
         String expected = "First";
         String actual = test2.copy().get(0);
         assertEquals("Expected return of First", expected, actual);
+    }
+
+    @Test
+    public void sortTest(){
+        test3.sort();
+        String expected = "First";
+        String actual = test3.get(1);
+        assertEquals("Expected return of First",expected,actual);
+    }
+
+    @Test
+    public void sort2Test(){
+        test3.sort();
+        String expected = "Second";
+        String actual = test3.get(2);
+        assertEquals("Expected return of Second",expected,actual);
+    }
+
+    @Test
+    public void sort3Test(){
+        test3.sort();
+        String expected = "Second";
+        String actual = test3.get(3);
+        assertEquals("Expected return of Second",expected,actual);
     }
 }

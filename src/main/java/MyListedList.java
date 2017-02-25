@@ -89,9 +89,44 @@ public class MyListedList <T> {
         }while (previous.getNext() != null);
         return copy;
     }
+        // based on http://www.sanfoundry.com/java-program-implement-merge-sort-algorithm-linked-list/ and
+        // http://stackoverflow.com/questions/18284636/implementing-comprable-method-in-a-generic-way-in-java-for-sorting
+        private  <T extends Comparable<T>> Node MergeSort(Node headOriginal){
+            if (headOriginal == null || headOriginal.next == null)
+                return headOriginal;
+            Node head = headOriginal;
+            Node next = headOriginal.getNext();
+            while ((next != null) && (next.next != null)) {
+                headOriginal = headOriginal.getNext();
+                next = next.next.next;
+            }
+            next = headOriginal.next;
+            headOriginal.next = null;
+            return merge(MergeSort(head), MergeSort(next));
+        }
+
+        private <T extends Comparable<T>> Node<T> merge(Node<T> head, Node<T> next){
+            Node<T> temp = new Node(null);
+            Node startHead = temp;
+            Node current = startHead;
+            while ((head != null) && (next != null)) {
+                if (head.data.compareTo(next.getData()) <= 0){
+                    current.next = head;
+                    current = head;
+                    head = head.next;
+                } else {
+                    current.next = next;
+                    current = next;
+                    next = next.next;
+                }
+            }
+            current.next = (head == null) ? next : head;
+            return startHead.next;
+        }
+
 
     public void sort(){
-
+       head =  MergeSort(head);
     }
 
     private static class Node <T> {
