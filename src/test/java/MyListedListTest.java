@@ -21,11 +21,13 @@ public class MyListedListTest {
         test2.add(item1);
         test2.add(item2);
         test2.add(item3);
-        test3 = test2;
+        test3 = new MyListedList<>();
         test3.add(item1);
         test3.add(item2);
         test3.add(item3);
-
+        test3.add(item1);
+        test3.add(item2);
+        test3.add(item3);
     }
 
     @Test

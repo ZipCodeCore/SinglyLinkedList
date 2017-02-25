@@ -26,17 +26,17 @@ public class MyListedList <T> {
 
     public void remove(int index){
         if (index == 0) {
-            head = head.getNext();
+            head = head.next;
         }else {
             int counter = 1;
             Node<T> current = head;
             while (index < counter){
-                current = current.getNext();
+                current = current.next;
                 counter++;
             }
             if (counter == modList)
                 tail = current;
-            current.setNext(current.getNext().getNext());
+            current.setNext(current.next.next);
         }
         modList--;
     }
@@ -50,12 +50,12 @@ public class MyListedList <T> {
         Node<T> previous;
         int counter = 0;
         do{
-            if (current.getData().equals(data))
+            if (current.data.equals(data))
                 return counter;
             previous = current;
-            current = current.getNext();
+            current = current.next;
             counter++;
-        }while (previous.getNext() != null);
+        }while (previous.next != null);
         return -1;
     }
 
@@ -68,11 +68,11 @@ public class MyListedList <T> {
         Node<T> current = head;
 
             while (counter != index){
-                current = current.getNext();
+                current = current.next;
                 counter++;
             }
         try {
-            return current.getData();
+            return current.data;
         } catch (NullPointerException e){
             return null;
         }
@@ -83,10 +83,10 @@ public class MyListedList <T> {
         Node<T> current = head;
         Node<T> previous;
         do{
-            copy.add(current.getData());
+            copy.add(current.data);
             previous = current;
-            current = current.getNext();
-        }while (previous.getNext() != null);
+            current = current.next;
+        }while (previous.next != null);
         return copy;
     }
         // based on http://www.sanfoundry.com/java-program-implement-merge-sort-algorithm-linked-list/ and
@@ -95,9 +95,9 @@ public class MyListedList <T> {
             if (headOriginal == null || headOriginal.next == null)
                 return headOriginal;
             Node head = headOriginal;
-            Node next = headOriginal.getNext();
+            Node next = headOriginal.next;
             while ((next != null) && (next.next != null)) {
-                headOriginal = headOriginal.getNext();
+                headOriginal = headOriginal.next;
                 next = next.next.next;
             }
             next = headOriginal.next;
@@ -110,7 +110,7 @@ public class MyListedList <T> {
             Node startHead = temp;
             Node current = startHead;
             while ((head != null) && (next != null)) {
-                if (head.data.compareTo(next.getData()) <= 0){
+                if (head.data.compareTo(next.data) <= 0){
                     current.next = head;
                     current = head;
                     head = head.next;
@@ -136,14 +136,6 @@ public class MyListedList <T> {
         public Node(T data){
             this.data = data;
             this.next = null;
-        }
-
-        public T getData() {
-            return this.data;
-        }
-
-        public Node getNext() {
-            return next;
         }
 
         public void setNext(Node next) {
