@@ -15,14 +15,6 @@ public class Link<L> {
     }
 
 
-    public boolean hasNext(){
-        if(next == null)
-            return false;
-
-        else
-            return true;
-    }
-
     @Override
     public String toString(){
         return data.toString();
