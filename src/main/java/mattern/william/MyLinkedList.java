@@ -1,11 +1,12 @@
 package mattern.william;
 
 import java.util.Comparator;
+import java.util.LinkedList;
 
 /**
  * Created by williammattern on 2/24/17.
  */
-public class MyLinkedList<T extends Comparable> implements Comparator<T> {
+public class MyLinkedList<T extends Comparable> {
     private MyLink<T> start;
     private MyLink<T> end;
     private int size;
@@ -19,6 +20,8 @@ public class MyLinkedList<T extends Comparable> implements Comparator<T> {
     private class MyLink<T>{
         private T data;
         private MyLink<T> next;
+
+        MyLink(){}
 
         MyLink(T t){
             this.data = t;
@@ -110,7 +113,7 @@ public class MyLinkedList<T extends Comparable> implements Comparator<T> {
         return theLink;
     }
 
-    public T get(int index){//only used when implementing insertAtTail in the add method
+    public T get(int index){
         MyLink<T> theLink= start;
         while(theLink.next != null) {
             for (int i = index; i > 0; i--) {
@@ -135,7 +138,90 @@ public class MyLinkedList<T extends Comparable> implements Comparator<T> {
         return null;
     }
 
-    public int compare(T o1, T o2) {
-        return 0;
+    public void sort(){
+        start = mergeSort(start);
+    }
+
+    private MyLink<T> mergeSort(MyLink<T> headOriginal){
+        if(headOriginal == null || headOriginal.next == null){
+            return headOriginal;
+        }
+
+        int count = 0;
+        MyLink<T> a = headOriginal;
+        while (a != null){
+            count++;
+            a = a.next;
+        }
+        int middle = count/2;
+        MyLink<T> l = headOriginal, r = null;
+        MyLink<T> p2 = headOriginal;
+        int countHalf = 0;
+
+        while (p2 != null){
+            countHalf++;
+            MyLink<T> next = p2.next;
+            if(countHalf == middle){
+                p2.next = null;
+                r = next;
+            }
+            p2 = next;
+        }
+
+        MyLink<T> h1 = mergeSort(l);
+        MyLink<T> h2 = mergeSort(r);
+        return merge(h1,h2);
+    }
+
+    private MyLink<T> merge(MyLink<T> left, MyLink<T> right){
+        MyLink<T> head = new MyLink<T>();
+        MyLink<T> current = head;
+        while((left != null) && (right != null)){
+            if(left.data.compareTo(right.data)<=0){
+                current.next = left;
+                current = left;
+                left = left.next;
+            } else {
+                current.next = right;
+                current = right;
+                right = right.next;
+            }
+        }
+        current.next = (left == null)?right:left;
+        return head.next;
+    }
+
+    public void printList(){
+        MyLink<T> head = start;
+        while(head != null){
+            System.out.println(head.data.toString());
+            head = head.next;
+        }
+    }
+
+    public static void main(String[] args) {
+        MyLinkedList<String> names = new MyLinkedList<String>();
+        {
+            names.add("Mary");
+            names.add("Steve");
+            names.add("Paul");
+            names.add("Amber");
+            names.add("Raiden");
+            names.add("Steve");
+            names.add("Skip");
+            names.add("Joe");
+            names.add("Conrad");
+            names.add("Mohommad");
+            names.add("Terrance");
+            names.add("Bill");
+            names.add("Erin");
+            names.add("Sue");
+            names.add("Amanda");
+            names.add("Sara");
+        }
+        names.printList();
+        System.out.println("");
+        names.sort();
+        names.printList();
     }
 }
