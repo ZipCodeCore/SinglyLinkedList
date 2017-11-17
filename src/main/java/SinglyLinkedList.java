@@ -1,3 +1,4 @@
+import java.util.Collections;
 import java.util.logging.Logger;
 
 public class SinglyLinkedList<T> {
@@ -7,6 +8,7 @@ public class SinglyLinkedList<T> {
     private Node <T> head;
     private Node <T> tail;
     private int size;
+
 
     public void add(T info) {
         Node <T> newNode = new Node <>(info);
@@ -63,6 +65,7 @@ public class SinglyLinkedList<T> {
         return -1;
     }
     public void print(){
+        logger.info("Printing List: ");
         Node<T> temp = head;
         while(true){
             if(temp == null)
@@ -86,10 +89,9 @@ public class SinglyLinkedList<T> {
         return copy;
     }
 
-    public void sort(){
+    public void sort(SinglyLinkedList<T> list){
         Node<T> temp = head;
     }
-
 
     class Node<T> implements Comparable <T> {
         private Node <T> nextNode;
