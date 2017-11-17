@@ -86,12 +86,16 @@ public class SinglyLinkedList<E extends Comparable> {
                 }
                 traverse.next=traverse.next.next;
             }
+        } else
+        {
+            throw (new IndexOutOfBoundsException());
         }
         adjustIndices();
 
     }
 //WHAT HAPPENS IF I PASS AN INTEGER OBJECT?
 // deprecated until I can figure this out
+
 //    public void remove(E element){
 //
 //        if (contains(element))
@@ -142,8 +146,9 @@ public class SinglyLinkedList<E extends Comparable> {
 
     public E get(int index){
 
-        if (isIndexOutOfBounds(index))
-            return null;
+        if (isIndexOutOfBounds(index)) {
+            throw (new IndexOutOfBoundsException());
+        }
 
         Node traverse = head;
         while (traverse.index != index){
@@ -247,7 +252,7 @@ public class SinglyLinkedList<E extends Comparable> {
 
         if (isIndexOutOfBounds(startIndex) || isIndexOutOfBounds(endIndexExclusive-1) ||
             endIndexExclusive<=startIndex  || (endIndexExclusive-startIndex-1)>=size()){
-            return copyList;
+            throw (new IndexOutOfBoundsException());
         }
 
         for (int i=startIndex; i<endIndexExclusive; i++) {

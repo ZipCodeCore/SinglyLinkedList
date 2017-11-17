@@ -30,7 +30,7 @@ public class SinglyLinkedListTest {
 
     }
 
-    @Test
+    @Test (expected = IndexOutOfBoundsException.class)
     public void testRemoveAndGet(){
 
         SinglyLinkedList<String> strSLL = new SinglyLinkedList<>();
@@ -50,6 +50,8 @@ public class SinglyLinkedListTest {
             expected=""+(i+2);
 
         }
+
+        strSLL.remove(-1);
 
 //        for (int i=5; i<10; i++){//Test remove by element overload
 //            strSLL.remove(""+i);
@@ -173,7 +175,7 @@ public class SinglyLinkedListTest {
         }
     }
 
-    @Test
+    @Test (expected = IndexOutOfBoundsException.class)
     public void testSlice(){
 
         SinglyLinkedList<Integer> intSLL = new SinglyLinkedList<>();
