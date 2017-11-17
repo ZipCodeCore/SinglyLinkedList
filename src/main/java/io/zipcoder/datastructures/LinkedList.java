@@ -184,8 +184,24 @@ public class LinkedList<E extends Comparable> {
     }
 
 
-    /*
-    public void reverse(){}
+    ///*
+    public void reverse() {
+        Integer listSize = size();
+
+        Node front = head;
+        for (int i = 0; i < listSize / 2; i++) {
+            Node back = head.next;
+            for (int j = 1; j <= listSize-i-1; j++) {
+                if (j == listSize-i-1) {
+                    E swap_val = front.val;
+                    front.val = back.val;
+                    back.val = swap_val;
+                }
+                back = back.next;
+            }
+            front = front.next;
+        }
+    }
     //*/
 
     public LinkedList<E> slice(int indexStart, int indexEnd) {

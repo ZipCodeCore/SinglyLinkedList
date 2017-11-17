@@ -184,7 +184,7 @@ public class LinkedListTest {
         }
     }
 
-    /*
+    ///*
     @Test
     public void testReverse(){
         LinkedList<Integer> originalList = new LinkedList<>();
@@ -201,7 +201,7 @@ public class LinkedListTest {
 
         int i = 0;
         while(i < originalList.size()) {
-            Assert.assertEquals(originalList.get(i), compareToList.get(i));
+            Assert.assertEquals(compareToList.get(i), originalList.get(i));
             i++;
         }
     }
@@ -223,7 +223,7 @@ public class LinkedListTest {
 
         int i = 0;
         while(i < slicedList.size()) {
-            Assert.assertEquals(slicedList.get(i), compareToList.get(i));
+            Assert.assertEquals(compareToList.get(i), slicedList.get(i));
             i++;
         }
     }
