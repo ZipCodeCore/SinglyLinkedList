@@ -1,4 +1,3 @@
-import java.util.Collections;
 import java.util.logging.Logger;
 
 public class SinglyLinkedList<T> {
@@ -52,6 +51,7 @@ public class SinglyLinkedList<T> {
     public boolean contains(T info){
         return find(info) >= 0;
     }
+
     public int find(T info){
         Node<T> temp = head;
         int count = 0;
@@ -64,19 +64,27 @@ public class SinglyLinkedList<T> {
         }
         return -1;
     }
-    public void print(){
+
+    public String print(){
         logger.info("Printing List: ");
+        String output = "";
         Node<T> temp = head;
         while(true){
             if(temp == null)
                 break;
-            System.out.printf("%s ",temp.getInfo());
+            //System.out.printf("%s ",temp.getInfo());
+            output += temp.getInfo() + " ";
             temp = temp.getNextNode();
         }
+        return output;
     }
 
     public int getSize(){
         return size;
+    }
+
+    public Node <T> getTail() {
+        return tail;
     }
 
     public SinglyLinkedList<T> copy(){

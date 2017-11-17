@@ -17,6 +17,17 @@ public class SinglyLinkedListTest {
         Assert.assertEquals(expected,actual);
     }
     @Test
+    public void tailTest(){
+        int expected = 3;
+        test.add(1);
+        test.add(2);
+        test.add(3);
+        int actual = test.getTail().getInfo();
+
+        Assert.assertEquals(expected,actual);
+
+    }
+    @Test
     public void removeTest(){
 
         int expected = 3;
@@ -60,12 +71,16 @@ public class SinglyLinkedListTest {
     }
     @Test
     public void printTest(){
+        String expected = "1 2 3 4 5 ";
         test.add(1);
         test.add(2);
         test.add(3);
         test.add(4);
         test.add(5);
-        test.print();
+        String actual = test.print();
+
+        Assert.assertEquals(expected,actual);
+
     }
     @Test
     public void findTest(){
