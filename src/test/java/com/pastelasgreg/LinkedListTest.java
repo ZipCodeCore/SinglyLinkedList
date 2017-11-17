@@ -4,6 +4,8 @@ import com.patselasgreg.LinkedList;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.stream.Stream;
+
 
 public class LinkedListTest {
 
@@ -52,38 +54,37 @@ public class LinkedListTest {
 
 
     }
-/*
+
     @Test
     public void contains() throws Exception {
         LinkedList testList = new LinkedList();
 
         testList.add(23);
-       // testList.add(2);
+        testList.add(21);
+        testList.add(19);
 
-        boolean actualA = testList.contains(testList.head.getNext());
-      //  boolean actualB = testList.contains(testList.head.getNext().getNext());
-      //  boolean actualC = testList.contains(testList.head.getNext().getNext().getNext());
-
-        Assert.assertTrue(actualA);
-      //  Assert.assertTrue(actualB);
-     //   Assert.assertTrue(actualC);
+        boolean actualFalse = testList.contains(32);
+        boolean actualtrue = testList.contains(21);
+        Assert.assertFalse(actualFalse);
+        Assert.assertTrue(actualtrue);
     }
 
     @Test
     public void find() throws Exception {
         LinkedList testList = new LinkedList();
 
-        testList.add();
-        testList.add();
-        testList.add();
+        testList.add(23);
+        testList.add(45);
+        testList.add(231);
+        testList.add(46);
+        testList.add(47);
 
-        int expected = 1;
-        LinkedList.Node findMe = testList.get(expected);
-        int actual = testList.find(findMe);
+        int expected = 3;
+        int actual = testList.find(46);
 
         Assert.assertEquals(expected,actual);
 
-    }*/
+    }
 
     @Test
     public void size() throws Exception {
@@ -99,15 +100,17 @@ public class LinkedListTest {
         Assert.assertEquals(expected,actual);
     }
 
- /*    @Test
+     @Test
     public void get() throws Exception {
         LinkedList testList = new LinkedList();
 
-        testList.add();
-        testList.add();
+        testList.add(23);
+        testList.add(34);
+        testList.add(32);
+        testList.add(39);
 
-        LinkedList.Node expected = testList.get(0);
-        LinkedList.Node actual = testList.getHead();
+        int expected = 39;
+        int actual = testList.get(3).getValue();
 
         Assert.assertEquals(expected,actual);
 
@@ -118,14 +121,18 @@ public class LinkedListTest {
     public void copy() throws Exception {
         LinkedList testList = new LinkedList();
 
-        testList.add();
-        testList.add();
+        testList.add(23);
+        testList.add(54);
+        testList.add(99);
+        testList.add(24);
+        testList.add(99);
+        testList.add(24);
 
         LinkedList copy = testList.copy();
 
-        for(int i=0; i<testList.size(); i++){
-            Assert.assertTrue(testList.get(i).equals(copy.get(i)));
-        }
+       for(int i=0; i<testList.size()-1; i++) {
+           Assert.assertTrue(testList.get(i).getValue() == copy.get(i).getValue());
+       }
 
     }
 
@@ -133,29 +140,23 @@ public class LinkedListTest {
     public void sort() throws Exception {
         LinkedList testList = new LinkedList();
 
-        testList.add();
-        testList.add();
-        testList.add();
-        testList.add();
-
-        testList.get(0).setValue(87);
-        testList.get(1).setValue(15);
-        testList.get(2).setValue(4);
-        testList.get(3).setValue(99);
+        testList.add(99);
+        testList.add(31);
+        testList.add(34);
+        testList.add(22);
+        testList.add(33);
+        testList.add(4);
 
         testList.sort();
 
-
-
-        Assert.assertEquals(4, testList.get(0).getValue());
-        Assert.assertEquals(15, testList.get(1).getValue());
-        Assert.assertEquals(87, testList.get(2).getValue());
-        Assert.assertEquals(99, testList.get(3).getValue());
+        String expected = "4, 22, 31, 33, 34, 99";
+        Assert.assertEquals(expected, testList.get(0).getValue()+", "+testList.get(1).getValue()
+                +", "+testList.get(2).getValue()+", "+testList.get(3).getValue()+", "+testList.get(4).getValue()+", "+testList.get(5).getValue());
 
     }
 
 
 
-*/
+
 
 }

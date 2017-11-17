@@ -37,18 +37,32 @@ public class LinkedList{
 
     }
 
-    public boolean contains(Node node){
+    public boolean contains(int value) {
         Node helper;
         helper = head;
-        while(helper.next !=null){
-            if(helper.next== node){
+        while (helper.next != null) {
+            if(helper.next.getValue() ==value){
                 return true;
             }
-        }
-        return false;
+            helper = helper.next;
+        }return false;
     }
 
-    public int find(Node node){
+
+    public int find(int value){
+        Node helper;
+        helper = head;
+        int index =1;
+        if(head.getValue() == value){
+            return 0;
+        }
+        while(helper.next !=null){
+            if(helper.next.getValue() == value){
+                return index;
+            }
+            helper = helper.next;
+            index++;
+        }
         return -1;
     }
 
@@ -64,25 +78,70 @@ public class LinkedList{
         return size;
     }
 
-    public Node get(int value) {
+    public Node get(int index) {
         Node helper;
         helper = head;
+        int currentIndex = 0;
         while (helper.next != null) {
-            if (helper.next.getValue() == value) {
-                return helper.getNext();
+            if (currentIndex == index) {
+                return helper;
             } else {
                 helper = helper.next;
+                currentIndex++;
             }
 
-        }return null;
-    }
 
-    public LinkedList copy(){
+        }
+        if(currentIndex == index){
+            return helper;
+        }
         return null;
     }
 
-    public void sort(){
+    public LinkedList copy(){
+        Node helper;
+        helper = head;
 
+        LinkedList copy = new LinkedList();
+
+        while(helper.next != null){
+
+            copy.add(helper.getValue());
+
+            helper = helper.next;
+        }
+
+        return copy;
+
+    }
+
+    public void sort(){
+        Node helper;
+        Node helper2;
+        helper = head;
+        helper2 = head;
+        int swap;
+        int currentValue;
+        int nextValue;
+
+        while(helper2.next != null) {
+
+            while (helper.next != null) {
+                currentValue = helper.getValue();
+                nextValue = helper.next.getValue();
+
+                if (nextValue < currentValue) {
+                    swap = currentValue;
+                    helper.setValue(nextValue);
+                    helper.next.setValue(swap);
+                }
+                helper = helper.next;
+
+
+            }
+            helper = head;
+            helper2 = helper2.next;
+        }
     }
 
     public class Node{
@@ -98,11 +157,6 @@ public class LinkedList{
            this.next = null;
         }
 
-
-
-        public void setNext(Node node){
-            this.next = next;
-        }
 
         public int getValue() {
             return value;
