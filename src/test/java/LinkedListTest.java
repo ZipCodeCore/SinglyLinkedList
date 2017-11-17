@@ -8,7 +8,7 @@ public class LinkedListTest {
 
     @Test
     public void addTest() throws Exception {
-        String expected ="345";
+        String expected ="3\n4\n5";
 
         list.add("3");
         list.add("4");
@@ -21,7 +21,7 @@ public class LinkedListTest {
     @Test
     public void removeTest() throws Exception {
 
-        String expected="abc";
+        String expected="a\nb\nc";
         list.add("a");
         list.add("b");
         list.add("c");
@@ -37,7 +37,7 @@ public class LinkedListTest {
     @Test
     public void removeByValueTest() throws Exception {
 
-        String expected="abd";
+        String expected="a\nb\nd";
         list.add("a");
         list.add("b");
         list.add("c");
@@ -97,7 +97,7 @@ public class LinkedListTest {
 
     @Test
     public void copyTest() throws Exception {
-        String expected="abcd";
+        String expected="a\nb\nc\nd";
         list.add("a");
         list.add("b");
         list.add("c");
@@ -109,7 +109,7 @@ public class LinkedListTest {
 
     @Test
     public void insertTest() throws Exception {
-        String expected="abzcd";
+        String expected="a\nb\nz\nc\nd";
         list.add("a");
         list.add("b");
         list.add("c");
@@ -120,13 +120,19 @@ public class LinkedListTest {
     }
     @Test
     public void sortTest() throws Exception {
-        String expected="aabcdez";
+        String expected="a\n" +
+                "tato\n" +
+                "tbtb\n" +
+                "tetc\n" +
+                "turtle\n" +
+                "tut\n" +
+                "z";
 
-        list.add("e");
-        list.add("c");
-        list.add("b");
-        list.add("a");
-        list.add("d");
+        list.add("turtle");
+        list.add("tetc");
+        list.add("tbtb");
+        list.add("tut");
+        list.add("tato");
         list.add("a");
         list.insert(4,"z");
 
@@ -137,7 +143,7 @@ public class LinkedListTest {
 
     @Test
     public void reverseTest() throws Exception {
-        String expected="edcba";
+        String expected="e\nd\nc\nb\na";
 
         list.add("a");
         list.add("b");
@@ -152,7 +158,7 @@ public class LinkedListTest {
 
     @Test
     public void sliceTest() throws Exception {
-        String expected = "cde";
+        String expected = "c\nd\ne";
 
         list.add("a");
         list.add("b");

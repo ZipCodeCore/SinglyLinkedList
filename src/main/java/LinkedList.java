@@ -1,8 +1,3 @@
-import sun.awt.image.ImageWatched;
-
-import java.util.Comparator;
-import java.util.Iterator;
-
 public class LinkedList<T extends Comparable<T>> {
 
     private Node head;
@@ -159,7 +154,7 @@ public class LinkedList<T extends Comparable<T>> {
             Node temp = remove(i);
             for (int j = i - 1; j >= 0; j--) {
                 if (j == 0) {
-                    insert((get(j).compareTo(temp.value) == -1 ? 1 : 0), temp.value);
+                    insert((get(j).compareTo(temp.value) <= 0 ? 1 : 0), temp.value);
                     break;
                 } else if (get(j).compareTo(temp.value) < 0) {
                     insert(j + 1, temp.value);
@@ -183,6 +178,8 @@ public class LinkedList<T extends Comparable<T>> {
     }
 
     public LinkedList slice(int start, int stop){
+        if (stop>=size())
+            stop=size();
         LinkedList partial=new LinkedList();
         for (int i=start; i<stop;i++)
             partial.add(get(i));
@@ -193,7 +190,7 @@ public class LinkedList<T extends Comparable<T>> {
         Node nxt = head;
         String list = "";
         while (nxt.next != null) {
-            list += nxt.value;
+            list += nxt.value+"\n";
             nxt = nxt.next;
         }
         list += nxt.value;
