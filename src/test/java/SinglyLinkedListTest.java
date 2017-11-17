@@ -102,5 +102,34 @@ public class SinglyLinkedListTest {
         copy.remove(0);
         Assert.assertFalse(test.contains(1) == copy.contains(1));
     }
+//    @Test
+//    public void swapTest(){
+//        int expected = 2;
+//        test.add(1);//0
+//        test.add(2);//1
+//        test.add(3);//2
+//        test.add(4);//3
+//
+//        test.swap(test.get(1),test.get(2));
+//
+//        System.out.println(test.print());
+//    }
+
+    @Test
+    public void sortTest(){
+
+        String expected = "1 2 3 4 5 ";
+
+        test.add(5);
+        test.add(4);
+        test.add(3);
+        test.add(2);
+        test.add(1);
+        test.sort();
+
+        String actual = test.print();
+
+
+    }
 
 }

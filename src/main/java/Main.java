@@ -10,8 +10,9 @@ public class Main {
         myList.add("Wow");
 
         myList.print();
-        myList.remove(1);
+
         System.out.println();
+        myList.sort();
         myList.print();
 
 

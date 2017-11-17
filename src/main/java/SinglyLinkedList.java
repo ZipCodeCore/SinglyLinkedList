@@ -1,6 +1,6 @@
 import java.util.logging.Logger;
 
-public class SinglyLinkedList<T> {
+public class SinglyLinkedList<T extends Comparable<T>> {
 
     private static final Logger logger = Logger.getGlobal();
 
@@ -65,18 +65,18 @@ public class SinglyLinkedList<T> {
         return -1;
     }
 
-    public String print(){
+    public void print(){
         logger.info("Printing List: ");
-        String output = "";
+        //String output = "";
         Node<T> temp = head;
         while(true){
             if(temp == null)
                 break;
-            //System.out.printf("%s ",temp.getInfo());
-            output += temp.getInfo() + " ";
+            System.out.printf("%s ",temp.getInfo());
+            //output += temp.getInfo() + " ";
             temp = temp.getNextNode();
         }
-        return output;
+
     }
 
     public int getSize(){
@@ -97,11 +97,45 @@ public class SinglyLinkedList<T> {
         return copy;
     }
 
-    public void sort(SinglyLinkedList<T> list){
-        Node<T> temp = head;
+    private void swap(Node<T> first , Node<T> second){
+        Node<T> temp = get(find(first.info)-1);
+
+        if(first == second){
+            //break out of method when nodes are the same.
+            return;
+        }
+
+        if(temp == null){
+            head = second;
+            first.setNextNode(second.nextNode);
+            second.setNextNode(first);
+        } else{
+            temp.setNextNode(second);
+            first.setNextNode(second.nextNode);
+            second.setNextNode(first);
+        }
+
     }
 
-    class Node<T> implements Comparable <T> {
+    public void sort(){
+        int currentIndex;
+        int finalIndex = size -1;
+
+        while (0 < finalIndex){
+            currentIndex = 0;
+            while (currentIndex < finalIndex){
+                Node<T> indexNode = get(currentIndex);
+                Node<T> nextIndex = get(currentIndex+1);
+                if(indexNode.getInfo().compareTo(nextIndex.getInfo()) > 0){
+                    swap(indexNode,nextIndex);
+                }
+                currentIndex++;
+            }
+            finalIndex--;
+        }
+    }
+
+    class Node<T> {
         private Node <T> nextNode;
         private T info;
 
@@ -123,16 +157,6 @@ public class SinglyLinkedList<T> {
 
         public void setNextNode(Node <T> nextNode) {
             this.nextNode = nextNode;
-        }
-
-        @Override
-        public int compareTo(T o) {
-            if (o == this.info) {
-                return 0;
-            } else {
-                return 1;
-            }
-
         }
     }
 }
