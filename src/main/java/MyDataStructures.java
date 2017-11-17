@@ -1,4 +1,5 @@
 import java.util.LinkedList;
+import java.util.logging.Logger;
 
 public class MyDataStructures<P extends Comparable> {
     private Node<P> Head;
@@ -20,13 +21,13 @@ public class MyDataStructures<P extends Comparable> {
             this.info = info;
             this.previousNode = previousNode;
         }
-        public P getInfo(){
+        P getInfo(){
             return this.info;
         }
-        public void setNextNode(Node<P> nextNode){
+        void setNextNode(Node<P> nextNode){
             this.nextNode = nextNode;
         }
-        public void setPreviousNode(Node<P> previousNode) {
+        void setPreviousNode(Node<P> previousNode) {
             this.previousNode = previousNode;
         }
         @Override
@@ -138,11 +139,10 @@ public class MyDataStructures<P extends Comparable> {
     }
 
     public void sort(){
-        int currentIndex;
         int finalIndex = size-1;
 
         while(0<finalIndex){
-            currentIndex = 0;
+            int currentIndex = 0;
             while(currentIndex<finalIndex){
                 Node<P> indexNode = get(currentIndex);
                 Node<P> nextIndex = get(currentIndex+1);
@@ -154,4 +154,24 @@ public class MyDataStructures<P extends Comparable> {
             finalIndex--;
         }
     }
+
+    public void reverse(){
+        MyDataStructures<P> reverse = new MyDataStructures<>();
+
+        Node<P> currentNode = lastNode;
+        while(currentNode != null){
+            reverse.add(currentNode.getInfo());
+            currentNode = currentNode.previousNode;
+        }
+
+        Head = reverse.getHead();
+    }
+
+    public MyDataStructures<P> slice(P first,P last){
+        MyDataStructures<P> slice = copy();
+        slice.Head = slice.get(slice.find(first));
+        slice.get(slice.find(last)).previousNode.setNextNode(null);
+        return slice;
+    }
+
 }

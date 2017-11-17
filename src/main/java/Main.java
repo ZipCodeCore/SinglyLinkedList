@@ -1,3 +1,4 @@
+
 public class Main {
     public static void main(String[] args) {
         MyDataStructures<String> stringData = new MyDataStructures<>();
@@ -9,13 +10,10 @@ public class Main {
 
         System.out.println(stringData);
 
-        stringData.remove(stringData.find("Zach"));
-
-        System.out.println(stringData);
-
         stringData.sort();
 
         System.out.println(stringData);
+
     }
 
 }

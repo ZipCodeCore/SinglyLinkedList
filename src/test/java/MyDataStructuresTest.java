@@ -140,4 +140,25 @@ public class MyDataStructuresTest {
 
         Assert.assertEquals(expected,actual);
     }
+
+    @Test
+    public void testReverse(){
+        String expected = "5 6 7 11 10 9 8 ";
+
+        testData.reverse();
+
+        String actual = testData.toString();
+
+        Assert.assertEquals(expected,actual);
+    }
+
+    @Test
+    public void sliceTest(){
+        String expected = "10 11 7 ";
+        MyDataStructures<Integer> slice = testData.slice(10,6);
+
+        String actual = slice.toString();
+
+        Assert.assertEquals(expected,actual);
+    }
 }
