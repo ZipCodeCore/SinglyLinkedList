@@ -5,8 +5,8 @@ import java.util.Iterator;
 
 public class LinkedList<T extends Comparable<T>> {
 
-    Node head;
-    Node tail;
+    private Node head;
+    private Node tail;
 
     public void add(T value) {
         if (head == null) {
@@ -174,6 +174,21 @@ public class LinkedList<T extends Comparable<T>> {
 
     }
 
+    public LinkedList reverse(){
+        LinkedList reversed=new LinkedList();
+        for (int i=size()-1; i>=0; i--)
+            reversed.add(this.get(i));
+
+        return reversed;
+    }
+
+    public LinkedList slice(int start, int stop){
+        LinkedList partial=new LinkedList();
+        for (int i=start; i<stop;i++)
+            partial.add(get(i));
+        return partial;
+    }
+
     public String toString() {
         Node nxt = head;
         String list = "";
@@ -194,7 +209,5 @@ public class LinkedList<T extends Comparable<T>> {
         Node(T value) {
             this.value = value;
         }
-
-
     }
 }

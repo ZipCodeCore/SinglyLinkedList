@@ -1,10 +1,6 @@
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import sun.awt.image.ImageWatched;
-
-import static org.junit.Assert.*;
 
 
 public class LinkedListTest {
@@ -118,7 +114,7 @@ public class LinkedListTest {
         list.add("b");
         list.add("c");
         list.add("d");
-        list.insert(4,"z");
+        list.insert(2,"z");
         String actual=list.toString();
         Assert.assertEquals(expected, actual);
     }
@@ -139,5 +135,33 @@ public class LinkedListTest {
         Assert.assertEquals(expected, actual);
     }
 
+    @Test
+    public void reverseTest() throws Exception {
+        String expected="edcba";
 
+        list.add("a");
+        list.add("b");
+        list.add("c");
+        list.add("d");
+        list.add("e");
+
+        list=list.reverse();
+        String actual=list.toString();
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void sliceTest() throws Exception {
+        String expected = "cde";
+
+        list.add("a");
+        list.add("b");
+        list.add("c");
+        list.add("d");
+        list.add("e");
+
+        list = list.slice(2, 5);
+        String actual = list.toString();
+        Assert.assertEquals(expected, actual);
+    }
 }
