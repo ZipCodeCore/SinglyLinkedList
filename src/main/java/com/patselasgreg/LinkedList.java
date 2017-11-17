@@ -2,38 +2,20 @@ package com.patselasgreg;
 
 public class LinkedList{
 
-    private Node head;
-    public static int size;
+    public Node head = null;
+    public Node tail = null;
 
     public LinkedList(){
-        this.head = new Node();
-        this.size = 0;
     }
 
-    public class Node{
-        private int index;
-        private int value;
-        private Node next;
-
-        public Node(){
-            this.index = 0;
-            this.next = null;
-        }
-
-        public int getIndex() {
-            return index;
-        }
-
-        public int getValue() {
-            return value;
-        }
-
-        public void setValue(int value) {
-            this.value = value;
-        }
-
-        public Node getNext() {
-            return next;
+    public void add(int value) {
+        Node add = new Node(value);
+        if(head == null){
+            head = add;
+            tail = add;
+        } else{
+            tail.next = add;
+            tail = add;
         }
     }
 
@@ -41,16 +23,28 @@ public class LinkedList{
         return head;
     }
 
+    public void remove(int value){
+        Node helper;
+        helper = head;
+        while(helper.next != null){
+            if(helper.next.getValue() == value ){
+                helper.next = helper.next.next;
+            }else{
+                helper = helper.next;
+            }
+        }
 
-    public void add(){
-
-    }
-
-    public void remove(){
 
     }
 
     public boolean contains(Node node){
+        Node helper;
+        helper = head;
+        while(helper.next !=null){
+            if(helper.next== node){
+                return true;
+            }
+        }
         return false;
     }
 
@@ -59,11 +53,28 @@ public class LinkedList{
     }
 
     public int size(){
-        return 0;
+        Node helper;
+        helper = head;
+        int size=1;
+        while (helper.next != null){
+            helper = helper.next;
+            size++;
+
+        }
+        return size;
     }
 
-    public Node get(int index){
-        return null;
+    public Node get(int value) {
+        Node helper;
+        helper = head;
+        while (helper.next != null) {
+            if (helper.next.getValue() == value) {
+                return helper.getNext();
+            } else {
+                helper = helper.next;
+            }
+
+        }return null;
     }
 
     public LinkedList copy(){
@@ -74,4 +85,40 @@ public class LinkedList{
 
     }
 
+    public class Node{
+        private int value;
+        private Node next;
+
+        public Node(){
+            this.value =0;
+            this.next = null;
+        }
+        public Node(int value){
+           this.value = value;
+           this.next = null;
+        }
+
+
+
+        public void setNext(Node node){
+            this.next = next;
+        }
+
+        public int getValue() {
+            return value;
+        }
+
+
+        public Node getNext() {
+            return next;
+        }
+
+        public void setValue(int value) {
+            this.value = value;
+        }
+    }
+
+
 }
+
+
