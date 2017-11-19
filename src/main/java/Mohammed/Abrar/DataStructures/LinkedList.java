@@ -7,27 +7,24 @@ public class LinkedList<T extends Comparable> {
 
 
     public LinkedList() {
-
         this.head = null;
     }
+
 
     public T getHead() {
         if (head == null) {
             return null;
         }
-
         return head.data;
-
     }
 
+
     public void add(T t) {
-
-
         head = new Node<T>(t, head);
     }
 
-    public int size() {
 
+    public int size() {
         Node temp = head;
         int size = 0;
         while (temp != null) {
@@ -43,17 +40,14 @@ public class LinkedList<T extends Comparable> {
             if (head == null)
                 return null;
             Node<T> tmp = head;
-            for (int i = 1; i < reference && tmp != null; i++)
+            for (int i = 0; i < reference && tmp != null; i++)
                 tmp = tmp.next;
-
-
             return tmp.data;
         } catch (Exception e) {
 
             System.out.println("Can not get the item");
             return null;
         }
-
     }
 
 
@@ -65,147 +59,96 @@ public class LinkedList<T extends Comparable> {
             Node<T> tmp = head;
             for (index = 1; tmp.data == data && tmp != null; index++)
                 tmp = tmp.next;
-
-
             return index;
         } catch (Exception e) {
 
             System.out.println("Can not get the item");
             return -1;
         }
-
     }
 
-    public void sort () {
 
+    public void sort() {
         if (head == null) {
             System.out.println("Nothing to be sorted");
-
-            Node tmp = head;
-        if (size()==1)
-
-             tmp = head;
-
-            for (int i = 0; i < size() - 1; i++) {
-
-                Node tmp2 = tmp.next;
-
-                for (int j = i + 1; j < size(); j++) {
-                    if ((tmp2.data).compareTo(tmp.data) < 0) {
-
-                       T data1 = (T) tmp.data;
-
-                        tmp.data = tmp2.data;
-
-                        tmp2.data= data1;
-
-                    }
-
-                    tmp2 = tmp2.next;
+        }
+        Node tmp = head;
+        for (int i = 0; i < size() - 1; i++) {
+            Node tmp2 = tmp.next;
+            for (int j = i + 1; j < size(); j++) {
+                if ((tmp2.data).compareTo(tmp.data) < 0) {
+                    T data1 = (T) tmp.data;
+                    tmp.data = tmp2.data;
+                    tmp2.data = data1;
                 }
-
-                tmp = tmp.next;
-                }
+                tmp2 = tmp2.next;
             }
-         }
+            tmp = tmp.next;
+        }
+    }
 
 
     public boolean isEmpty() {
-
         return head == null;
     }
 
 
     public boolean contains(T data) {
-
         T data1 = head.data;
-
         if (data1.equals(data))
             return true;
         while (head != null) {
-
             if (head.data.equals(data))
-
-
                 return true;
             head = head.next;
-
         }
-
         return false;
     }
 
 
     public void remove(T data) {
-
-
         if (head.data.equals(data)) {
-
             head = head.next;
-
             return;
         }
 
         Node<T> previousPosition = head;
-
         Node<T> currentPostion = null;
 
-
         while (!previousPosition.data.equals(data)) {
-
             previousPosition = currentPostion;
-
             currentPostion = currentPostion.next;
-
         }
-
-
         previousPosition.next = currentPostion.next;
-
     }
 
 
     public LinkedList<T> copy(LinkedList<T> linkedList) {
-
         Node<T> tmp = head;
-
         while (tmp != null) {
             linkedList.addLast(tmp.data);
-
             tmp = tmp.next;
-
         }
-
         return linkedList;
     }
 
+
     public void addLast(T item) {
-
         if (head == null)
-
             add(item);
-
         else {
-
             Node<T> tmp = head;
-
             while (tmp.next != null)
                 tmp = tmp.next;
-
             tmp.next = new Node<T>(item, null);
         }
-
     }
 
 
     public T getLast() {
-
         Node<T> tmp = head;
-
         while (tmp.next != null)
             tmp = tmp.next;
-
-
         return tmp.data;
 
     }
@@ -220,29 +163,9 @@ public class LinkedList<T extends Comparable> {
             this.next = next;
         }
 
-
-
         public int compareTo(T o) {
-           return next.compareTo(o);
+            return next.compareTo(o);
         }
-
-
     }
 
-    public static void main(String[] args) {
-        LinkedList<String> linkedList = new LinkedList<String>();
-        // Mohammed.Abrar.DataStructures.LinkedList<String> linkedList2= new Mohammed.Abrar.DataStructures.LinkedList<>();
-        // linkedList2 = linkedList.copy(linkedList);
-        linkedList.add("Abrar");
-        linkedList.add("Raul");
-        linkedList.add("NoOne");
-        linkedList.add("Mina");
-        //System.out.println(linkedList.size());
-        // linkedList.removeAll();
-        // System.out.println(linkedList.isEmpty());
-        // System.out.println(linkedList.get(2));
-        linkedList.find("Abrar");
-        // System.out.println(linkedList.contains("Raul"));
-        System.out.println(linkedList.head.data);
-    }
 }

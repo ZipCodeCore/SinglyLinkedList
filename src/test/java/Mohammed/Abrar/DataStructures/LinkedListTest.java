@@ -7,44 +7,51 @@ import static org.junit.Assert.*;
 
 public class LinkedListTest {
     LinkedList<String> linkedList = new LinkedList<>();
+
     @Test
-    public void getHead()  {
+    public void getHead() {
+
+
+        String expected = null;
+        String actual = linkedList.getHead();
+        linkedList.add("Mina");
+
+        String expected2 = "Mina";
+        String actual2 = linkedList.getHead();
+
+        Assert.assertEquals(expected, actual);
+        Assert.assertEquals(expected2, actual2);
     }
 
     @Test
 
-     public    void addAndSize() {
+    public void addAndSize() {
 
 
-            linkedList.add("Abrar");
-            linkedList.add("Zen");
+        linkedList.add("Abrar");
+        linkedList.add("Zen");
 
-            int expected = 2;
+        int expected = 2;
 
-            int actual = linkedList.size();
+        int actual = linkedList.size();
 
-            Assert.assertEquals(expected, actual);
+        Assert.assertEquals(expected, actual);
 
-            linkedList.add("Raul");
-
-
-            int expected2 = 3;
-
-            int actual2 = linkedList.size();
-
-            Assert.assertEquals(expected2, actual2);
+        linkedList.add("Raul");
 
 
-        }
+        int expected2 = 3;
+
+        int actual2 = linkedList.size();
+
+        Assert.assertEquals(expected2, actual2);
 
 
-
-    @Test
-    public void size() throws Exception {
     }
 
+
     @Test
-    public void getTest(){
+    public void getTest() {
         linkedList.add("Raul");
         linkedList.add("Greg");
         linkedList.add("Zen");
@@ -52,12 +59,9 @@ public class LinkedListTest {
 
 
         String expected = "Raul";
-        String actual = linkedList.get(4);
+        String actual = linkedList.get(3);
 
-        Assert.assertEquals(expected,actual);
-
-        linkedList.add("Merzuk");
-        System.out.println(linkedList.get(4));
+        Assert.assertEquals(expected, actual);
 
 
     }
@@ -78,7 +82,7 @@ public class LinkedListTest {
     }
 
     @Test
-    public  void sortTest(){
+    public void sortTest() {
 
         linkedList.add("Raul");
         linkedList.add("Greg");
@@ -112,7 +116,7 @@ public class LinkedListTest {
     }
 
     @Test
-    public  void containTest() {
+    public void containTest() {
 
         linkedList.add("Raul");
         boolean expected = true;
@@ -125,7 +129,6 @@ public class LinkedListTest {
         Assert.assertEquals(expected2, actual2);
 
 
-
     }
 
     @Test
@@ -134,40 +137,39 @@ public class LinkedListTest {
         linkedList.add("Greg");
         linkedList.add("Zen");
         int expected = linkedList.size() - 1;
-        System.out.println(linkedList.size());
+        Boolean expected2 = false;
 
         linkedList.remove("Zen");
-        System.out.println(linkedList.size());
+
 
         int actual = linkedList.size();
+        Boolean actual2 = linkedList.contains("Zen");
 
         Assert.assertEquals(expected, actual);
-
+        Assert.assertEquals(expected2, actual2);
     }
 
 
     @Test
-    public void copy() throws Exception {
-    }
-
-    @Test
-    public  void addLastTest(){
+    public void addAndGetLastTest() {
         linkedList.add("Raul");
         linkedList.add("Greg");
         linkedList.add("Zen");
-        System.out.println(linkedList.getHead());
-        // System.out.println(linkedList.get(3));
+
+        String expected = "Raul";
+        String actaul = linkedList.getLast();
+
 
         linkedList.addLast("Logan");
 
-        System.out.println(linkedList.getHead());
-        System.out.println(linkedList.getLast());
+        String expected2 = "Logan";
+        String actaul2 = linkedList.getLast();
+
+        Assert.assertEquals(expected, actaul);
+        Assert.assertEquals(expected2, actaul2);
 
 
     }
 
-    @Test
-    public void getLast() throws Exception {
-    }
 
 }
