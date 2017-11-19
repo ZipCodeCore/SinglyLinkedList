@@ -88,7 +88,7 @@ public class LinkedListTest {
         System.out.println(linkedList.get(2));
         System.out.println(linkedList.get(3));
 
-        linkedList.sort(linkedList);
+        linkedList.sort();
         System.out.println("____________________");
         System.out.println(linkedList.get(1));
         System.out.println(linkedList.get(2));

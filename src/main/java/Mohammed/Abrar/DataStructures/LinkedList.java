@@ -76,29 +76,38 @@ public class LinkedList<T extends Comparable> {
 
     }
 
-    public  void sort(LinkedList<T> list) {
+    public void sort () {
 
+        if (head == null) {
+            System.out.println("Nothing to be sorted");
 
-        if (list.head == null)
-            System.out.println("No items to be sorted");
-        int index = 0;
-        T tmp = list.head.data;
+            Node tmp = head;
+        if (size()==1)
 
-        for (index = 0; index < list.size(); index++) {
+             tmp = head;
 
-                 if(list.get(index).compareTo(list.get(index+1))>0)
-                     tmp=list.get(index+1);
+            for (int i = 0; i < size() - 1; i++) {
 
+                Node tmp2 = tmp.next;
 
+                for (int j = i + 1; j < size(); j++) {
+                    if ((tmp2.data).compareTo(tmp.data) < 0) {
 
+                       T data1 = (T) tmp.data;
 
-           }
+                        tmp.data = tmp2.data;
 
-        }
+                        tmp2.data= data1;
 
+                    }
 
+                    tmp2 = tmp2.next;
+                }
 
-
+                tmp = tmp.next;
+                }
+            }
+         }
 
 
     public boolean isEmpty() {
