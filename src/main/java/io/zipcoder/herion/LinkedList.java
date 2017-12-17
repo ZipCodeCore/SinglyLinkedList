@@ -2,6 +2,10 @@ package io.zipcoder.herion;
 
 import java.util.NoSuchElementException;
 
+
+// This is a solution to a lab given early on in the Zip Code Course in which the requirement was to create a singly-linked
+//list functionality (with certain prescribed methods) from scratch
+
 public class LinkedList<E extends Comparable<E>> {
 
 
