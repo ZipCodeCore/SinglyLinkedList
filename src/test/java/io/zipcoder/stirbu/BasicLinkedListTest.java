@@ -7,7 +7,7 @@ import org.junit.Test;
 public class BasicLinkedListTest {
 
     @Test
-     public void addTest() {
+     public void addTest() throws Exception {
         BasicLinkedList singly = new BasicLinkedList();
 
         singly.add("ABC");
@@ -16,7 +16,7 @@ public class BasicLinkedListTest {
     }
 
     @Test
-     public void addSecondTest() {
+     public void addSecondTest() throws Exception {
         BasicLinkedList singly = new BasicLinkedList();
 
         singly.add("ABC");
@@ -28,21 +28,21 @@ public class BasicLinkedListTest {
     }
 
     @Test
-     public void removeTest() {
+     public void removeTest() throws Exception {
         BasicLinkedList singly = new BasicLinkedList();
 
         singly.add("ABC");
         singly.add("JGHGF");
         singly.add("UYRTE");
         singly.add("HAHAHAHA");
-        singly.remove(3);
+        singly.remove(1);
 
         singly.printAll();
         Assert.assertEquals(3, singly.size());
     }
 
     @Test
-    public void containsTest() {
+    public void containsTest() throws Exception {
         BasicLinkedList singly = new BasicLinkedList();
 
         singly.add("ABC");
@@ -58,7 +58,7 @@ public class BasicLinkedListTest {
     }
 
     @Test
-    public void sizeTest() {
+    public void sizeTest() throws Exception {
         BasicLinkedList singly = new BasicLinkedList();
 
         singly.add("ABC");
@@ -71,7 +71,7 @@ public class BasicLinkedListTest {
     }
 
     @Test
-    public void findTest(){
+    public void findTest() throws Exception{
         BasicLinkedList singly = new BasicLinkedList();
 
         singly.add("ABC");
@@ -84,15 +84,32 @@ public class BasicLinkedListTest {
         Assert.assertEquals(4, singly.size());
     }
 
-//    @Test
-//    public void copyTest(){
-//        BasicLinkedList singly = new BasicLinkedList();
-//        Node
-//        singly.add("JHGSDSD");
-//        singly.add("*&&*&^%");
-//        BasicLinkedList copy = singly.copy();
-//        singly.
-//
-//        Assert.assertEquals(singly.);
-//    }
+    @Test
+    public void copyTest(){
+        BasicLinkedList singly = new BasicLinkedList();
+        singly.add("JHGSDSD");
+        singly.add("*&&*&^%");
+        BasicLinkedList theClone = singly.copy();
+
+        String actual = theClone.printAll().trim();
+        String expected = "JHGSDSD\n*&&*&^%";
+
+        Assert.assertEquals(expected ,actual);
+    }
+
+    @Test
+    public void sortTest(){
+        BasicLinkedList singly = new BasicLinkedList();
+        singly.add("cat");
+        singly.add("dog");
+        singly.add("apple");
+        singly.add("elephant");
+        singly.add("bat");
+
+        singly.sort();
+
+        System.out.println(singly);
+    }
+
+
 }

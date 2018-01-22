@@ -1,46 +1,53 @@
 package io.zipcoder.stirbu;
 
-public class BasicLinkedList<E> {
+public class BasicLinkedList<E extends Comparable<E>> {
 
     public boolean isEmpty(){
         return size() == 0;
     }
 
     public int size(){
-        int length = 0;
+        int nodeCount = 0;
         Node current = first;
         while (current != null){
-            length++;
+            nodeCount++;
             current = current.getNextNode();
         }
-        return length;
+        return nodeCount;
     }
 
-    public void printAll() {
+    public String printAll() {
+        String out = "";
         Node printNode = this.first;
         int count = 0;
         while(count < size()){
-            System.out.println(printNode.value);
+            out += printNode.value + "\n";
             printNode = printNode.getNextNode();
             count++;
         }
+        return out;
     }
+
 
     public class Node {
         private Node nextNode;
         private E value;
+
+        public void setValue(E value) {
+            this.value = value;
+        }
 
         public Node(E value) {
             this.value = value;
         }
 
         public Node getNextNode() {
-            return this.nextNode;
+            return nextNode;
         }
 
     }
 
-    private Node getNodeAtIndex(int i) {
+    public Node getNodeAtIndex(int i) {
         Node currentNode = first;
         while (i > 0 ){
             currentNode = currentNode.getNextNode();
@@ -53,10 +60,10 @@ public class BasicLinkedList<E> {
     Node last;
     int nodeCount = 0;
 
-    public BasicLinkedList(){
-        first = null;
-        last = null;
-    }
+//    public BasicLinkedList(){
+//        first = null;
+//        last = null;
+//    }
 
     Node currentNode = first;
 
@@ -100,16 +107,24 @@ public class BasicLinkedList<E> {
         return -1;
     }
 
-    public BasicLinkedList<E> copy(){
+    public BasicLinkedList copy(){
         BasicLinkedList basicLinkedListCopy = new BasicLinkedList();
-        while (currentNode != null){
-            basicLinkedListCopy.add(currentNode.getNextNode());
-            currentNode = currentNode.nextNode;
+        for (int i = 0; i < size(); i++){
+            basicLinkedListCopy.add(getNodeAtIndex(i).value);
         }
         return basicLinkedListCopy;
     }
 
     public void sort(){
-        currentNode
+        Node nextNode = currentNode.getNextNode();
+        E helper;
+        while (currentNode != null){
+           if( currentNode.value.compareTo(nextNode.value) > 0){
+               helper = nextNode.value;
+               nextNode.setValue(currentNode.value);
+               currentNode.setValue(helper);
+           }
+        }
+
     }
 }
