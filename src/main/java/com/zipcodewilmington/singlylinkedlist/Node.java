@@ -42,4 +42,11 @@ public class Node<E> {
     public Boolean hasNext() {
         return (next != null);
     }
+
+    public Boolean compareTo(Node<E> next) {
+        E currentData = this.getData();
+        E nextData = next.getData();
+        return (currentData.toString().compareToIgnoreCase(nextData.toString()) < 0);
+
+    }
 }

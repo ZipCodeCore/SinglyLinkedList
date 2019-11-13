@@ -205,12 +205,40 @@ public class SinglyLinkedListTest {
 
     @Test
     public void testCopy() {
-
+        SinglyLinkedList<String> list = new SinglyLinkedList<String>();
+        list.add("Hello");
+        list.add("World");
+        list.add("House");
+        SinglyLinkedList<String> newList = list.copy();
+        Assert.assertEquals(list, newList);
     }
 
     @Test
-    public void testSort() {
+    public void testSort1() {
+        SinglyLinkedList<String> list = new SinglyLinkedList<String>();
+        list.add("Apple");
+        list.add("Horse");
+        list.add("Train");
+        list.add("Banana");
+        list.add("Gibraltar");
+        SinglyLinkedList<String> sortedList = list.sort();
+        String actual = sortedList.toString();
+        String expected = "0 Apple\n1 Banana\n2 Gibraltar\n3 Horse\n4 Train";
+        Assert.assertEquals(expected, actual);
+    }
 
+    @Test
+    public void testSort2() {
+        SinglyLinkedList<Integer> list = new SinglyLinkedList<Integer>();
+        list.add(4);
+        list.add(7);
+        list.add(2);
+        list.add(6);
+        list.add(3);
+        SinglyLinkedList<Integer> sortedList = list.sort();
+        String actual = sortedList.toString();
+        String expected = "0 2\n1 3\n2 4\n3 6\n4 7";
+        Assert.assertEquals(expected, actual);
     }
 
     @Test

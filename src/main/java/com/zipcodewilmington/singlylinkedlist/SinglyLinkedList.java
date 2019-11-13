@@ -48,7 +48,6 @@ public class SinglyLinkedList<E> {
     public void add(E data) {
         Node<E> newNode = new Node<E>(data);
         if (head != null) {
-
             newNode = linkPrev(newNode, this.getLast());
         }
         else head = newNode;
@@ -112,7 +111,7 @@ public class SinglyLinkedList<E> {
                 if (node.getData().equals(data)) break;
                 index += 1;
                 node = node.getNext();
-            } while (node.hasNext());
+            } while (node != null);//.hasNext());
         }
         return index;
     }
@@ -139,11 +138,31 @@ public class SinglyLinkedList<E> {
     }
 
     public SinglyLinkedList<E> copy() {
-        return null;
+        return this;
     }
 
     public SinglyLinkedList<E> sort() {
-        return null;
+        SinglyLinkedList<E> list = this.copy();
+
+        Boolean sorted;
+        do {
+            Node<E> node = list.head;
+            sorted = true;
+
+            for (int i = 0; i < list.size(); i++) {
+                E currentData = list.get(i);
+                E nextData = list.get(i+1);
+
+                if (node.hasNext() && currentData.toString().compareToIgnoreCase(nextData.toString()) > 0) {
+                    node.setData(nextData);
+                    node.getNext().setData(currentData);
+                    sorted = false;
+                }
+                node = node.getNext();
+            }
+
+        } while (!sorted);
+        return list;
     }
 
     public SinglyLinkedList<E> reverse() {
