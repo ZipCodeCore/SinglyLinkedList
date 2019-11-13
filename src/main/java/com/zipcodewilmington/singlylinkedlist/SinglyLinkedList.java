@@ -49,6 +49,7 @@ public class SinglyLinkedList<E> {
         Node<E> newNode = new Node<E>(data);
         if (head != null) {
             newNode = linkPrev(newNode, this.getLast());
+            this.tail = newNode;
         }
         else head = newNode;
         count++;
@@ -89,10 +90,10 @@ public class SinglyLinkedList<E> {
         Boolean keepLooking;
        do {
            keepLooking = false;
-            if (current.getData().equals(data)) {
+           if (current.getData().equals(data)) {
                 exists = true;
                 break;
-            }
+           }
            if (current.hasNext()) {
                current = current.getNext();
                keepLooking = true;
@@ -111,7 +112,7 @@ public class SinglyLinkedList<E> {
                 if (node.getData().equals(data)) break;
                 index += 1;
                 node = node.getNext();
-            } while (node != null);//.hasNext());
+            } while (node != null);
         }
         return index;
     }
@@ -166,11 +167,23 @@ public class SinglyLinkedList<E> {
     }
 
     public SinglyLinkedList<E> reverse() {
-        return null;
+        SinglyLinkedList<E> list = new SinglyLinkedList<E>();
+        Node<E> node = this.tail;
+        while (node.hasPrev()) {
+            list.add(node.getData());
+            node = node.getPrev();
+        }
+        list.add(this.head.getData());
+
+        return list;
     }
 
     public SinglyLinkedList<E> slice(Integer startIndex, Integer upToIndex) {
-        return null;
+        SinglyLinkedList<E> list = new SinglyLinkedList<E>();
+        for (int i = startIndex; i < upToIndex; i++) {
+            list.add(this.get(i));
+        }
+        return list;
     }
 
     @Override

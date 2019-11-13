@@ -242,13 +242,29 @@ public class SinglyLinkedListTest {
     }
 
     @Test
-    public void testReverse() {
-
+    public void testReverse1() {
+        SinglyLinkedList<String> list = new SinglyLinkedList<String>();
+        list.add("Apple");
+        list.add("Horse");
+        list.add("Train");
+        list.add("Banana");
+        list.add("Gibraltar");
+        String actual = list.reverse().toString();
+        String expected = "0 Gibraltar\n1 Banana\n2 Train\n3 Horse\n4 Apple";
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
     public void testSlice() {
-
+        SinglyLinkedList<String> list = new SinglyLinkedList<String>();
+        list.add("Apple");
+        list.add("Horse");
+        list.add("Train");
+        list.add("Banana");
+        list.add("Gibraltar");
+        String actual = list.slice(0,2).toString();
+        String expected = "0 Apple\n1 Horse";
+        Assert.assertEquals(expected, actual);
     }
 
 
