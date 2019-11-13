@@ -2,8 +2,8 @@ package com.zipcodewilmington.singlylinkedlist;
 
 public class Node<E> {
     private E data;
-    private Node next;
-    private Node prev;
+    private Node<E> next;
+    private Node<E> prev;
 
     public Node (E data) {
         this.prev = null;
@@ -17,6 +17,10 @@ public class Node<E> {
 
     public void setPrev(Node<E> prev) {
         this.prev = prev;
+    }
+
+    public Boolean hasPrev() {
+        return (prev != null);
     }
 
     public E getData() {
