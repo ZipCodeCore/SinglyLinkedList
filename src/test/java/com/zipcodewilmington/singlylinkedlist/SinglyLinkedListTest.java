@@ -183,8 +183,24 @@ public class SinglyLinkedListTest {
     }
 
     @Test
-    public void testGet() {
+    public void testGet1() {
+        SinglyLinkedList<String> list = new SinglyLinkedList<String>();
+        list.add("Hello");
+        list.add("World");
+        list.add("House");
+        String actual = list.get(1);
+        String expected = "World";
+        Assert.assertEquals(expected, actual);
+    }
 
+    @Test
+    public void testGet2() {
+        SinglyLinkedList<String> list = new SinglyLinkedList<String>();
+        list.add("Hello");
+        list.add("World");
+        list.add("House");
+        String actual = list.get(42);
+        Assert.assertEquals(null, actual);
     }
 
     @Test

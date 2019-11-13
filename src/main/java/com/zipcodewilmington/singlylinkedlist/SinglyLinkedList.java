@@ -122,7 +122,20 @@ public class SinglyLinkedList<E> {
     }
 
     public E get(Integer index) {
-        return null;
+        Node<E> node = head;
+        E data = null;
+        int count = 0;
+        if (index <= size()) {
+            while (node != null) {
+                if (count == index) {
+                    data = node.getData();
+                    break;
+                }
+                node = node.getNext();
+                count += 1;
+            }
+        }
+        return data;
     }
 
     public SinglyLinkedList<E> copy() {
