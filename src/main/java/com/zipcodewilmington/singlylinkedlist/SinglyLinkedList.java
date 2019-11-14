@@ -66,7 +66,14 @@ public class SinglyLinkedList<E> {
         else tail = node.getPrev();
         count -= 1;
     }
-
+//    public void connectAroundNodes(Node<E> node) {
+//        if (node.hasPrev()) prevNode.setNext(nextNode);
+//        else head = nextNode;
+//
+//        if (node.hasNext()) nextNode.setPrev(prevNode);
+//        else tail = prevNode;
+//        count -= 1;
+//    }
 
     public void remove(E data) {
         for (Node<E> node = this.head; node != null; node = node.getNext()) {
@@ -76,8 +83,6 @@ public class SinglyLinkedList<E> {
             }
         }
     }
-
-
 
     public Boolean contains(E data) {
         Boolean exists = false;
@@ -120,6 +125,10 @@ public class SinglyLinkedList<E> {
         return this;
     }
 
+//    public Boolean compareToNext() {
+//
+//    }
+
     public SinglyLinkedList<E> sort() {
         SinglyLinkedList<E> list = this.copy();
 
@@ -146,13 +155,9 @@ public class SinglyLinkedList<E> {
 
     public SinglyLinkedList<E> reverse() {
         SinglyLinkedList<E> list = new SinglyLinkedList<E>();
-        Node<E> node = this.tail;
-        while (node.hasPrev()) {
+        for (Node<E> node = this.tail; node != null; node = node.getPrev()) {
             list.add(node.getData());
-            node = node.getPrev();
         }
-        list.add(this.head.getData());
-
         return list;
     }
 
@@ -166,14 +171,11 @@ public class SinglyLinkedList<E> {
 
     @Override
     public String toString() {
-        Node<E> node = head;
         StringBuilder output = new StringBuilder();
         int count = 0;
-        output.append(String.format("%s %s", count, node.getData()));
-        while(node.hasNext()) {
-            node = node.getNext();
+        for (Node<E> node = this.head; node != null; node = node.getNext()) {
+            output.append(String.format("%s %s\n", count, node.getData()));
             count += 1;
-            output.append(String.format("\n%s %s", count, node.getData()));
         }
         return output.toString();
     }

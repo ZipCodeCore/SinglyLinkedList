@@ -51,7 +51,7 @@ public class SinglyLinkedListTest {
         SinglyLinkedList<String> list = new SinglyLinkedList<String>();
         list.add("Hello");
         String actualString = list.toString();
-        String expectedString = "0 Hello";
+        String expectedString = "0 Hello\n";
         Assert.assertEquals(expectedString, actualString);
     }
 
@@ -61,7 +61,7 @@ public class SinglyLinkedListTest {
         list.add("Hello");
         list.add("World");
         String actualString = list.toString();
-        String expectedString = "0 Hello\n1 World";
+        String expectedString = "0 Hello\n1 World\n";
         Assert.assertEquals(expectedString, actualString);
     }
 
@@ -82,7 +82,7 @@ public class SinglyLinkedListTest {
         list.add("World");
         list.remove("Hello");
         String actualString = list.toString();
-        String expectedString = "0 World";
+        String expectedString = "0 World\n";
         Assert.assertEquals(expectedString, actualString);
     }
     @Test
@@ -94,7 +94,7 @@ public class SinglyLinkedListTest {
         list.add("Java");
         list.remove("Java");
         String actualString = list.toString();
-        String expectedString = "0 Hello\n1 World\n2 House";
+        String expectedString = "0 Hello\n1 World\n2 House\n";
         Assert.assertEquals(expectedString, actualString);
     }
 
@@ -108,7 +108,7 @@ public class SinglyLinkedListTest {
         list.remove("Java");
         list.remove("Hello");
         String actualString = list.toString();
-        String expectedString = "0 World\n1 House";
+        String expectedString = "0 World\n1 House\n";
         Assert.assertEquals(expectedString, actualString);
     }
 
@@ -223,7 +223,7 @@ public class SinglyLinkedListTest {
         list.add("Gibraltar");
         SinglyLinkedList<String> sortedList = list.sort();
         String actual = sortedList.toString();
-        String expected = "0 Apple\n1 Banana\n2 Gibraltar\n3 Horse\n4 Train";
+        String expected = "0 Apple\n1 Banana\n2 Gibraltar\n3 Horse\n4 Train\n";
         Assert.assertEquals(expected, actual);
     }
 
@@ -237,7 +237,7 @@ public class SinglyLinkedListTest {
         list.add(3);
         SinglyLinkedList<Integer> sortedList = list.sort();
         String actual = sortedList.toString();
-        String expected = "0 2\n1 3\n2 4\n3 6\n4 7";
+        String expected = "0 2\n1 3\n2 4\n3 6\n4 7\n";
         Assert.assertEquals(expected, actual);
     }
 
@@ -250,7 +250,7 @@ public class SinglyLinkedListTest {
         list.add("Banana");
         list.add("Gibraltar");
         String actual = list.reverse().toString();
-        String expected = "0 Gibraltar\n1 Banana\n2 Train\n3 Horse\n4 Apple";
+        String expected = "0 Gibraltar\n1 Banana\n2 Train\n3 Horse\n4 Apple\n";
         Assert.assertEquals(expected, actual);
     }
 
@@ -263,7 +263,7 @@ public class SinglyLinkedListTest {
         list.add("Banana");
         list.add("Gibraltar");
         String actual = list.slice(0,2).toString();
-        String expected = "0 Apple\n1 Horse";
+        String expected = "0 Apple\n1 Horse\n";
         Assert.assertEquals(expected, actual);
     }
 
