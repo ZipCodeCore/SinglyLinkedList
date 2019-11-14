@@ -57,63 +57,36 @@ public class SinglyLinkedList<E> {
 
     //TODO refactor remove method
     // Kris says this can be done in 3-4 lines
-//    public void remove(E data) {
-//        Node<E> current = this.head;
-//        Boolean keepLooking;
-//        do {
-//            keepLooking = false;
-//            if (current.getData().equals(data)) {
-//                if (current.hasPrev() && current.hasNext()) {
-//                    current.getPrev().setNext(current.getNext());
-//                    current.getNext().setPrev(current.getPrev());
-//                }
-//                else if (current.hasPrev() && !current.hasNext()) {
-//                    current.getPrev().setNext(null);
-//                    this.tail = current.getPrev();
-//                }
-//                else if (!current.hasPrev() && current.hasNext()) {
-//                    current.getNext().setPrev(null);
-//                    this.head = current.getNext();
-//                }
-//                count -= 1;
-//                break;
-//            }
-//            if (current.hasNext()) {
-//                current = current.getNext();
-//                keepLooking = true;
-//            }
-//        } while (keepLooking);
-//    }
+
+    public void connectAroundNodes(Node<E> node) {
+        if (node.hasPrev()) node.getPrev().setNext(node.getNext());
+        else head = node.getNext();
+
+        if (node.hasNext()) node.getNext().setPrev(node.getPrev());
+        else tail = node.getPrev();
+        count -= 1;
+    }
+
 
     public void remove(E data) {
         for (Node<E> node = this.head; node != null; node = node.getNext()) {
             if (node.getData().equals(data)) {
-                if (node.hasPrev()) node.getPrev().setNext(node.getNext());
-                else head = node.getNext();
-
-                if (node.hasNext()) node.getNext().setPrev(node.getPrev());
-                else tail = node.getPrev();
-                count -= 1;
+                connectAroundNodes(node);
                 break;
             }
         }
     }
 
+
+
     public Boolean contains(E data) {
-        Node<E> current = this.head;
         Boolean exists = false;
-        Boolean keepLooking;
-       do {
-           keepLooking = false;
-           if (current.getData().equals(data)) {
+        for (Node<E> node = this.head; node != null; node = node.getNext()) {
+           if (node.getData().equals(data)) {
                 exists = true;
                 break;
            }
-           if (current.hasNext()) {
-               current = current.getNext();
-               keepLooking = true;
-           }
-       } while (keepLooking);
+        }
        return exists;
     }
 
