@@ -55,33 +55,48 @@ public class SinglyLinkedList<E> {
         count++;
     }
 
-    // TODO refactor remove method
+    //TODO refactor remove method
+    // Kris says this can be done in 3-4 lines
+//    public void remove(E data) {
+//        Node<E> current = this.head;
+//        Boolean keepLooking;
+//        do {
+//            keepLooking = false;
+//            if (current.getData().equals(data)) {
+//                if (current.hasPrev() && current.hasNext()) {
+//                    current.getPrev().setNext(current.getNext());
+//                    current.getNext().setPrev(current.getPrev());
+//                }
+//                else if (current.hasPrev() && !current.hasNext()) {
+//                    current.getPrev().setNext(null);
+//                    this.tail = current.getPrev();
+//                }
+//                else if (!current.hasPrev() && current.hasNext()) {
+//                    current.getNext().setPrev(null);
+//                    this.head = current.getNext();
+//                }
+//                count -= 1;
+//                break;
+//            }
+//            if (current.hasNext()) {
+//                current = current.getNext();
+//                keepLooking = true;
+//            }
+//        } while (keepLooking);
+//    }
+
     public void remove(E data) {
-        Node<E> current = this.head;
-        Boolean keepLooking;
-        do {
-            keepLooking = false;
-            if (current.getData().equals(data)) {
-                if (current.hasPrev() && current.hasNext()) {
-                    current.getPrev().setNext(current.getNext());
-                    current.getNext().setPrev(current.getPrev());
-                }
-                else if (current.hasPrev() && !current.hasNext()) {
-                    current.getPrev().setNext(null);
-                    this.tail = current.getPrev();
-                }
-                else if (!current.hasPrev() && current.hasNext()) {
-                    current.getNext().setPrev(null);
-                    this.head = current.getNext();
-                }
+        for (Node<E> node = this.head; node != null; node = node.getNext()) {
+            if (node.getData().equals(data)) {
+                if (node.hasPrev()) node.getPrev().setNext(node.getNext());
+                else head = node.getNext();
+
+                if (node.hasNext()) node.getNext().setPrev(node.getPrev());
+                else tail = node.getPrev();
                 count -= 1;
                 break;
             }
-            if (current.hasNext()) {
-                current = current.getNext();
-                keepLooking = true;
-            }
-        } while (keepLooking);
+        }
     }
 
     public Boolean contains(E data) {
@@ -122,21 +137,28 @@ public class SinglyLinkedList<E> {
     }
 
     public E get(Integer index) {
-        Node<E> node = head;
+//        Node<E> node = head;
         E data = null;
         int count = 0;
         if (index <= size()) {
-            while (node != null) {
+            for (Node<E> node = this.head; node != null; node = node.getNext()) {
+//            while (node != null) {
                 if (count == index) {
                     data = node.getData();
                     break;
                 }
-                node = node.getNext();
+//                node = node.getNext();
                 count += 1;
             }
         }
         return data;
     }
+
+//    public void iterFor() {
+//        for (Node<E> node = this.head; node != null; node = node.getNext()) {
+//            System.out.println(node.getData());
+//        }
+//    }
 
     public SinglyLinkedList<E> copy() {
         return this;

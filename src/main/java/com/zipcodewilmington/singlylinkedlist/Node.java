@@ -11,6 +11,12 @@ public class Node<E> {
         this.next = null;
     }
 
+    public void set (Node<E> node) {
+        this.prev = node.getPrev();
+        this.data = node.getData();
+        this.next = node.getNext();
+    }
+
     public Node<E> getPrev() {
         return this.prev;
     }
