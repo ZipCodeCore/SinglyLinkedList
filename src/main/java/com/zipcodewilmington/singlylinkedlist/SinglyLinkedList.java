@@ -104,28 +104,17 @@ public class SinglyLinkedList<E> {
     }
 
     public E get(Integer index) {
-//        Node<E> node = head;
         E data = null;
         int count = 0;
-        if (index <= size()) {
-            for (Node<E> node = this.head; node != null; node = node.getNext()) {
-//            while (node != null) {
-                if (count == index) {
-                    data = node.getData();
-                    break;
-                }
-//                node = node.getNext();
-                count += 1;
+        for (Node<E> node = this.head; node != null; node = node.getNext()) {
+            if (count == index) {
+                data = node.getData();
+                break;
             }
+            count += 1;
         }
         return data;
     }
-
-//    public void iterFor() {
-//        for (Node<E> node = this.head; node != null; node = node.getNext()) {
-//            System.out.println(node.getData());
-//        }
-//    }
 
     public SinglyLinkedList<E> copy() {
         return this;
