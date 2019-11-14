@@ -91,18 +91,12 @@ public class SinglyLinkedList<E> {
     }
 
     public Integer find(E data) {
-        Integer index;
-        Node<E> node = head;
-        if (!this.contains(data)) index = -1;
-        else {
-            index = 0;
-            do {
-                if (node.getData().equals(data)) break;
-                index += 1;
-                node = node.getNext();
-            } while (node != null);
+        Integer index = 0;
+        for (Node<E> node = head; node != null; node = node.getNext()) {
+            if (node.getData().equals(data)) break;
+            index += 1;
         }
-        return index;
+        return (index < this.size()) ? index : -1;
     }
 
     public Integer size() {
