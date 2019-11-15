@@ -11,18 +11,19 @@ public class Node<E> {
         this.next = null;
     }
 
-    public void set (Node<E> node) {
-        this.prev = node.getPrev();
-        this.data = node.getData();
-        this.next = node.getNext();
-    }
+//    public void set (Node<E> node) {
+//        this.prev = node.getPrev();
+//        this.data = node.getData();
+//        this.next = node.getNext();
+//    }
 
     public Node<E> getPrev() {
         return this.prev;
     }
 
-    public void setPrev(Node<E> prev) {
+    public Node<E> setPrev(Node<E> prev) {
         this.prev = prev;
+        return this.prev;
     }
 
     public Boolean hasPrev() {
@@ -33,16 +34,18 @@ public class Node<E> {
         return this.data;
     }
 
-    public void setData(E data) {
+    public Node<E> setData(E data) {
         this.data = data;
+        return this;
     }
 
     public Node<E> getNext() {
         return this.next;
     }
 
-    public void setNext(Node<E> next) {
+    public Node<E> setNext(Node<E> next) {
         this.next = next;
+        return this.next;
     }
 
     public Boolean hasNext() {
@@ -50,9 +53,11 @@ public class Node<E> {
     }
 
     public Boolean compareTo(Node<E> next) {
-        E currentData = this.getData();
-        E nextData = next.getData();
-        return (currentData.toString().compareToIgnoreCase(nextData.toString()) < 0);
+        return (this.getData().toString().compareToIgnoreCase(next.getData().toString()) > 0);
+    }
 
+    public void swapNext() {
+        E data = this.getData();
+        this.setData(next.getData()).getNext().setData(data);
     }
 }

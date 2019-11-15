@@ -4,33 +4,34 @@ package com.zipcodewilmington.singlylinkedlist;
  * Created by leon on 1/10/18.
  */
 public class SinglyLinkedList<E> {
-    private Node<E> head;
+    private Node<E> head = null;
     private Node<E> tail;
     private Integer count;
 
     public SinglyLinkedList() {
         this.count = 0;
     }
+
     public SinglyLinkedList(E data) {
         this.head = new Node<E>(data);
         this.count = 1;
     }
 
-    public Node<E> linkNext(Node<E> current, Node<E> next) {
+    public Node<E> linkNext(Node<E> current, Node<E> next) throws NullPointerException {
         current.setNext(next);
         current.getNext().setPrev(current);
         return current;
     }
 
     public Node<E> linkPrev(Node<E> current, Node<E> prev) {
-        current.setPrev(prev);
-        current.getPrev().setNext(current);
+        current.setPrev(prev).setNext(current);
+//        current.getPrev().setNext(current);
         return current;
     }
 
     public Node<E> getLast() {
         Node<E> node = head;
-        while(node.hasNext()) {
+        while (node.hasNext()) {
             node = node.getNext();
         }
         if (!node.equals(head)) this.tail = node;
@@ -39,19 +40,15 @@ public class SinglyLinkedList<E> {
 
     public Node<E> getFirst() {
         Node<E> node = tail;
-        while(node.hasPrev()) {
+        while (node.hasPrev()) {
             node = node.getPrev();
         }
         return node;
     }
 
     public void add(E data) {
-        Node<E> newNode = new Node<E>(data);
-        if (head != null) {
-            newNode = linkPrev(newNode, this.getLast());
-            this.tail = newNode;
-        }
-        else head = newNode;
+        if (head != null) this.tail = linkPrev(new Node<E>(data), this.getLast());
+        else head = new Node<E>(data);
         count++;
     }
 
@@ -66,19 +63,29 @@ public class SinglyLinkedList<E> {
         else tail = node.getPrev();
         count -= 1;
     }
-//    public void connectAroundNodes(Node<E> node) {
-//        if (node.hasPrev()) prevNode.setNext(nextNode);
-//        else head = nextNode;
+
+//    public void connectAroundNodes(Node<E> prev, Node<E> next) {
+//        try {
+//            linkNext(prev, next);
+//        } catch (NullPointerException npe) {
 //
-//        if (node.hasNext()) nextNode.setPrev(prevNode);
-//        else tail = prevNode;
+//        }
+////        if (node.hasPrev()) {
+////            node.getPrev().setNext(node.getNext());
+////        }
+////        else {
+////            head = node.getNext();
+////        }
+////
+////        if (node.hasNext()) node.getNext().setPrev(node.getPrev());
+////        else tail = node.getPrev();
 //        count -= 1;
 //    }
 
     public void remove(E data) {
         for (Node<E> node = this.head; node != null; node = node.getNext()) {
             if (node.getData().equals(data)) {
-                connectAroundNodes(node);
+                connectAroundNodes(node);//node.getPrev(), node.getNext());
                 break;
             }
         }
@@ -87,12 +94,12 @@ public class SinglyLinkedList<E> {
     public Boolean contains(E data) {
         Boolean exists = false;
         for (Node<E> node = this.head; node != null; node = node.getNext()) {
-           if (node.getData().equals(data)) {
+            if (node.getData().equals(data)) {
                 exists = true;
                 break;
-           }
+            }
         }
-       return exists;
+        return exists;
     }
 
     public Integer find(E data) {
@@ -125,32 +132,43 @@ public class SinglyLinkedList<E> {
         return this;
     }
 
-//    public Boolean compareToNext() {
+//    public SinglyLinkedList<E> sort() {
+//        SinglyLinkedList<E> list = this.copy();
 //
+//        Boolean sorted;
+//        do {
+//            Node<E> node = list.head;
+//            sorted = true;
+//
+//            for (int i = 0; i < list.size(); i++) {
+//                E currentData = list.get(i);
+//                E nextData = list.get(i+1);
+//
+//                if (node.hasNext() && currentData.toString().compareToIgnoreCase(nextData.toString()) > 0) {
+//                    node.setData(nextData);
+//                    node.getNext().setData(currentData);
+//                    sorted = false;
+//                }
+//                node = node.getNext();
+//            }
+//
+//        } while (!sorted);
+//        return list;
 //    }
 
     public SinglyLinkedList<E> sort() {
-        SinglyLinkedList<E> list = this.copy();
+        Boolean sorted = false;
 
-        Boolean sorted;
-        do {
-            Node<E> node = list.head;
+        while (!sorted) {
             sorted = true;
-
-            for (int i = 0; i < list.size(); i++) {
-                E currentData = list.get(i);
-                E nextData = list.get(i+1);
-
-                if (node.hasNext() && currentData.toString().compareToIgnoreCase(nextData.toString()) > 0) {
-                    node.setData(nextData);
-                    node.getNext().setData(currentData);
+            for (Node<E> node = this.head; node.hasNext(); node = node.getNext()) {
+                if (node.compareTo(node.getNext())) {
+                    node.swapNext();
                     sorted = false;
                 }
-                node = node.getNext();
             }
-
-        } while (!sorted);
-        return list;
+        }
+        return this;
     }
 
     public SinglyLinkedList<E> reverse() {
