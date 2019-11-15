@@ -158,9 +158,9 @@ public class SinglyLinkedList<E> {
 
     public SinglyLinkedList<E> sort() {
         Boolean sorted = false;
-
         while (!sorted) {
             sorted = true;
+
             for (Node<E> node = this.head; node.hasNext(); node = node.getNext()) {
                 if (node.compareTo(node.getNext())) {
                     node.swapNext();
