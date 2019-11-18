@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/CR-MesoLabs-Collections-SinglyLinkedList.iml" filepath="$PROJECT_DIR$/CR-MesoLabs-Collections-SinglyLinkedList.iml" />
+      <module fileurl="file://$PROJECT_DIR$/singlylinkedlist.iml" filepath="$PROJECT_DIR$/singlylinkedlist.iml" />
     </modules>
   </component>
 </project>
