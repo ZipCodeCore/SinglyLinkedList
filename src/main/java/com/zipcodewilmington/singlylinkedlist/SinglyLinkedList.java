@@ -25,7 +25,6 @@ public class SinglyLinkedList<E> {
 
     public Node<E> linkPrev(Node<E> current, Node<E> prev) {
         current.setPrev(prev).setNext(current);
-//        current.getPrev().setNext(current);
         return current;
     }
 
@@ -52,9 +51,6 @@ public class SinglyLinkedList<E> {
         count++;
     }
 
-    //TODO refactor remove method
-    // Kris says this can be done in 3-4 lines
-
     public void connectAroundNodes(Node<E> node) {
         if (node.hasPrev()) node.getPrev().setNext(node.getNext());
         else head = node.getNext();
@@ -64,28 +60,10 @@ public class SinglyLinkedList<E> {
         count -= 1;
     }
 
-//    public void connectAroundNodes(Node<E> prev, Node<E> next) {
-//        try {
-//            linkNext(prev, next);
-//        } catch (NullPointerException npe) {
-//
-//        }
-////        if (node.hasPrev()) {
-////            node.getPrev().setNext(node.getNext());
-////        }
-////        else {
-////            head = node.getNext();
-////        }
-////
-////        if (node.hasNext()) node.getNext().setPrev(node.getPrev());
-////        else tail = node.getPrev();
-//        count -= 1;
-//    }
-
     public void remove(E data) {
         for (Node<E> node = this.head; node != null; node = node.getNext()) {
             if (node.getData().equals(data)) {
-                connectAroundNodes(node);//node.getPrev(), node.getNext());
+                connectAroundNodes(node);
                 break;
             }
         }
@@ -131,30 +109,6 @@ public class SinglyLinkedList<E> {
     public SinglyLinkedList<E> copy() {
         return this;
     }
-
-//    public SinglyLinkedList<E> sort() {
-//        SinglyLinkedList<E> list = this.copy();
-//
-//        Boolean sorted;
-//        do {
-//            Node<E> node = list.head;
-//            sorted = true;
-//
-//            for (int i = 0; i < list.size(); i++) {
-//                E currentData = list.get(i);
-//                E nextData = list.get(i+1);
-//
-//                if (node.hasNext() && currentData.toString().compareToIgnoreCase(nextData.toString()) > 0) {
-//                    node.setData(nextData);
-//                    node.getNext().setData(currentData);
-//                    sorted = false;
-//                }
-//                node = node.getNext();
-//            }
-//
-//        } while (!sorted);
-//        return list;
-//    }
 
     public SinglyLinkedList<E> sort() {
         Boolean sorted = false;

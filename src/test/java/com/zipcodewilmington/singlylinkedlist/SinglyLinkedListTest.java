@@ -240,19 +240,6 @@ public class SinglyLinkedListTest {
         Assert.assertEquals(expected, actual);
     }
 
-//    @Test
-//    public void testSort3() {
-//        SinglyLinkedList<String> list = new SinglyLinkedList<String>();
-//        StringBuilder expected = new StringBuilder();
-//        for (int i = 0; i < 10000; i++) {
-//            list.add("Apple");
-//            expected.append(String.format("%s %s\n", i, "Apple"+i));
-//        }
-//        SinglyLinkedList<String> sortedList = list.sort();
-//        String actual = sortedList.toString();
-//        Assert.assertEquals(expected.toString(), actual);
-//    }
-
     @Test
     public void testReverse1() {
         SinglyLinkedList<String> list = new SinglyLinkedList<String>();
@@ -278,7 +265,5 @@ public class SinglyLinkedListTest {
         String expected = "0 Apple\n1 Horse\n";
         Assert.assertEquals(expected, actual);
     }
-
-
 
 }
