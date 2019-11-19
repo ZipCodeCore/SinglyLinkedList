@@ -115,5 +115,6 @@ public class SinglyLinkedList {
             nh = nh.next;
         }
     }
+    // https://www.geeksforgeeks.org/detect-loop-in-a-linked-list/ structure of nodes
 //https://stackoverflow.com/questions/16033800/bubble-sort-implementation-on-linked-lists bubble sort
 }
