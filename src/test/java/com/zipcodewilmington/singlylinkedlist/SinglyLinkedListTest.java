@@ -24,7 +24,7 @@ public class SinglyLinkedListTest {
     }
 
     @Test
-    public void testGetItem(){
+    public void testGetValue(){
         SinglyLinkedList testList = new SinglyLinkedList();
 
         testList.addItem("First");
