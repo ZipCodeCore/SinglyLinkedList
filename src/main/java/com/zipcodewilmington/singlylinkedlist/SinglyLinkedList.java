@@ -16,7 +16,7 @@ public class SinglyLinkedList <T>{
     }
 
 
-    public void addItem(String value) {
+    public void addItem(T value) {
         MyNode newNode;
         if (this.size ==0){
              newNode = new MyNode(this.head, value);
@@ -47,6 +47,24 @@ public class SinglyLinkedList <T>{
 
     public Integer getSize(){
         return this.size;
+    }
+
+    public Boolean contains (T value){
+        int index = 0;
+        int i = 0;
+
+        MyNode currentNode = this.head;
+        while (currentNode != null){
+            if (currentNode.getNodeValue().equals(value)){
+                index = 1;
+                break;
+            }
+
+            currentNode = currentNode.getNextNode();
+            i++;
+        }
+
+        return index == 1;
     }
 
     private void setNextNodeForPreviousNode(MyNode node){

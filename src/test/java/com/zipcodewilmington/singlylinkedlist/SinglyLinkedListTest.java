@@ -39,4 +39,22 @@ public class SinglyLinkedListTest {
         expected = "Third";
         Assert.assertEquals(expected,actual);
     }
+
+    @Test
+    public void contains() {
+        SinglyLinkedList testList = new SinglyLinkedList();
+
+        testList.addItem("First");
+        testList.addItem("Second");
+        testList.addItem("Third");
+
+        boolean actual = testList.contains("Second");
+        Assert.assertTrue(actual);
+
+        testList.addItem(3);
+        testList.addItem(6);
+
+        actual = testList.contains(3);
+        Assert.assertTrue(actual);
+    }
 }
