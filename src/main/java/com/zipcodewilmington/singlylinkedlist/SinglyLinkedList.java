@@ -8,7 +8,7 @@ public class SinglyLinkedList <T>{
     private MyNode head;
     private MyNode nextNode;
     private int size;
-
+    private int index = 0;
 
 
     public SinglyLinkedList() {
@@ -50,13 +50,14 @@ public class SinglyLinkedList <T>{
     }
 
     public Boolean contains (T value){
-        int index = 0;
+
         int i = 0;
+        index = 0;
 
         MyNode currentNode = this.head;
         while (currentNode != null){
             if (currentNode.getNodeValue().equals(value)){
-                index = 1;
+                index = i;
                 break;
             }
 
@@ -64,7 +65,13 @@ public class SinglyLinkedList <T>{
             i++;
         }
 
-        return index == 1;
+        return index > 0;
+    }
+
+    public Integer find (T value){
+
+        if (contains(value)) return index;
+        return -1;
     }
 
     private void setNextNodeForPreviousNode(MyNode node){
