@@ -14,10 +14,36 @@ public class SinglyLinkedList {
     public class Node {         //Inner class that represents a node
         int data;
         Node next;
+        Node previous;
 
         public Node(int data) {
             this.data = data;
             this.next = null;
+            this.previous = null;
+        }
+
+        public int getData() {
+            return data;
+        }
+
+        public void setData(int data) {
+            this.data = data;
+        }
+
+        public Node getNext() {
+            return next;
+        }
+
+        public void setNext(Node next) {
+            this.next = next;
+        }
+
+        public Node getPrevious() {
+            return previous;
+        }
+
+        public void setPrevious(Node previous) {
+            this.previous = previous;
         }
     }
 
@@ -41,22 +67,27 @@ public class SinglyLinkedList {
 
     public void removeNode (int index) {
         Node current = head;
-        int counter = 0;
-//        if (index == 0) {
-//            head = head.next;   //if the index is at 0 we skip that first element and then the next one after the head is the next
-//        } else {
-//            for (int i = 0; i < index - 1; i++) {   //go to index - 1 because we have to skip one to continue on
-//                current = current.next;
-//            }
-//            current.next = current.next.next;
+        if(current == null){
+            return;
+        }
+        else if (index == 0){
+            current = current.next;
+            listcount--;
+        }
+//        else if (index == this.size() - 1){
+//            tail;
 //        }
-
+        int counter = 0;
             while (current != null){
                 if(counter == index-1) {
-                    current = current.next;
+                       current.setNext(current.getNext().getNext());
                     listcount--;
-
+                    break;
                 }
+//                else if (counter == this.size() - 1) {
+//                    current.setNext(null);
+//                }
+
                 current = current.next;
                 counter++;
 
@@ -103,51 +134,34 @@ public class SinglyLinkedList {
             return -1;
         }
 
-    public SinglyLinkedList copy (){
+    public SinglyLinkedList copy () {
         SinglyLinkedList myCopy = new SinglyLinkedList();
-        Node current = head;
-        while(current != null){
+        Node current = this.head;
+        while (current != null) {
             myCopy.addNode(current.data);
             current = current.next;
         }
         return myCopy;
     }
 
+    public SinglyLinkedList sort () {
+        Node current = head, nextNode = null;
+        int temp;
 
-
-//            if (current == null) {
-//                for (current; x != null; x = x.next) {
-//                    if (x.item == null)
-//                        return index;
-//                    index++;
-//                }
-//            } else {
-//                for (LinkedList.Node<E> x = first; x != null; x = x.next) {
-//                    if (o.equals(x.item))
-//                        return index;
-//                    index++;
-//                }
-//            }
-//            return -1;
-
-
-//            while (current != null){
-//               // if (find(data) ){
-//
-//                }
-//            return -1;
-//            }
-
-
-
-
-    public void display (){  //displays all the nodes that are present in the list
-        Node current = head;
-
-       while (current != null){
-           System.out.println();
+            while(current != null){
+                nextNode = current.next;
+                while (nextNode != null){
+                    if(current.data > nextNode.data){
+                        temp = current.data;
+                        current.data = nextNode.data;
+                        nextNode.data = temp;
+                    }
+                    nextNode = nextNode.next;
+                }
+                current = current.next;
+            }
+            return this;
         }
-    }
 
 }
 

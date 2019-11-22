@@ -16,19 +16,21 @@ public class SinglyLinkedListTest {
         mylist.addNode(20);
         mylist.addNode(15);
         mylist.addNode(18);
+        mylist.addNode(22);
+        mylist.addNode(7);
     }
 
     @Test
     public void addNode() {
         mylist.addNode(82);
-        Integer expected = 4;
+        Integer expected = 6;
         Integer actual = mylist.size();
         Assert.assertEquals(expected, actual);
     }
 
     @Test
     public void removeNode() {
-        Integer expected = 2;
+        Integer expected = 4;
         mylist.removeNode(0);
         Integer actual = mylist.size();
         Assert.assertEquals(expected, actual);
@@ -36,6 +38,14 @@ public class SinglyLinkedListTest {
 
     @Test
     public void removeNode2() {
+        Integer expected = 4;
+        mylist.removeNode(4);
+        Integer actual = mylist.size();
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void removeNode3() {
         mylist.removeNode(1);
         Assert.assertFalse(mylist.contains(15));
     }
@@ -70,7 +80,7 @@ public class SinglyLinkedListTest {
 
     @Test
     public void size() {
-        Integer expected = 3;
+        Integer expected = 5;
         Integer actual = mylist.size();
         Assert.assertEquals(expected, actual);
     }
@@ -81,6 +91,30 @@ public class SinglyLinkedListTest {
         boolean actual = mylist.contains(18);
         Assert.assertEquals(expected, actual);
     }
+
+    @Test
+    public void copyOf () {
+        Integer expected = mylist.size();
+        Integer actual = mylist.copy().size();
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void sort () {
+        //SinglyLinkedList expected
+        SinglyLinkedList actual = mylist.sort();
+        SinglyLinkedList expected = new SinglyLinkedList();
+        expected.addNode(7);
+        expected.addNode(15);
+        expected.addNode(18);
+        expected.addNode(20);
+        expected.addNode(22);
+        for (int i = 0; i < mylist.size(); i++){
+            Assert.assertEquals(expected.get(i), actual.get(i));
+        }
+    }
+
+
 
 }
 
