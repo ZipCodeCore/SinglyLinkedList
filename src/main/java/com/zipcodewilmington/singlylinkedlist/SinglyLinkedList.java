@@ -52,7 +52,7 @@ public class SinglyLinkedList <T>{
     public Boolean contains (T value){
 
         int i = 0;
-        index = 0;
+        index = -1;
 
         MyNode currentNode = this.head;
         while (currentNode != null){
@@ -65,13 +65,40 @@ public class SinglyLinkedList <T>{
             i++;
         }
 
-        return index > 0;
+        return index >= 0;
     }
 
     public Integer find (T value){
 
         if (contains(value)) return index;
         return -1;
+    }
+
+    public void removeItem(int index){
+
+        if (index > this.size){
+            throw new IndexOutOfBoundsException();
+        }
+
+        MyNode currentNode = this.head;
+        int i = 0;
+        while (currentNode != null){
+            if (i == index) {
+                if (currentNode.equals(this.head) && currentNode.getNextNode() != null) {
+                    currentNode = currentNode.getNextNode();
+                    this.head = currentNode;
+                    break;
+                } else {
+                    currentNode = currentNode.getNextNode();
+                }
+
+                i++;
+            }
+        }
+
+        // check if the next value is null
+        // set the previous value to the next value
+
     }
 
     private void setNextNodeForPreviousNode(MyNode node){

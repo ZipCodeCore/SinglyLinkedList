@@ -38,6 +38,7 @@ public class SinglyLinkedListTest {
         actual = (String) testList.getValue(2);
         expected = "Third";
         Assert.assertEquals(expected,actual);
+
     }
 
     @Test
@@ -73,6 +74,24 @@ public class SinglyLinkedListTest {
 
         actual = testList.find("Boo");
         expected = -1;
+        Assert.assertEquals(expected,actual);
+
+    }
+
+    @Test
+    public void removeItem() {
+
+        SinglyLinkedList testList = new SinglyLinkedList();
+
+        testList.addItem("First");
+        testList.addItem("Second");
+        testList.addItem("Third");
+
+        testList.removeItem(0);
+
+        Integer expected = 0;
+        Integer actual = testList.find("Second");
+
         Assert.assertEquals(expected,actual);
 
     }
