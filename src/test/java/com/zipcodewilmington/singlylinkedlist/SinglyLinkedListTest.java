@@ -79,7 +79,25 @@ public class SinglyLinkedListTest {
     }
 
     @Test
-    public void removeItem() {
+    public void removeItemLast() {
+
+        SinglyLinkedList testList = new SinglyLinkedList();
+
+        testList.addItem("First");
+        testList.addItem("Second");
+        testList.addItem("Third");
+
+        testList.removeItem(2);
+
+        Integer expected = -1;
+        Integer actual = testList.find("Third");
+
+        Assert.assertEquals(expected,actual);
+
+
+    }
+    @Test
+    public void removeItemHead() {
 
         SinglyLinkedList testList = new SinglyLinkedList();
 
@@ -93,6 +111,26 @@ public class SinglyLinkedListTest {
         Integer actual = testList.find("Second");
 
         Assert.assertEquals(expected,actual);
+
+
+    }
+
+    @Test
+    public void removeItem() {
+
+        SinglyLinkedList testList = new SinglyLinkedList();
+
+        testList.addItem("First");
+        testList.addItem("Second");
+        testList.addItem("Third");
+
+        testList.removeItem(1);
+
+        Integer expected = 1;
+        Integer actual = testList.find("Third");
+
+        Assert.assertEquals(expected,actual);
+
 
     }
 }
