@@ -47,7 +47,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.SinglyLinkedListTest.RemoveTest">
+  <component name="RunManager" selected="JUnit.SinglyLinkedListTest">
     <configuration default="true" type="executeSpecs" factoryName="Gauge Execution">
       <setting name="environment" value="" />
       <setting name="specsToExecute" value="" />
@@ -184,8 +184,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.SinglyLinkedListTest.RemoveTest" />
         <item itemvalue="JUnit.SinglyLinkedListTest" />
+        <item itemvalue="JUnit.SinglyLinkedListTest.RemoveTest" />
         <item itemvalue="JUnit.SinglyLinkedListTest.ConstructorTest" />
       </list>
     </recent_temporary>
@@ -203,7 +203,7 @@
       <workItem from="1573923307171" duration="308000" />
       <workItem from="1574377139907" duration="3744000" />
       <workItem from="1574423987503" duration="68000" />
-      <workItem from="1574469456726" duration="8224000" />
+      <workItem from="1574469456726" duration="10827000" />
     </task>
     <servers />
   </component>

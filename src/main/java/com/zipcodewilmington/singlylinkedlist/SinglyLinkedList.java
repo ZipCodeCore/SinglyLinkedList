@@ -6,8 +6,9 @@ package com.zipcodewilmington.singlylinkedlist;
 public class SinglyLinkedList<C> {
 
     Node nodes;
-    Node head = null;
+    Node <C>head = null;
     Integer size;
+    SinglyLinkedList list = new SinglyLinkedList();
 
     public Node getHead() {
         return head;
@@ -27,7 +28,7 @@ public class SinglyLinkedList<C> {
 
 
     public SinglyLinkedList(C data) {
-        this.head = new Node<C>(data);
+        this.head = getHead();
         this.size = 0;
     }
 
@@ -40,13 +41,13 @@ public class SinglyLinkedList<C> {
             Node current = head;
             while (current.getNext() != null) {
                 if (current.getNext() == null) {
-                    current.setNext(new Node<C>(data));
+                    current.setNext(getHead());
                 }
                 current = current.getNext();
             }
         }
         else {
-            this.head = new Node<C>(data);
+            this.head = getHead();
             size++;
             }
         }
@@ -103,21 +104,19 @@ public class SinglyLinkedList<C> {
             return null;
         }
 
-        public void sort() {
-        if(this.nodes.length == 0) {
-            return;
+    public SinglyLinkedList<C> sort() {
+        SinglyLinkedList<C> sorted = new SinglyLinkedList<T>();
+        SinglyLinkedList<C> copy = copy();
+        while (copy.size > 1) {
+            Node<C> min = copy.getByIndex();
+            C minimum = copy.getByIndex(min);
+            copy.remove(min);
+            sorted.add(minimum);
         }
-        C temp;
-        for (int i = 0; i < this.nodes.length -1; i++) {
-            for (int j = i; j < this.size -i - 1; j++) {
-                if(this.nodes[j].compareTo(this.nodes[j + 1]) > 0) {
-                    temp = (C) this.nodes[j].data;
-                    this.nodes[j].data = this.nodes[j + 1].data;
-                    this.nodes[j + 1].data = temp;
-                }
-            }
-        }
-        }
+        sorted.add(copy.getByIndex(0));
+        return sorted;
+    }
+
 
         public void reverse() {
             if(this.size == 0) {
@@ -125,4 +124,9 @@ public class SinglyLinkedList<C> {
             }
         }
 
+        public SinglyLinkedList copy(SinglyLinkedList copy) {
+        SinglyLinkedList linkedCopy = list;
+        copy = list;
+        return copy;
+        }
 }

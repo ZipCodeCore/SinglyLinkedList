@@ -1,6 +1,7 @@
 package com.zipcodewilmington.singlylinkedlist;
+import com.zipcodewilmington.singlylinkedlist.SinglyLinkedList;
 
-public class Node<C> implements Comparable<C> {
+public class Node<C> {
 
 
     public int length;
@@ -34,7 +35,5 @@ public class Node<C> implements Comparable<C> {
         return "Node {" + "data = " + data + ", next" + "}";
     }
 
-    public int compareTo(C node2) {
-        return this.data.compareTo((C)node2.getData());
-    }
+
 }
