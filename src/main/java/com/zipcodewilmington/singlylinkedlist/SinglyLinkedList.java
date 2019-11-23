@@ -1,13 +1,14 @@
 package com.zipcodewilmington.singlylinkedlist;
-
+import java.util.Comparator;
 /**
  * Created by leon on 1/10/18.
  */
-public class SinglyLinkedList<C> {
+public class SinglyLinkedList<C> implements Comparator{
 
     Node nodes;
     Node <C>head = null;
     Integer size;
+    C data;
     SinglyLinkedList list = new SinglyLinkedList();
 
     public Node getHead() {
@@ -28,6 +29,7 @@ public class SinglyLinkedList<C> {
 
 
     public SinglyLinkedList(C data) {
+        this.data = data;
         this.head = getHead();
         this.size = 0;
     }
@@ -104,18 +106,22 @@ public class SinglyLinkedList<C> {
             return null;
         }
 
-    public SinglyLinkedList<C> sort() {
-        SinglyLinkedList<C> sorted = new SinglyLinkedList<T>();
-        SinglyLinkedList<C> copy = copy();
-        while (copy.size > 1) {
-            Node<C> min = copy.getByIndex();
-            C minimum = copy.getByIndex(min);
-            copy.remove(min);
-            sorted.add(minimum);
+    public void sort() {
+        for (int i = 0; i < size; i++) {
+            Node current = head;
+            Node nextNode = head.next;
+            for (int j = 0; j < size; j++) {
+                if (current.data.compareTo(nextNode.data) >0){
+                    Node temp = current;
+                    current = nextNode;
+                    nextNode = temp;
+                }
+                current = nextNode;
+                nextNode = nextNode.next;
+            }
         }
-        sorted.add(copy.getByIndex(0));
-        return sorted;
     }
+
 
 
         public void reverse() {
@@ -129,4 +135,6 @@ public class SinglyLinkedList<C> {
         copy = list;
         return copy;
         }
+
 }
+
