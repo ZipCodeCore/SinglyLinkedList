@@ -1,140 +1,231 @@
 package com.zipcodewilmington.singlylinkedlist;
+
+import java.util.Iterator;
 import java.util.Comparator;
-/**
- * Created by leon on 1/10/18.
- */
-public class SinglyLinkedList<C> implements Comparator{
+import java.util.NoSuchElementException;
 
-    Node nodes;
-    Node <C>head = null;
-    Integer size;
-    C data;
-    SinglyLinkedList list = new SinglyLinkedList();
+public class SinglyLinkedList<T extends Comparable<T>> implements Iterable<T> {
+    private Node<T> head;
 
-    public Node getHead() {
-        return head;
+
+    public SinglyLinkedList(){
+        head = null;
     }
 
-    public Integer getSize() {
+    public Boolean isEmpty(){
+        return head == null;
+    }
+
+    public void addFirst(T item){
+        head = new Node<>(item, head);
+    }
+
+    public T getFirst(){
+        if (head == null) throw  new NoSuchElementException();
+        return head.data;
+    }
+
+    public T removeFirst(){
+        T temp = getFirst();
+        head = head.next;
+        return temp;
+    }
+
+    public void remove(Integer index) {
+        if (head == null || index > size()) {
+            throw new IndexOutOfBoundsException();
+        } else if (index == 0){
+            removeFirst();
+        }
+        Node<T> temp = head;
+        for (int i = 0; i < index - 1; i++) {
+            temp = temp.next;
+        }
+        Node<T> node = head;
+        for (int i = 0; i < index; i++) {
+            node = node.next;
+        }
+        temp.next = node.next;
+    }
+
+
+    public Integer size(){
+        Node<T> tmp = head;
+        Integer size = 1;
+        if (head == null){
+            return 0;
+        } else {
+            while (tmp.next != null) {
+                size++;
+                tmp = tmp.next;
+            }
+        }
         return size;
     }
 
-    public void setHead(Node<C> head) {
-        this.head = head;
+
+    public void add(T item){
+        if (head == null){
+            addFirst(item);
+        } else {
+            Node<T> tmp = head;
+            while (tmp.next != null){
+                tmp = tmp.next;
+            }
+            tmp.next = new Node<>(item, null);
+        }
     }
 
-    public void setSize(Integer size) {
-        this.size = size;
+
+    public T getLast(){
+        if(head == null) throw new NoSuchElementException();
+
+        Node<T> tmp = head;
+        while (tmp.next != null){
+            tmp = tmp.next;
+        }
+        return tmp.data;
     }
 
 
-    public SinglyLinkedList(C data) {
-        this.data = data;
-        this.head = getHead();
-        this.size = 0;
+    public void clear(){
+        head = null;
     }
 
-    public SinglyLinkedList(){
-        this.size = 0;
+    public Boolean contains(T t){
+        for(T tmp : this){
+            if(tmp.equals(t)){
+                return true;
+            }
+        }
+        return false;
     }
 
-    public void add(C data){
-        if(head != null) {
-            Node current = head;
-            while (current.getNext() != null) {
-                if (current.getNext() == null) {
-                    current.setNext(getHead());
-                }
-                current = current.getNext();
-            }
+
+    public T get(Integer pos){
+        if(head == null) throw new IndexOutOfBoundsException();
+
+        Node<T> tmp = head;
+        for (int i = 0; i < pos; i++){
+            tmp = tmp.next;
         }
-        else {
-            this.head = getHead();
-            size++;
-            }
-        }
+        if(head == null) throw new IndexOutOfBoundsException();
+        return tmp.data;
+    }
 
 
-        public Boolean remove(Integer index) {
-            Node current = this.head;
-            Integer counter = 0;
-            while (current != null) {
-                if (index.equals(0)) {
-                    this.head = current.getNext();
-                    size--;
-                    return true;
-                } else if (counter == index - 1) {
-                }
-            }
-            return false;
-        }
-
-
-        public Boolean contains(C data) {
-            Node current = this.head;
-            while (current != null) {
-                if (current.getData() == data) {
-                    return true;
-                }
-                current = current.getNext();
-            }
-            return false;
-        }
-
-        public Integer find(C data) {
-            Node current = this.head;
+    public Integer find(T element){
+        if(head == null) throw new IndexOutOfBoundsException();
+        if (this.contains(element)) {
+            SinglyLinkedListIterator iterator = (SinglyLinkedListIterator) this.iterator();
             Integer index = 0;
-            while (current != null) {
-                if(current.getData() == data)
+            while (iterator.hasNext()) {
+                if (iterator.next().equals(element)) {
                     return index;
-
-                current = current.getNext();
+                }
                 index++;
             }
-            return -1;
         }
-
-        public Node<C> getByIndex(Integer index) {
-            Node current = this.head;
-            Integer currentIndex = 0;
-            while(current != null) {
-                if(currentIndex.equals(index))
-                    return current;
-                current = current.getNext();
-                currentIndex++;
-            }
-            return null;
-        }
-
-    public void sort() {
-        for (int i = 0; i < size; i++) {
-            Node current = head;
-            Node nextNode = head.next;
-            for (int j = 0; j < size; j++) {
-                if (current.data.compareTo(nextNode.data) >0){
-                    Node temp = current;
-                    current = nextNode;
-                    nextNode = temp;
-                }
-                current = nextNode;
-                nextNode = nextNode.next;
-            }
-        }
+        return -1;
     }
 
 
 
-        public void reverse() {
-            if(this.size == 0) {
-
-            }
+    public SinglyLinkedList<T> copy(){
+        SinglyLinkedList<T> copy = new SinglyLinkedList<>();
+        for (int i = 0; i < size(); i++){
+            copy.add(this.get(i));
         }
-
-        public SinglyLinkedList copy(SinglyLinkedList copy) {
-        SinglyLinkedList linkedCopy = list;
-        copy = list;
         return copy;
+    }
+
+
+    public void sort(){
+        GenericCompare<T> comp = new GenericCompare<>();
+
+        Boolean wasChanged;
+        do {
+            Node<T> current = head;
+            Node<T> previous = null;
+            Node<T> next = head.next;
+            wasChanged = false;
+
+            while (next != null) {
+                if (comp.compare(current.data, next.data) > 0) {
+                    wasChanged = true;
+                    if (previous != null) {
+                        Node temp = next.next;
+                        previous.next = next;
+                        next.next = current;
+                        current.next = temp;
+                    } else {
+                        Node temp = next.next;
+                        head = next;
+                        next.next = current;
+                        current.next = temp;
+                    }
+                    previous = next;
+                    next = current.next;
+                } else {
+                    previous = current;
+                    current = next;
+                    next = next.next;
+                }
+            }
+        } while (wasChanged);
+    }
+
+
+
+
+
+    private static class Node<T> {
+        private T data;
+        private Node<T> next;
+
+        public Node(T data, Node<T> next){
+            this.data = data;
+            this.next = next;
         }
+    }
+
+
+    public Iterator<T> iterator() {
+        return new SinglyLinkedListIterator();
+    }
+
+
+    private class SinglyLinkedListIterator implements Iterator<T>{
+        private Node<T> nextNode;
+
+        public SinglyLinkedListIterator(){
+            nextNode = head;
+        }
+
+
+        public void remove() {
+            throw new UnsupportedOperationException();
+        }
+
+        public boolean hasNext() {
+            return nextNode != null;
+        }
+
+        public T next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            T res = nextNode.data;
+            nextNode = nextNode.next;
+            return res;
+        }
+    }
+
+    public class GenericCompare<T extends Comparable<T>> implements Comparator<T> {
+        @Override
+        public int compare(T o1, T o2) {
+            return o1.compareTo(o2);
+        }
+    }
 
 }
-

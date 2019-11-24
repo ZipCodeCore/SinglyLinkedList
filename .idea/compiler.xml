@@ -10,9 +10,9 @@
         <module name="singlylinkedlist" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="1.8">
-      <module name="CR-MesoLabs-Collections-SinglyLinkedList" target="1.5" />
-      <module name="singlylinkedlist" target="1.5" />
+    <bytecodeTargetLevel target="8">
+      <module name="CR-MesoLabs-Collections-SinglyLinkedList" target="8" />
+      <module name="singlylinkedlist" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>
