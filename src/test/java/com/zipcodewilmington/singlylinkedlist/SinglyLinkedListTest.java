@@ -29,7 +29,8 @@ public class SinglyLinkedListTest{
         newList.add("Cow");
         newList.add("Fish");
 
-        Assert.assertTrue(newList.remove(0));
+        Assert.assertTrue(newList.remove(1));
+        System.out.println(newList.toString());
 
         Assert.assertEquals(3, newList.size());
     }
@@ -44,7 +45,7 @@ public class SinglyLinkedListTest{
         newList.add("Cow");
         newList.add("Fish");
 
-        Assert.assertTrue(newList.contains("Dog"));
+        Assert.assertTrue(newList.contains("Cat"));
     }
 
     @Test
