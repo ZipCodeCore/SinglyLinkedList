@@ -7,12 +7,12 @@ public class Node {
 
     // Node constructor
     public Node(Object dataValue) {
-        next = null;
-        data = dataValue;
+        this.next = null;
+        this.data = dataValue;
     }
 
     public Object getData() {
-        return data;
+        return this.data;
     }
 
     public Node getNext() {
@@ -20,6 +20,6 @@ public class Node {
     }
 
     public void setNext(Node nextValue) {
-        next = nextValue;
+        this.next = nextValue;
     }
 }

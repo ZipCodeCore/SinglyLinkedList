@@ -14,13 +14,13 @@ public class SinglyLinkedList {
         counter = 0;
     }
 
-    public void add(Object data) {
+    public void add(Object element) {
 
         if (head.getData() == null)
-            head = new Node(data);
+            head = new Node(element);
 
         else {
-            temp = new Node(data);
+            temp = new Node(element);
             Node current = head;
 
             if (current.getData() != null) {
@@ -116,11 +116,23 @@ public class SinglyLinkedList {
 
         if (current.getData() != null) {
             while (current != null) {
-                output += "[" + current.getData() + "]";
+                output += "[" + current + "]\n";
                 current = current.getNext();
             }
         }
 
         return output;
+    }
+
+    public void print() {
+        Node current = head;
+        if (current.getData() != null) {
+            for (int i = 0; i < size()-3; i++) {
+                System.out.println(current.getNext().getNext().getNext().getData());
+
+                current = current.getNext();
+
+            }
+        }
     }
 }
