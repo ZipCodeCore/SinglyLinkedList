@@ -9,24 +9,24 @@ public class SinglyLinkedList {
     private static int counter;
     private Node temp;
 
-    public SinglyLinkedList()
-    {
+    public SinglyLinkedList() {
         head = new Node(null);
         counter = 0;
     }
 
     public void add(Object data) {
-        if (head.getData() == null) {
-            head = new Node(data);
-        }else {
-           temp = new Node(data);
 
+        if (head.getData() == null)
+            head = new Node(data);
+
+        else {
+            temp = new Node(data);
             Node current = head;
 
-            if (current != null) {
-                while (current.getNext() != null) {
+            if (current.getData() != null) {
+                while (current.getNext() != null)
                     current = current.getNext();
-                }
+
                 current.setNext(temp);
             }
         }
@@ -35,47 +35,30 @@ public class SinglyLinkedList {
     }
 
     public boolean remove(int index) {
+
         if (index < 0 || index > size() || head.getData() == null)
             return false;
 
-        Node current = head;
 
-        if (index == 0){
+        if (index == 0)
             head = head.getNext();
-            counter--;
-            return true;
 
-        }else if(index == size() - 1) {
-            for (int i = 0; i < size(); i++) {
-                if (current.getNext().getData() == get(index)) {
-                    current.setNext(null);
-                    counter--;
-                    return true;
-                }
+        else if (index == size() - 1)
+            get(index - 1).setNext(null);
 
-                current = current.getNext();
-            }
-
-        }else{
-            for (int i = 0; i < size(); i++) {
-                if (current.getNext().getData() == get(index) ) {
-                    current.setNext(current.getNext().getNext());
-                    counter--;
-                    return true;
-                }
-
-                current = current.getNext();
-            }
+        else {
+            Node current = get(index - 1);
+            current.setNext(current.getNext().getNext());
         }
 
-        return false;
-
+        counter--;
+        return true;
     }
 
     public boolean contains(Object element) {
         int index = find(element);
 
-        if(index >= 0)
+        if(index != -1)
             return true;
 
         return false;
@@ -84,7 +67,7 @@ public class SinglyLinkedList {
     public int find(Object find){
         Node current = head;
 
-        if (head != null) {
+        if (current.getData() != null) {
             for (int i = 0; i < counter; i++) {
                 if (current.getData() == find)
                     return i;
@@ -100,25 +83,25 @@ public class SinglyLinkedList {
         return counter;
     }
 
-    public Object get(int index) {
+    public Node get(int index) {
 
         if (index < 0)
             return null;
 
-        Node current = null;
+        Node current = head;
 
-        if (head != null) {
-            current = head;
+        if (current.getData() != null) {
             for (int i = 0; i < index; i++) {
                 if (current.getNext() == null)
                     return null;
 
                 current = current.getNext();
             }
-            return current.getData();
+
+            return current;
         }
 
-        return current;
+        return null;
     }
 
     public SinglyLinkedList copy(){
@@ -129,9 +112,9 @@ public class SinglyLinkedList {
 
     public String toString() {
         String output = "";
+        Node current = head;
 
-        if (head != null) {
-            Node current = head;
+        if (current.getData() != null) {
             while (current != null) {
                 output += "[" + current.getData() + "]";
                 current = current.getNext();
