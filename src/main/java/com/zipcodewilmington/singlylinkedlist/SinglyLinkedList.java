@@ -7,6 +7,7 @@ public class SinglyLinkedList {
 
     private Node head;
     private static int counter;
+    private Node temp;
 
     public SinglyLinkedList()
     {
@@ -15,49 +16,66 @@ public class SinglyLinkedList {
     }
 
     public void add(Object data) {
-        if (head == null) {
+        if (head.getData() == null) {
             head = new Node(data);
-        }
+        }else {
+           temp = new Node(data);
 
-        Node temp = new Node(data);
-        Node current = head;
+            Node current = head;
 
-        if (current != null) {
-            while (current.getNext() != null) {
-                current = current.getNext();
+            if (current != null) {
+                while (current.getNext() != null) {
+                    current = current.getNext();
+                }
+                current.setNext(temp);
             }
-
-            current.setNext(temp);
         }
 
         counter++;
     }
 
     public boolean remove(int index) {
-        if (index < 0 || index > size())
+        if (index < 0 || index > size() || head.getData() == null)
             return false;
 
         Node current = head;
-        if (head != null) {
-            for (int i = 0; i < index; i++) {
-                if (current.getNext() == null)
-                    return false;
+
+        if (index == 0){
+            head = head.getNext();
+            counter--;
+            return true;
+
+        }else if(index == size() - 1) {
+            for (int i = 0; i < size(); i++) {
+                if (current.getNext().getData() == get(index)) {
+                    current.setNext(null);
+                    counter--;
+                    return true;
+                }
 
                 current = current.getNext();
             }
 
-            current.setNext(current.getNext().getNext());
+        }else{
+            for (int i = 0; i < size(); i++) {
+                if (current.getNext().getData() == get(index) ) {
+                    current.setNext(current.getNext().getNext());
+                    counter--;
+                    return true;
+                }
 
-            counter--;
-            return true;
+                current = current.getNext();
+            }
         }
+
         return false;
+
     }
 
     public boolean contains(Object element) {
         int index = find(element);
 
-        if(index > 0)
+        if(index >= 0)
             return true;
 
         return false;
@@ -68,7 +86,7 @@ public class SinglyLinkedList {
 
         if (head != null) {
             for (int i = 0; i < counter; i++) {
-                if (current.getNext().getData() == find)
+                if (current.getData() == find)
                     return i;
 
                 current = current.getNext();
@@ -90,7 +108,7 @@ public class SinglyLinkedList {
         Node current = null;
 
         if (head != null) {
-            current = head.getNext();
+            current = head;
             for (int i = 0; i < index; i++) {
                 if (current.getNext() == null)
                     return null;
@@ -113,7 +131,7 @@ public class SinglyLinkedList {
         String output = "";
 
         if (head != null) {
-            Node current = head.getNext();
+            Node current = head;
             while (current != null) {
                 output += "[" + current.getData() + "]";
                 current = current.getNext();
