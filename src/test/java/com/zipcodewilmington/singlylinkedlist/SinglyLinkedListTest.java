@@ -8,24 +8,25 @@ import org.junit.Test;
  * Created by leon on 1/10/18.
  */
 public class SinglyLinkedListTest {
-    SinglyLinkedList<Integer> intList = new SinglyLinkedList();
-    SinglyLinkedList<String> stringList = new SinglyLinkedList();
+    SinglyLinkedList<Integer> intList = new SinglyLinkedList<Integer>();
+    SinglyLinkedList<String> stringList = new SinglyLinkedList<>();
 
     @Before
-    public void setUp(){
-        intList = new SinglyLinkedList();
+    public void setUp() {
+        intList = new SinglyLinkedList<>();
     }
 
 
     @Test
-    public void emptySizeTest(){
+    public void emptySizeTest() {
         Integer expected = 0;
         Integer actual = intList.size();
         Assert.assertEquals(expected, actual);
     }
 
     @Test
-    public void sizeThreeTest(){
+    public void sizeThreeTest() {
+        intList = new SinglyLinkedList<>();
         intList.add(1);
         intList.add(2);
         intList.add(3);
@@ -36,39 +37,49 @@ public class SinglyLinkedListTest {
     }
 
     @Test
-    public void getTest(){
+    public void getTest() {
+        intList = new SinglyLinkedList<>();
         intList.add(1);
         intList.add(2);
         intList.add(3);
 
-        Integer firstExpected = 1;
-        Integer firstActual = intList.get(0);
+        Integer expected = 1;
+        Integer actual = intList.get(0);
 
-        Integer secondExpected = 1;
-        Integer secondActual = intList.get(0);
+        Integer expected2 = 2;
+        Integer actual2 = intList.get(1);
 
 
-        Assert.assertEquals(firstExpected, firstActual);
-        Assert.assertEquals(secondExpected, secondActual);
+        Assert.assertEquals(expected, actual);
+        Assert.assertEquals(expected2, actual2);
 
     }
 
     @Test
-    public void addTest(){
+    public void addTest() {
+        intList = new SinglyLinkedList<>();
         intList.add(5);
-
         Integer expected = 5;
         Integer actual = intList.get(0);
         Assert.assertEquals(expected, actual);
     }
 
     @Test
-    public void containsTestFalse(){
+    public void addTest2(){
+        intList = new SinglyLinkedList<>();
+        intList.add(10);
+        intList.add(5);
+        Integer actual = intList.size();
+        Integer expected = 2;
+        Assert.assertEquals(expected,actual);
+    }
+    @Test
+    public void containsTestFalse() {
         Assert.assertFalse(intList.contains(5));
     }
 
     @Test
-    public void containsTestTrue(){
+    public void containsTestTrue() {
         intList.add(3);
         intList.add(4);
         intList.add(5);
@@ -76,10 +87,8 @@ public class SinglyLinkedListTest {
     }
 
 
-
-
     @Test
-    public void removeTest(){
+    public void removeTest() {
         intList.add(3);
         intList.add(4);
         intList.add(5);
@@ -92,7 +101,7 @@ public class SinglyLinkedListTest {
     }
 
     @Test
-    public void removeTest2(){
+    public void removeTest2() {
         intList.add(3);
         intList.add(4);
         intList.add(5);
@@ -105,7 +114,7 @@ public class SinglyLinkedListTest {
     }
 
     @Test
-    public void findTest(){
+    public void findTest() {
         stringList.add("needle");
         stringList.add("in");
         stringList.add("the");
@@ -118,7 +127,7 @@ public class SinglyLinkedListTest {
     }
 
     @Test
-    public void findTest2(){
+    public void findTest2() {
         stringList.add("needle");
         stringList.add("in");
         stringList.add("the");
@@ -131,7 +140,7 @@ public class SinglyLinkedListTest {
     }
 
     @Test
-    public void findTest3(){
+    public void findTest3() {
         stringList.add("needle");
         stringList.add("in");
         stringList.add("the");
@@ -144,7 +153,7 @@ public class SinglyLinkedListTest {
     }
 
     @Test
-    public void copyTest(){
+    public void copyTest() {
         intList.add(1);
         intList.add(2);
         intList.add(3);
@@ -157,10 +166,10 @@ public class SinglyLinkedListTest {
     }
 
     @Test
-    public void copyStringTest(){
-        stringList.add("copy");
-        stringList.add("this");
-        stringList.add("bish");
+    public void copyStringTest() {
+        stringList.add("plz");
+        stringList.add("hlp");
+        stringList.add("me");
 
         SinglyLinkedList<String> copy = stringList.copy();
 
@@ -170,7 +179,7 @@ public class SinglyLinkedListTest {
     }
 
     @Test
-    public void sortNumTest(){
+    public void sortNumTest() {
         intList.add(5);
         intList.add(8);
         intList.add(4);
@@ -194,7 +203,7 @@ public class SinglyLinkedListTest {
 
 
     @Test
-    public void sortAlphaTest(){
+    public void sortAlphaTest() {
         stringList.add("E");
         stringList.add("F");
         stringList.add("C");

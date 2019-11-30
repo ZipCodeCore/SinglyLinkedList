@@ -1,14 +1,16 @@
 package com.zipcodewilmington.singlylinkedlist;
 
 import java.util.Comparator;
+import java.util.Iterator;
 
 /**
  * Created by leon on 1/10/18.
  */
-public class SinglyLinkedList<T extends Comparable<T>> implements Comparator<T> {
+public class SinglyLinkedList<T extends Comparable<T>>{
     private Node<T> head = null;
     private Node<T> tail;
     private Integer size;
+
 
     @Override
     public Object clone() throws CloneNotSupportedException {
@@ -33,6 +35,7 @@ public class SinglyLinkedList<T extends Comparable<T>> implements Comparator<T> 
                 if (current.getNext() == null) {
                     current.setNext(new Node<T>(data));
                     size++;
+                    break;
                 }
                 current = current.getNext();
             }
@@ -119,7 +122,7 @@ public class SinglyLinkedList<T extends Comparable<T>> implements Comparator<T> 
 
         SinglyLinkedList<T> newList = new SinglyLinkedList<>();
         Node<T> current = this.head;
-        while (current.getNext() != null) {
+        while (current != null) {
             newList.add(current.getData());
             current = current.next;
         }
@@ -186,15 +189,12 @@ public class SinglyLinkedList<T extends Comparable<T>> implements Comparator<T> 
         } while (wasChanged);
     }
 
-    @Override
-    public int compare(T o1, T o2) {
-        return 0;
-    }
 
-    public class GenCompare<T extends Comparable<T>> implements Comparator {
+
+    public class GenCompare<T extends Comparable<T>> implements Comparator<T> {
         @Override
-        public int compare(Object o1, Object o2) {
-            return 0;
+        public int compare(T o1, T o2) {
+            return o1.compareTo(o2);
         }
     }
 }
