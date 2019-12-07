@@ -5,140 +5,175 @@ import java.util.LinkedList;
 /**
  * Created by leon on 1/10/18.
  */
-public class SinglyLinkedList<AnyType> implements Cloneable {
-    public class Node<AnyType> {
+public class SinglyLinkedList<T> implements Cloneable{
+    public int compareTo(Object o) {
+        return 0;
+    }
 
+    //represents a node of the singly linked list
+    class Node<T> {
+        T data;
+        Node<T> next;
 
-        AnyType data;
-        Node<AnyType> next;
-
-        public Node(AnyType data) {
+        public Node(T data) {
             this.data = data;
             this.next = null;
         }
 
-        public AnyType getData() {
+        public T getData() {
             return data;
         }
 
-        public Node<AnyType> getNext() {
+        public Node<T> getNext() {
             return next;
         }
 
 
-        public void setNext(Node<AnyType> next) {
-            this.next = next;
-        }
 
+        public void setNext(Node<T> node) {
+            this.next = node;
+        }
         @Override
-        public String toString() {
+        public String toString(){
             return "Node{" + "data = " + data + ", next = " + next + "}";
         }
-
     }
-    private Node<AnyType> head=null;
-    private Node<AnyType> tail;
-    private Integer size;
 
-    public SinglyLinkedList(AnyType data) {
-        this.head = new Node<AnyType>(data);
 
-        this.size = 0;
+    public Node<T> head = null;
+    public Node<T> tail = null;
+    Integer size = 0;
+
+    public SinglyLinkedList() {
+        this.head = head;
     }
-    public SinglyLinkedList(){
-        this.size =0;
-    }
-    public void add(AnyType data){
 
 
-        if(head != null){
-            Node current = head;
 
-            while(current != null){
-                if(current.getNext() == null){
-                    current.setNext(new Node<AnyType>(data));
+    public void add(T data) {
+        Node<T> current = head;
+
+        if (current == null) {
+            this.head = new Node<T>(data);
+            size++;
+        } else {
+            while (current != null) {
+                if (current.getNext() == null) {
+                    current.setNext(new Node<T>(data));
                     size++;
                     break;
                 }
-                current =current.getNext();
-
+                current = current.getNext();
             }
 
         }
-        else
-        {
-            this.head = new Node<AnyType>(data);
-            size++;
+
+    }
+
+
+
+
+
+    public void remove(T data) {
+        Node<T> current = head;
+        if (current.getData() == data && current.getNext() == null) {
+            head = null;
+            size--;
+        } else {
+            while (current != null) {
+                if (current.getNext().getData() == data) {
+                    current.setNext(current.getNext().getNext());
+                    size--;
+                    break;
+                }
+                current = current.getNext();
+            }
         }
     }
 
-    public Boolean remove(Integer index){
-        Node current = this.head;
-        Node previous = null;
-        Integer counter = 0;
+    public boolean contains(T data) {
+        Node<T> current = head;
 
-        while(current != null){
-            if(index.equals(0)){
-                this.head = current.getNext();
-                size--;
+//        if(current.getData().equals(data)){
+//            return true;
+//        }
+        while(current !=  null){
+            if(current.getData().equals(data)){
                 return true;
             }
-            else if(counter == index - 1){
-
-                previous.setNext(current.getNext());
-                size--;
-                return true;
+            else{
+                current = current.getNext();
+                System.out.println("my current is "+current);
             }
-            counter++;
-            previous = current;
-            current = current.getNext();
         }
         return false;
     }
-    public Boolean contains(AnyType data){
-        Node current = this.head;
+    public Integer find(T data){
+        int counter=0;
+        Node<T> current = head;
 
-        while(current != null){
-            if(current.getData() == data|| current.getNext() == data){
-                return true;
+        while(current !=  null){
+            if(current.getData().equals(data)){
+                return counter;
             }
-            current = current.getNext();
-        }
-        return false;
-    }
-
-    public Integer find(AnyType data){
-        Node current = this.head;
-        Integer index = 1;
-
-        while(current != null){
-            if(current.getData() == data){
-                return index;
+            else{
+                counter++;
+                current = current.getNext();
+                //System.out.println("my current is "+current);
             }
-            index++;
-            current = current.getNext();
         }
-
         return -1;
+
     }
+    public Integer size() {
+        int counter = 0;
+        Node<T> current = head;
+        while (current != null) {
+            counter++;
+            current = current.getNext();
 
-    public Object getByIndex(Integer index) {
 
-        Node current = this.head;
-        Integer currentIndex = 1;
+        }
+        return  counter;
+    }
+    public T findByIndex(Integer index){
+        Node<T> current =  head;
+        Integer currentIndex = 0;
 
-        while(current != null){
+        while(current != null)
+        {
             if(currentIndex.equals(index))
                 return current.getData();
+            else {
+                current = current.getNext();
+                currentIndex++;
+            }
 
-            current = current.getNext();
-            currentIndex++;
         }
-
         return null;
     }
+    protected Object clone() throws CloneNotSupportedException{
+        return super.clone();
+    }
+    public Node<T> getHead() {
+        return head;
+    }
 
-    public Node reverse(Node node){
+    public void setHead(Node<T> head) {
+        this.head = head;
+    }
+    public Node<T> getTail(){
+        Node current = this.head;
+
+        while(current != null){
+            if(current.getNext() == null){
+                return current;
+            }
+            current = current.getNext();
+        }
+        return null;
+    }
+    public Node<T> reverse(Node<T> node){
         Node previous = null;
         Node current = this.head;
         Node next = current;
@@ -153,39 +188,10 @@ public class SinglyLinkedList<AnyType> implements Cloneable {
         return previous;
     }
 
-    protected Object clone() throws CloneNotSupportedException{
-        return super.clone();
-    }
-
-    public Node getTail(){
-        Node current = this.head;
-
-        while(current != null){
-            if(current.getNext() == null){
-                return current;
-            }
-            current = current.getNext();
-        }
-        return null;
-    }
-
-    public Node sort(){
-        return null;
-    }
 
 
 
-    public Node<AnyType> getHead() {
-        return head;
-    }
 
-    public void setHead(Node<AnyType> head) {
-        this.head = head;
-    }
-
-    public Integer getSize() {
-        return size;
-    }
 
     @Override
     public String toString() {

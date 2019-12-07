@@ -1,178 +1,134 @@
 package com.zipcodewilmington.singlylinkedlist;
+
 import org.junit.Assert;
 import org.junit.Test;
+
 /**
  * Created by leon on 1/10/18.
  */
-public class SinglyLinkedListTest<AnyType> {
+public class SinglyLinkedListTest {
+    //SinglyLinkedList<String> sl =new SinglyLinkedList<String>();
+
     @Test
-    public void ConstructorTest(){
+    public void addNodeTest() {
+        SinglyLinkedList<String> sl = new SinglyLinkedList<String>();
 
-        String expected = "Sonia";
-        SinglyLinkedList<String> linkedList = new SinglyLinkedList<String>(expected);
+        sl.add("Cat");
+        sl.add("Dog");
+        sl.add("Cow");
+        sl.add("Fish");
+        int expected = 4;
+        int actual = sl.size;
+        Assert.assertEquals(expected, actual);
 
-        Assert.assertEquals(expected, linkedList.getHead().getData());
     }
 
     @Test
-    public void testAdd(){
-        //given
-        SinglyLinkedList<Integer> linkedList = new SinglyLinkedList<Integer>();
+    public void removeNodeTest() {
+        SinglyLinkedList<String> sl = new SinglyLinkedList<String>();
 
-        //when
-        linkedList.add(10);
-        linkedList.add(20);
-        linkedList.add(50);
-        linkedList.add(70);
+        sl.add("Cat");
+        sl.add("Dog");
+        sl.add("Cow");
+        sl.add("Fish");
+        int expected = 3;
+        sl.remove("Cow");
+        int actual = sl.size;
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void containTest() {
+        SinglyLinkedList<String> sl = new SinglyLinkedList<String>();
+
+        sl.add("Cat");
+        sl.add("Dog");
+        sl.add("Cow");
+        sl.add("fish");
+        Boolean actual1 = sl.contains("lion");
+        Boolean actual2 = sl.contains("fish");
+        Assert.assertFalse(actual1);
+        Assert.assertTrue(actual2);
+    }
+
+    @Test
+    public void findTest1() {
+        SinglyLinkedList<String> sl = new SinglyLinkedList<String>();
+
+        sl.add("Cat");
+        sl.add("Dog");
+        sl.add("Cow");
+        sl.add("fish");
+
+        Integer actual2 = sl.find("tiger");
+        Integer expected2 = -1;
+
+
+        Assert.assertEquals(expected2, actual2);
+    }
+
+    @Test
+    public void findTest2() {
+        SinglyLinkedList<String> sl = new SinglyLinkedList<String>();
+        sl.add("Cat");
+        sl.add("Dog");
+        sl.add("Cow");
+        sl.add("fish");
+        Integer expected1 = 0;
+        Integer actual1 = sl.find("Cat");
+        Assert.assertEquals(expected1,actual1);
+    }
+
+    @Test
+    public void sizeTest(){
+        SinglyLinkedList<String> sl = new SinglyLinkedList<String>();
+        sl.add("Cat");
+        sl.add("Dog");
+        sl.add("Cow");
+        sl.add("fish");
         Integer expected = 4;
-
-        //then
-        Assert.assertEquals(expected, linkedList.getSize());
+        Integer actual = sl.size();
+        Assert.assertEquals(expected,actual);
+    }
+    @Test
+    public void findByIndexTest(){
+        SinglyLinkedList<String> sl = new SinglyLinkedList<String>();
+        sl.add("Cat");
+        sl.add("Dog");
+        sl.add("Cow");
+        sl.add("fish");
+        Assert.assertEquals("Cow",sl.findByIndex(2));
 
     }
-
     @Test
-    public void testRemove(){
-        //given
-        SinglyLinkedList<String> linkedList = new SinglyLinkedList<String>();
-        linkedList.add("Sonia");
-        linkedList.add("Rajani");
-        linkedList.add("Veer");
-
-        //when
-        Boolean remove = linkedList.remove(2);
-
-        //then
-        Assert.assertTrue(remove);
-
-    }
-
-    @Test
-    public void testRemove2(){
-        //given
-        SinglyLinkedList<String> linkedList = new SinglyLinkedList<String>();
-        linkedList.add("Sonia");
-        linkedList.add("Rajani");
-        linkedList.add("Veer");
-
-        //when
-        linkedList.remove(2);
-
-        //then
-        Assert.assertFalse(linkedList.contains("Rajani"));
-    }
-
-    @Test
-    public void testContain(){
-        //given
-        SinglyLinkedList<String> linkedList = new SinglyLinkedList<String>();
-
-        //when
-        linkedList.add("Sonia");
-        linkedList.add("Rajani");
-        linkedList.add("Veer");
-        linkedList.add("Rashmi");
-        System.out.println(linkedList.toString());
-        //then
-        Assert.assertTrue(linkedList.contains("Sonia"));
-        Assert.assertTrue(linkedList.contains("Rajani"));
-        Assert.assertTrue(linkedList.contains("Veer"));
-
-    }
-
-    @Test
-    public void testFind(){
-        //given
-        SinglyLinkedList<String> linkedList = new SinglyLinkedList<String>();
-
-        //when
-        linkedList.add("Sonia");
-        linkedList.add("Rajani");
-        linkedList.add("Veer");
-
-        //then
-        Assert.assertEquals((Integer)1, linkedList.find("Sonia"));
-        Assert.assertEquals((Integer)3, linkedList.find("Veer"));
-    }
-
-    @Test
-    public void testSize(){
-        //given
-        SinglyLinkedList<String> linkedList = new SinglyLinkedList<String>();
-
-        //when
-        linkedList.add("Sonia");
-        linkedList.add("Rajani");
-        linkedList.add("Veer");
-        Integer expected = 3;
-
-        //then
-        Assert.assertEquals(expected, linkedList.getSize());
-    }
-
-    @Test
-    public void testGetByIndex(){
-        //given
-        SinglyLinkedList<String> linkedList = new SinglyLinkedList<String>();
-
-        //when
-        linkedList.add("Sonia");
-        linkedList.add("Rajani");
-        linkedList.add("Veer");
-
-        Assert.assertEquals("Rajani", linkedList.getByIndex(2));
-    }
-
-    @Test
-    public void testClone(){
-        //given
-        SinglyLinkedList<String> linkedList = new SinglyLinkedList<String>();
-        linkedList.add("Sonia");
-        linkedList.add("Rajani");
-        linkedList.add("Veer");
-
+    public void cloneTest(){
+        SinglyLinkedList<String> sl = new SinglyLinkedList<String>();
+        sl.add("Cat");
+        sl.add("Dog");
+        sl.add("Cow");
+        sl.add("fish");
         //when
         SinglyLinkedList<String> linkedList1 = null;
         try{
-            linkedList1 = (SinglyLinkedList<String>) linkedList.clone();
+            linkedList1 = (SinglyLinkedList<String>) sl.clone();
         }catch(CloneNotSupportedException e){
             e.printStackTrace();
         }
 
         //then
-        Assert.assertEquals(linkedList.toString(), linkedList1.toString());
+        Assert.assertEquals(sl.toString(), linkedList1.toString());
 
 
     }
-    ///Check the reverse method<<<<<<<<<<
     @Test
-    public void testReverse(){
-        //given
-        SinglyLinkedList<String> linkedList = new SinglyLinkedList<String>();
-        linkedList.add("Sonia");
-        linkedList.add("Rajani");
-        linkedList.add("Veer");
-
-
-
-        //then
-        Assert.assertEquals("Veer", linkedList.reverse(linkedList.getHead()).getData());
-    }
-
-    @Test
-    public void testSort(){
-        //given
-        SinglyLinkedList<String> linkedList = new SinglyLinkedList<String>();
-        linkedList.add("Sonia");
-        linkedList.add("Rajani");
-        linkedList.add("Veer");
-
-        System.out.println(linkedList.getHead().toString());
-
-        linkedList.sort();
-
-        System.out.println(linkedList.getHead().toString());
+    public void reverseTest(){
+        SinglyLinkedList<String> sl = new SinglyLinkedList<String>();
+        sl.add("Cat");
+        sl.add("Dog");
+        sl.add("Cow");
+        sl.add("fish");
+        Assert.assertEquals("fish",sl.reverse(sl.getHead()).getData());
     }
 
 
-    }
+}
