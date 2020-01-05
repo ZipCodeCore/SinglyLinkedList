@@ -1,11 +1,12 @@
 package com.zipcodewilmington.singlylinkedlist;
 
+import java.util.Collections;
 import java.util.LinkedList;
 
 /**
  * Created by leon on 1/10/18.
  */
-public class SinglyLinkedList<T> implements Cloneable{
+public class SinglyLinkedList<T> implements Cloneable, Comparable {
     public int compareTo(Object o) {
         return 0;
     }
@@ -29,12 +30,12 @@ public class SinglyLinkedList<T> implements Cloneable{
         }
 
 
-
         public void setNext(Node<T> node) {
             this.next = node;
         }
+
         @Override
-        public String toString(){
+        public String toString() {
             return "Node{" + "data = " + data + ", next = " + next + "}";
         }
     }
@@ -47,7 +48,6 @@ public class SinglyLinkedList<T> implements Cloneable{
     public SinglyLinkedList() {
         this.head = head;
     }
-
 
 
     public void add(T data) {
@@ -71,9 +71,6 @@ public class SinglyLinkedList<T> implements Cloneable{
     }
 
 
-
-
-
     public void remove(T data) {
         Node<T> current = head;
         if (current.getData() == data && current.getNext() == null) {
@@ -94,29 +91,26 @@ public class SinglyLinkedList<T> implements Cloneable{
     public boolean contains(T data) {
         Node<T> current = head;
 
-//        if(current.getData().equals(data)){
-//            return true;
-//        }
-        while(current !=  null){
-            if(current.getData().equals(data)){
+
+        while (current != null) {
+            if (current.getData().equals(data)) {
                 return true;
-            }
-            else{
+            } else {
                 current = current.getNext();
-                System.out.println("my current is "+current);
+//                System.out.println("my current is " + current);
             }
         }
         return false;
     }
-    public Integer find(T data){
-        int counter=0;
+
+    public Integer find(T data) {
+        int counter = 0;
         Node<T> current = head;
 
-        while(current !=  null){
-            if(current.getData().equals(data)){
+        while (current != null) {
+            if (current.getData().equals(data)) {
                 return counter;
-            }
-            else{
+            } else {
                 counter++;
                 current = current.getNext();
                 //System.out.println("my current is "+current);
@@ -125,6 +119,7 @@ public class SinglyLinkedList<T> implements Cloneable{
         return -1;
 
     }
+
     public Integer size() {
         int counter = 0;
         Node<T> current = head;
@@ -134,15 +129,15 @@ public class SinglyLinkedList<T> implements Cloneable{
 
 
         }
-        return  counter;
+        return counter;
     }
-    public T findByIndex(Integer index){
-        Node<T> current =  head;
+
+    public T findByIndex(Integer index) {
+        Node<T> current = head;
         Integer currentIndex = 0;
 
-        while(current != null)
-        {
-            if(currentIndex.equals(index))
+        while (current != null) {
+            if (currentIndex.equals(index))
                 return current.getData();
             else {
                 current = current.getNext();
@@ -152,9 +147,11 @@ public class SinglyLinkedList<T> implements Cloneable{
         }
         return null;
     }
-    protected Object clone() throws CloneNotSupportedException{
+
+    protected Object clone() throws CloneNotSupportedException {
         return super.clone();
     }
+
     public Node<T> getHead() {
         return head;
     }
@@ -162,23 +159,25 @@ public class SinglyLinkedList<T> implements Cloneable{
     public void setHead(Node<T> head) {
         this.head = head;
     }
-    public Node<T> getTail(){
+
+    public Node<T> getTail() {
         Node current = this.head;
 
-        while(current != null){
-            if(current.getNext() == null){
+        while (current != null) {
+            if (current.getNext() == null) {
                 return current;
             }
             current = current.getNext();
         }
         return null;
     }
-    public Node<T> reverse(Node<T> node){
+
+    public Node<T> reverse(Node<T> node) {
         Node previous = null;
         Node current = this.head;
         Node next = current;
 
-        while(current != null){
+        while (current != null) {
             next = next.getNext();
             current.next = previous;
             previous = current;
@@ -187,10 +186,6 @@ public class SinglyLinkedList<T> implements Cloneable{
 
         return previous;
     }
-
-
-
-
 
 
     @Override
