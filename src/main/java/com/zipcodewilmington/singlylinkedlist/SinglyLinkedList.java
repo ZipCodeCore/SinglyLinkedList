@@ -1,14 +1,12 @@
 package com.zipcodewilmington.singlylinkedlist;
 
-import javax.xml.soap.Node;
-
 /**
  * Created by leon on 1/10/18.
  */
 public class SinglyLinkedList {
 
     class Node{
-        int data;
+        Integer data;
         Node next;
 
         public Node(int data) {
@@ -25,11 +23,10 @@ public class SinglyLinkedList {
 
         if(head == null) {
             head = newNode;
-            tail = newNode;
         } else {
             tail.next = newNode;
-            tail = newNode;
         }
+        tail = newNode;
     }
 
     public int size() {
@@ -55,15 +52,15 @@ public class SinglyLinkedList {
         }
     }
 
-    // My remove method can set the value to 0 (practically removing it lol)
+    // My remove method can set the value to null (practically removing it lol)
     public void remove(int data) {
         Node current = head;
         if(head == null) {
-            System.out.println("There's no list");
+            throw new UnsupportedOperationException("There's no list, dummy");
         }
         while(current != null) {
             if(current.data == data) {
-                current.data = 0;
+                current.data = null;
             }
             current = current.next;
         }
@@ -72,7 +69,7 @@ public class SinglyLinkedList {
     public Boolean contains(int data) {
         Node current = head;
         if (head == null) {
-            System.out.println("List is empty");
+            throw new UnsupportedOperationException("This list empty, doood");
         }
         while(current != null) {
             if(current.data == data) {
@@ -99,15 +96,11 @@ public class SinglyLinkedList {
         return -1;
     }
 
-    public int get(int index) {
+    public Integer get(double index) {
         Node current = head;
         int theIndex = 0;
-        if (head == null) {
-            System.out.println("List is empty");
-        } else if (index > size()) {
-            System.out.println("List aint big enough");
-        } else if (index < 0) {
-            System.out.println("That doesn't exist");
+        if (head == null || index > size() || index < 0) {
+            throw new UnsupportedOperationException("You doin' something wrong, buckaroo");
         }
         while(current != null) {
             if (theIndex == index) {
@@ -117,5 +110,52 @@ public class SinglyLinkedList {
             current = current.next;
         }
         return -1;
+    }
+
+    public SinglyLinkedList copy() {
+        SinglyLinkedList newList = new SinglyLinkedList();
+
+        Node current = head;
+        if (head == null) {
+            throw new UnsupportedOperationException("List don't be there, my guy");
+        }
+        while (current != null) {
+            newList.addNode(current.data);
+            current = current.next;
+        }
+        return newList;
+    }
+
+    public void sortLeastToGreatest() {
+        // my code only swaps the first and second value given that they meet requiements
+        Node current = head;
+        Node next = current.next;
+        if (head == null) {
+            throw new UnsupportedOperationException("Where's the car fax?");
+        }
+        int i = 0;
+        while(i < size() * size()) {
+            if (current == null) {
+                current = head;
+            } else if (current.data > next.data) {
+                Integer temp = current.data;
+                current.data = next.data;
+                next.data = temp;
+            }
+            i++;
+            current = current.next;
+        }
+    }
+    public SinglyLinkedList reverse () {
+        SinglyLinkedList resultList = new SinglyLinkedList();
+        Integer i = size() - 1;
+        if (head == null) {
+            throw new UnsupportedOperationException("You ain't got one of them lists, buckaroo");
+        }
+        while(i >= 0) {
+            resultList.addNode(get(i));
+            i--;
+        }
+        return resultList;
     }
 }

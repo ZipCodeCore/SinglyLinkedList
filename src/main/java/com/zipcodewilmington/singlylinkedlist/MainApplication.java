@@ -6,24 +6,20 @@ package com.zipcodewilmington.singlylinkedlist;
 public class MainApplication {
     public static void main(String[] args) {
         SinglyLinkedList doesThisWork = new SinglyLinkedList();
-        doesThisWork.addNode(1);
-        doesThisWork.addNode(29);
-        doesThisWork.addNode(33);
-        doesThisWork.addNode(45);
-        doesThisWork.addNode(53);
-        doesThisWork.addNode(62);
+        doesThisWork.addNode(10);
+        doesThisWork.addNode(9);
+        doesThisWork.addNode(8);
         doesThisWork.addNode(7);
-        doesThisWork.addNode(100);
-        doesThisWork.addNode(62);
-        doesThisWork.addNode(87);
+        doesThisWork.addNode(6);
+        doesThisWork.addNode(5);
+        doesThisWork.addNode(4);
+        doesThisWork.addNode(3);
+        doesThisWork.addNode(2);
+        doesThisWork.addNode(1);
 
-    //    doesThisWork.remove(3);
-    //    remove method can reset the val, havent figured out how
-    //    to remove it yet
+        doesThisWork.sortLeastToGreatest();
         doesThisWork.display();
-        System.out.println("\n" + "\n");
 
-        System.out.println("Here's to hoping this works: " +
-                doesThisWork.size());
+
     }
 }
