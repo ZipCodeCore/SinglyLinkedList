@@ -35,24 +35,28 @@ public class SinglyLinkedList {
        int length = 0;
        Node current = head;
 
-       if (current.next != null){
+       while (current != null){
           length++;
+          current = current.next;
        }
        return length;
     }
 
     public void remove(String data) {
         Node current = head;
-        if (current == null){
+        if (current == null) {
             throw new UnsupportedOperationException("No list here, smart guy");
         }
-        while (current != null){
-            if (current.data == data){
-                current.data = null;
-            }
+
+        if (current.data == data) {
             current = current.next;
+            while (current.next != null) {
+                current = current.next;
+        }
+
         }
     }
+
 
     public Boolean contains(String data){
         Node current = head;
@@ -63,9 +67,12 @@ public class SinglyLinkedList {
             if (current.data == data){
                 return true;
             }
+            current = current.next;
         }
         return false;
     }
+
+
     public int find (String data) {
         Node current = head;
         int index = 0;
@@ -123,5 +130,21 @@ public class SinglyLinkedList {
             i--;
         }
         return reverseList;
+    }
+
+    public String slice(int start, int end){
+        String substring = "";
+        Node current = head;
+        if (head == null){
+            throw new UnsupportedOperationException("You wildin again, no list buddy");
+        }
+        int i = start;
+        while (i < end) {
+          substring += current.data;
+            current = current.next;
+            i++;
+        }
+
+      return substring;
     }
 }
