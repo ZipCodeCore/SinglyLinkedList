@@ -23,13 +23,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4f0c6f35-1ac5-49ea-b41e-20445c07c5c6" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_12.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zipcodewilmington/singlylinkedlist/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zipcodewilmington/singlylinkedlist/MainApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/zipcodewilmington/singlylinkedlist/SinglyLinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zipcodewilmington/singlylinkedlist/SinglyLinkedList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/zipcodewilmington/singlylinkedlist/SinglyLinkedListTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/zipcodewilmington/singlylinkedlist/SinglyLinkedListTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -269,22 +264,22 @@
       <screen x="0" y="23" width="1280" height="736" />
     </state>
     <state x="449" y="165" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.23.1280.736/-43.-745.1360.745@0.23.1280.736" timestamp="1627010736628" />
-    <state width="1238" height="229" key="GridCell.Tab.0.bottom" timestamp="1627014585300">
+    <state width="1238" height="222" key="GridCell.Tab.0.bottom" timestamp="1627052309587">
       <screen x="0" y="23" width="1280" height="736" />
     </state>
-    <state width="1238" height="229" key="GridCell.Tab.0.bottom/0.23.1280.736/-43.-745.1360.745@0.23.1280.736" timestamp="1627014585300" />
-    <state width="1238" height="229" key="GridCell.Tab.0.center" timestamp="1627014585296">
+    <state width="1238" height="222" key="GridCell.Tab.0.bottom/0.23.1280.736/-43.-745.1360.745@0.23.1280.736" timestamp="1627052309587" />
+    <state width="1238" height="222" key="GridCell.Tab.0.center" timestamp="1627052309586">
       <screen x="0" y="23" width="1280" height="736" />
     </state>
-    <state width="1238" height="229" key="GridCell.Tab.0.center/0.23.1280.736/-43.-745.1360.745@0.23.1280.736" timestamp="1627014585296" />
-    <state width="1238" height="229" key="GridCell.Tab.0.left" timestamp="1627014585292">
+    <state width="1238" height="222" key="GridCell.Tab.0.center/0.23.1280.736/-43.-745.1360.745@0.23.1280.736" timestamp="1627052309586" />
+    <state width="1238" height="222" key="GridCell.Tab.0.left" timestamp="1627052309586">
       <screen x="0" y="23" width="1280" height="736" />
     </state>
-    <state width="1238" height="229" key="GridCell.Tab.0.left/0.23.1280.736/-43.-745.1360.745@0.23.1280.736" timestamp="1627014585292" />
-    <state width="1238" height="229" key="GridCell.Tab.0.right" timestamp="1627014585298">
+    <state width="1238" height="222" key="GridCell.Tab.0.left/0.23.1280.736/-43.-745.1360.745@0.23.1280.736" timestamp="1627052309586" />
+    <state width="1238" height="222" key="GridCell.Tab.0.right" timestamp="1627052309587">
       <screen x="0" y="23" width="1280" height="736" />
     </state>
-    <state width="1238" height="229" key="GridCell.Tab.0.right/0.23.1280.736/-43.-745.1360.745@0.23.1280.736" timestamp="1627014585298" />
+    <state width="1238" height="222" key="GridCell.Tab.0.right/0.23.1280.736/-43.-745.1360.745@0.23.1280.736" timestamp="1627052309587" />
     <state width="1238" height="229" key="GridCell.Tab.1.bottom" timestamp="1627014585315">
       <screen x="0" y="23" width="1280" height="736" />
     </state>
@@ -305,13 +300,17 @@
       <screen x="-43" y="-745" width="1360" height="745" />
     </state>
     <state x="132" y="-666" width="1185" height="666" key="dock-window-1/0.23.1280.736/-43.-745.1360.745@0.23.1280.736" timestamp="1627045204258" />
+    <state x="339" y="163" key="refactoring.ChangeSignatureDialog" timestamp="1627050774434">
+      <screen x="0" y="23" width="1280" height="736" />
+    </state>
+    <state x="339" y="163" key="refactoring.ChangeSignatureDialog/0.23.1280.736/-43.-745.1360.745@0.23.1280.736" timestamp="1627050774433" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/zipcodewilmington/singlylinkedlist/SinglyLinkedList.java</url>
-          <line>130</line>
+          <line>137</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>

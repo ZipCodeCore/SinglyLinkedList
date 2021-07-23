@@ -3,13 +3,20 @@ package com.zipcodewilmington.singlylinkedlist;
 /**
  * Created by leon on 1/10/18.
  */
+
+
+
+
+
+
+
 public class SinglyLinkedList {
 
     class Node{
-        Integer data;
+        Object data;
         Node next;
 
-        public Node(int data) {
+        public Node(Object data) {
             this.data = data;
             this.next = null;
         }
@@ -18,7 +25,7 @@ public class SinglyLinkedList {
     public Node head = null;
     public Node tail = null;
 
-    public void addNode(int data) {
+    public void addNode(Object data) {
         Node newNode = new Node(data);
 
         if(head == null) {
@@ -53,7 +60,7 @@ public class SinglyLinkedList {
     }
 
     // My remove method can set the value to null (practically removing it lol)
-    public void remove(int data) {
+    public void remove(Object data) {
         Node current = head;
         if(head == null) {
             throw new UnsupportedOperationException("There's no list, dummy");
@@ -66,7 +73,7 @@ public class SinglyLinkedList {
         }
     }
 
-    public Boolean contains(int data) {
+    public Boolean contains(Object data) {
         Node current = head;
         if (head == null) {
             throw new UnsupportedOperationException("This list empty, doood");
@@ -80,7 +87,7 @@ public class SinglyLinkedList {
         return false;
     }
 
-    public int find(int data) {
+    public int find(Object data) {
         Node current = head;
         int theIndex = 0;
         if (head == null) {
@@ -96,7 +103,7 @@ public class SinglyLinkedList {
         return -1;
     }
 
-    public Integer get(double index) {
+    public Object get(double index) {
         Node current = head;
         int theIndex = 0;
         if (head == null || index > size() || index < 0) {
@@ -127,22 +134,21 @@ public class SinglyLinkedList {
     }
 
     public void sortLeastToGreatest() {
-        // my code only swaps the first and second value given that they meet requiements
+        // my code only swaps the some of the values - excluding the first value
         Node current = head;
         Node next = current.next;
         if (head == null) {
             throw new UnsupportedOperationException("Where's the car fax?");
         }
-        int i = 0;
-        while(i < size() * size()) {
-            if (current == null) {
-                current = head;
-            } else if (current.data > next.data) {
-                Integer temp = current.data;
-                current.data = next.data;
-                next.data = temp;
+        while (current.next != null) {
+            while (next.next != null) {
+                if ((Integer) current.data > (Integer) next.data) {
+                    Node temp = current.next;
+                    current.next = next.next;
+                    next.next = temp;
+                }
+                next = next.next;
             }
-            i++;
             current = current.next;
         }
     }
