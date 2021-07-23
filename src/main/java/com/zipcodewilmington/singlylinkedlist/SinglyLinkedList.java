@@ -111,4 +111,17 @@ public class SinglyLinkedList {
         }
         return copied;
     }
+
+    public SinglyLinkedList reverse () {
+        SinglyLinkedList reverseList = new SinglyLinkedList();
+        int i = size() -1;
+        if (head == null) {
+            throw new UnsupportedOperationException("Try it again");
+        }
+        while (i >=0) {
+            reverseList.addNode(get(i));
+            i--;
+        }
+        return reverseList;
+    }
 }
