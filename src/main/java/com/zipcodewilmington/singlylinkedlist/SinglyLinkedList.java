@@ -1,14 +1,12 @@
 package com.zipcodewilmington.singlylinkedlist;
 
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader;
+
+import java.util.Comparator;
+
 /**
  * Created by leon on 1/10/18.
  */
-
-
-
-
-
-
 
 public class SinglyLinkedList {
 
@@ -60,17 +58,19 @@ public class SinglyLinkedList {
     }
 
     // My remove method can set the value to null (practically removing it lol)
-    public void remove(Object data) {
+    public SinglyLinkedList remove(Object data) {
+        SinglyLinkedList result = new SinglyLinkedList();
         Node current = head;
         if(head == null) {
             throw new UnsupportedOperationException("There's no list, dummy");
         }
         while(current != null) {
-            if(current.data == data) {
-                current.data = null;
+            if(current.data != data) {
+                result.addNode(current.data);
             }
             current = current.next;
         }
+        return result;
     }
 
     public Boolean contains(Object data) {
@@ -133,23 +133,24 @@ public class SinglyLinkedList {
         return newList;
     }
 
+
     public void sortLeastToGreatest() {
         // my code only swaps the some of the values - excluding the first value
         Node current = head;
-        Node next = current.next;
         if (head == null) {
             throw new UnsupportedOperationException("Where's the car fax?");
         }
-        while (current.next != null) {
-            while (next.next != null) {
+        for (int i = 0; i < size(); i++) {
+            current = head;
+            while (current.next != null) {
+                Node next = current.next;
                 if ((Integer) current.data > (Integer) next.data) {
-                    Node temp = current.next;
-                    current.next = next.next;
-                    next.next = temp;
+                    Object temp = current.data;
+                    current.data = next.data;
+                    next.data = temp;
                 }
-                next = next.next;
+                current = current.next;
             }
-            current = current.next;
         }
     }
     public SinglyLinkedList reverse () {
@@ -163,5 +164,22 @@ public class SinglyLinkedList {
             i--;
         }
         return resultList;
+    }
+
+    public SinglyLinkedList splice (Integer beginningIndex, Integer endingIndex) {
+        Node current = head;
+        Integer index = 0;
+        SinglyLinkedList result = new SinglyLinkedList();
+        if (head == null) {
+            throw new UnsupportedOperationException("Where's the car fax?");
+        }
+        while(current != null) {
+            if (index >= beginningIndex && index <= endingIndex) {
+                result.addNode(current.data);
+            }
+            index++;
+            current = current.next;
+        }
+        return result;
     }
 }

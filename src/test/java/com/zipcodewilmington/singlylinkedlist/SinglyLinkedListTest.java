@@ -43,6 +43,15 @@ public class SinglyLinkedListTest {
 
     @Test
     public void removeTest() {
-        
+        SinglyLinkedList test = new SinglyLinkedList();
+        test.addNode(3);
+        test.addNode(6);
+        test.addNode(4);
+        test.addNode(1);
+        test.addNode(8);
+
+        SinglyLinkedList actual = test.remove(4);
+
+        Assert.assertEquals(test.size() - 1, actual.size());
     }
 }

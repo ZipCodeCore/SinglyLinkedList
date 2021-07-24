@@ -17,9 +17,6 @@ public class MainApplication {
         doesThisWork.addNode(2);
         doesThisWork.addNode(1);
 
-        doesThisWork.sortLeastToGreatest();
-        doesThisWork.display();
-
-
+        doesThisWork.splice(2,6).display();
     }
 }
