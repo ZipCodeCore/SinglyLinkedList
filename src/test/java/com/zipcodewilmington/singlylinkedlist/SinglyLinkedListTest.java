@@ -260,8 +260,8 @@ public class SinglyLinkedListTest {
         String expected = "extra";
 
         //when
-        SinglyLinkedList sorted = testSort.sort();
-        String actual = sorted.get(0);
+        testSort.sort();
+        String actual = testSort.get(0);
 
         //then
         Assert.assertEquals(expected, actual);
@@ -285,4 +285,45 @@ public class SinglyLinkedListTest {
         //then
         Assert.assertEquals(expected, actual);
     }
+
+    @Test
+    public void setTest(){
+        //given
+        SinglyLinkedList setThis = new SinglyLinkedList();
+        setThis.addNode("hope");
+        setThis.addNode("this");
+        setThis.addNode("doesnt");
+        setThis.addNode("works");
+        String reset = "does";
+
+        //when
+        setThis.setNode(2, reset);
+        String actual = setThis.get(2);
+
+        //then
+        Assert.assertEquals(reset, actual);
+
+    }
+
+    @Test
+    public void compareTest(){
+        //given
+        SinglyLinkedList setThis = new SinglyLinkedList();
+        setThis.addNode("hope");
+        setThis.addNode("this");
+        setThis.addNode("doesnt");
+        setThis.addNode("works");
+
+        //when
+        String first = setThis.get(1);
+        String second = setThis.get(2);
+
+        boolean actual = setThis.compareNodeValue(first, second);
+
+
+        //then
+        Assert.assertTrue(actual);
+
+    }
+
 }

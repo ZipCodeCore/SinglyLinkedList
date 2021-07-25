@@ -170,28 +170,67 @@ public class SinglyLinkedList {
       return substring;
     }
 
-    public SinglyLinkedList sort(){
-        Node current = head;
-        int length = size() -1;
-        int i = 0;
-        SinglyLinkedList copyOfSort = new SinglyLinkedList();
+    public void sort(){
+        //Node current = head;
+        int length = size();
 
-        while (current.next != null && i < length) {
-                String currentValue = get(i);
-                String nextValue = get(i + 1);
-                if (currentValue.charAt(0) > nextValue.charAt(0)) {
-                    String temp = currentValue;
+        for (int i = 0; i < length; i++) {
+            Node current = head;
+            while (current.next != null){
+                String currentValue = current.data;
+                String nextValue = current.next.data;
+                if (compareNodeValue(currentValue, nextValue)){
+                    String temp = current.data;
                     current.data = nextValue;
                     current.next.data = temp;
-                    copyOfSort.addNode(nextValue);
-                    i++;
                 }
-                copyOfSort.addNode(current.data);
-                i++;
-            current = current.next;
+                current = current.next;
             }
 
-        return copyOfSort;
         }
+
+//        while (i < length) {
+//                String currentValue = copyOfSort.get(i);
+//                String nextValue = copyOfSort.get(i + 1);
+//                while (compareNodeValue(currentValue, nextValue)) {
+//                    String temp = currentValue;
+//                    copyOfSort.setNode(i, nextValue);
+//                    copyOfSort.setNode(i+1, temp); //null??
+//                    //copyOfSort.addNode(nextValue);
+//                    i++;
+//                }
+////                copyOfSort.addNode(current.data);
+//                i++;
+//            current = current.next;
+//            }
+
+        //return copyOfSort;
+        }
+
+    public void setNode (int index, String reset) {
+        Node current = head;
+        int trackIndex = 0;
+        if (head == null || index > size() || index <0) {
+            throw new UnsupportedOperationException("THERE'S NO LIST");
+        }
+        while (current != null) {
+            if (trackIndex == index) {
+                current.data = reset;
+            }
+            trackIndex++;
+            current = current.next;
+        }
+    }
+
+    public Boolean compareNodeValue(String first, String next){
+        if (first == null || next == null){
+            throw new UnsupportedOperationException("empty node");
+        }
+
+        if (first.charAt(0) > next.charAt(0)){
+            return true;
+        }
+        return false;
+    }
 
 }
