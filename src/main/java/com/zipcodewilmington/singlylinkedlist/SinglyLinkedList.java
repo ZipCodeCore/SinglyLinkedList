@@ -42,19 +42,39 @@ public class SinglyLinkedList {
        return length;
     }
 
-    public void remove(String data) {
+    public void remove(int index){
+        Node current = head;
+        if (current == null) {
+            throw new UnsupportedOperationException("List is uhhh duhh empty");
+        }
+        int trackIndex = 0;
+        while (current != null){
+            if (trackIndex == index){
+                current.data = null;
+            }
+            current = current.next;
+        }
+
+    }
+
+    public SinglyLinkedList remove(String data) {
+        SinglyLinkedList list = new SinglyLinkedList();
         Node current = head;
         if (current == null) {
             throw new UnsupportedOperationException("No list here, smart guy");
         }
 
-        if (current.data == data) {
-            current = current.next;
-            while (current.next != null) {
-                current = current.next;
-        }
+        while (current != null) {
+               // current = current.next;
+                if (current.data != data) {
+                    list.addNode(current.data);
+                   //current.data = null;
+                }
 
-        }
+                current = current.next;
+            }
+        return list;
+
     }
 
 
@@ -138,13 +158,40 @@ public class SinglyLinkedList {
         if (head == null){
             throw new UnsupportedOperationException("You wildin again, no list buddy");
         }
-        int i = start;
-        while (i < end) {
-          substring += current.data;
+        int i = 0;
+        while (current.next != null){
+            if (i >= start && i < end) {
+                substring += current.data;
+            }
             current = current.next;
             i++;
         }
 
       return substring;
     }
+
+    public SinglyLinkedList sort(){
+        Node current = head;
+        int length = size() -1;
+        int i = 0;
+        SinglyLinkedList copyOfSort = new SinglyLinkedList();
+
+        while (current.next != null && i < length) {
+                String currentValue = get(i);
+                String nextValue = get(i + 1);
+                if (currentValue.charAt(0) > nextValue.charAt(0)) {
+                    String temp = currentValue;
+                    current.data = nextValue;
+                    current.next.data = temp;
+                    copyOfSort.addNode(nextValue);
+                    i++;
+                }
+                copyOfSort.addNode(current.data);
+                i++;
+            current = current.next;
+            }
+
+        return copyOfSort;
+        }
+
 }
