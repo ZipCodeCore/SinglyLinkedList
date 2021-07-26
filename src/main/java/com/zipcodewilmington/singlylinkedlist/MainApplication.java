@@ -8,15 +8,20 @@ public class MainApplication {
         SinglyLinkedList doesThisWork = new SinglyLinkedList();
         doesThisWork.addNode(10);
         doesThisWork.addNode(9);
-        doesThisWork.addNode(8);
-        doesThisWork.addNode(7);
-        doesThisWork.addNode(6);
-        doesThisWork.addNode(5);
-        doesThisWork.addNode(4);
-        doesThisWork.addNode(3);
         doesThisWork.addNode(2);
+        doesThisWork.addNode(146);
+        doesThisWork.addNode(1245);
+        doesThisWork.addNode(56);
+        doesThisWork.addNode(4);
+        doesThisWork.addNode(5);
+        doesThisWork.addNode(90);
         doesThisWork.addNode(1);
 
-        doesThisWork.splice(2,6).display();
+        doesThisWork.display();
+        System.out.println("\n" + "\n");
+
+//        doesThisWork.sortLeastToGreatest();
+//        doesThisWork.reverse().display();
+        doesThisWork.sortGreatestToLeast();
     }
 }

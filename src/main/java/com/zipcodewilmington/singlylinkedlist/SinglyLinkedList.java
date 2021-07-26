@@ -1,8 +1,7 @@
 package com.zipcodewilmington.singlylinkedlist;
 
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader;
 
-import java.util.Comparator;
+import sun.jvm.hotspot.StackTrace;
 
 /**
  * Created by leon on 1/10/18.
@@ -47,9 +46,7 @@ public class SinglyLinkedList {
 
     public void display() {
         Node current = head;
-        if (head == null) {
-            System.out.println("The list is empty");
-        }
+        checkListEmpty("There's no list, idiot.");
         System.out.println("Nodes of singly linked list:");
         while(current != null) {
             System.out.println(current.data + "");
@@ -57,13 +54,11 @@ public class SinglyLinkedList {
         }
     }
 
-    // My remove method can set the value to null (practically removing it lol)
+    // returning new SinglyLinkedList - there is a way to stitch two nodes together
     public SinglyLinkedList remove(Object data) {
         SinglyLinkedList result = new SinglyLinkedList();
         Node current = head;
-        if(head == null) {
-            throw new UnsupportedOperationException("There's no list, dummy");
-        }
+        checkListEmpty("There's no list, dummy");
         while(current != null) {
             if(current.data != data) {
                 result.addNode(current.data);
@@ -73,17 +68,24 @@ public class SinglyLinkedList {
         return result;
     }
 
+    private void checkListEmpty(String s) {
+        if (head == null) {
+            throw new UnsupportedOperationException(s);
+        }
+    }
+
     public Boolean contains(Object data) {
         Node current = head;
-        if (head == null) {
-            throw new UnsupportedOperationException("This list empty, doood");
-        }
+        checkListEmpty("This list empty, doood");
         while(current != null) {
             if(current.data == data) {
                 return true;
             }
             current = current.next;
         }
+//        if(find(data).equals(data)) {
+//            return true;
+//        }
         return false;
     }
 
@@ -123,9 +125,7 @@ public class SinglyLinkedList {
         SinglyLinkedList newList = new SinglyLinkedList();
 
         Node current = head;
-        if (head == null) {
-            throw new UnsupportedOperationException("List don't be there, my guy");
-        }
+        checkListEmpty("List don't be there, my guy");
         while (current != null) {
             newList.addNode(current.data);
             current = current.next;
@@ -135,11 +135,8 @@ public class SinglyLinkedList {
 
 
     public void sortLeastToGreatest() {
-        // my code only swaps the some of the values - excluding the first value
         Node current = head;
-        if (head == null) {
-            throw new UnsupportedOperationException("Where's the car fax?");
-        }
+        checkListEmpty("Where's the car fax?");
         for (int i = 0; i < size(); i++) {
             current = head;
             while (current.next != null) {
@@ -156,9 +153,7 @@ public class SinglyLinkedList {
     public SinglyLinkedList reverse () {
         SinglyLinkedList resultList = new SinglyLinkedList();
         Integer i = size() - 1;
-        if (head == null) {
-            throw new UnsupportedOperationException("You ain't got one of them lists, buckaroo");
-        }
+        checkListEmpty("You ain't got one of them lists, buckaroo");
         while(i >= 0) {
             resultList.addNode(get(i));
             i--;
@@ -170,9 +165,7 @@ public class SinglyLinkedList {
         Node current = head;
         Integer index = 0;
         SinglyLinkedList result = new SinglyLinkedList();
-        if (head == null) {
-            throw new UnsupportedOperationException("Where's the car fax?");
-        }
+        checkListEmpty("Where's the car fax?");
         while(current != null) {
             if (index >= beginningIndex && index <= endingIndex) {
                 result.addNode(current.data);
@@ -181,5 +174,10 @@ public class SinglyLinkedList {
             current = current.next;
         }
         return result;
+    }
+
+    public void sortGreatestToLeast () {
+        sortLeastToGreatest();
+        reverse().display();
     }
 }
