@@ -3,7 +3,7 @@ package com.zipcodewilmington.singlylinkedlist;
 /**
  * Created by leon on 1/10/18.
  */
-public class SinglyLinkedList<T> {
+public class SinglyLinkedList<T extends Comparable<T>>  {
 
 
     class Node{
@@ -42,11 +42,11 @@ public class SinglyLinkedList<T> {
     public Integer find(T data) {
         Node temp = head;
         for(int i = 0; i < size(); i++) {
-            if(!temp.equals(data)) {
+            if(!temp.data.equals(data)) {
                 temp = temp.next;
             } else return i;
         }
-        return null;
+        return -1;
     }
 
     public boolean contains(T data) {
@@ -61,8 +61,6 @@ public class SinglyLinkedList<T> {
     }
 
     public void remove(Integer index) {
-        //iterate by index through list
-        //if the index equals the value we're looking for, assign each value after that to the next
         Node current = head;
         Node last = head;
         for (int i = 0; i < size(); i++) {
@@ -70,12 +68,56 @@ public class SinglyLinkedList<T> {
                  last = current;
                  current = current.next;
              } else {
-                if(i == index) {
-                    while(i < size() - 1) {
-                        last.next = current.next;
-                    }
+                 while(i < size() - 1) {
+                     last.next = current.next;
                 }
              }
+        }
+    }
+
+    public T get(Integer index) {
+        Node temp = head;
+        for(int i = 0; i < size(); i++) {
+            if(i == index) {
+                return temp.data;
+            } else temp = temp.next;
+        }
+        return null;
+    }
+
+    public SinglyLinkedList<T> copy() {
+        SinglyLinkedList<T> newList = new SinglyLinkedList<T>();
+        Node temp = head;
+        while(temp != null) {
+            newList.add(temp.data);
+            temp = temp.next;
+        }
+        return newList;
+    }
+
+    public void sort() {
+        Node current = head;
+
+        for(int i = 0; i < size(); i++) {
+            current = head;
+            while(current.next != null) {
+                if(current.data.compareTo(current.next.data) > 0) {
+                    T temp = current.next.data;
+                    current.next.data = current.data;
+                    current.data = temp;
+                }
+                current = current.next;
+            }
+        }
+    }
+
+    public void display() {
+        Node current = head;
+        //checkListEmpty("There's no list, idiot.");
+        System.out.println("Nodes of singly linked list:");
+        while (current != null) {
+            System.out.println(current.data + "");
+            current = current.next;
         }
     }
 }

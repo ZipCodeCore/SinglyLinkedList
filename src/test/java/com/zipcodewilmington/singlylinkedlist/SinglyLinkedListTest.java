@@ -3,6 +3,7 @@ package com.zipcodewilmington.singlylinkedlist;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -68,15 +69,74 @@ public class SinglyLinkedListTest {
     public void testRemove() {
         //given
         SinglyLinkedList<Integer> list = new SinglyLinkedList<Integer>();
+        Integer expected = 3;
         //when
         list.add(3);
         list.add(5);
         list.add(7);
         list.add(2);
         list.remove(2);
+        Integer actual = list.size();
         //then
         Assert.assertTrue(list.contains(5));
         Assert.assertFalse(list.contains(7));
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testGet() {
+        //given
+        SinglyLinkedList<String> list = new SinglyLinkedList<String>();
+        String expected = "wine";
+        //when
+        list.add("wine");
+        list.add("coffee");
+        list.add("tea");
+        String actual = list.get(0);
+        //then
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testCopy() {
+        //given
+        SinglyLinkedList<Integer> list = new SinglyLinkedList<Integer>();
+        Integer expected = 2;
+        //when
+        list.add(3);
+        list.add(5);
+        list.add(7);
+        list.add(2);
+        SinglyLinkedList<Integer> newList = list.copy();
+        Integer actual = newList.get(3);
+        //then
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testSort() {
+        //given
+        SinglyLinkedList<Integer> list = new SinglyLinkedList<Integer>();
+        Integer expected0 = 1;
+        Integer expected1 = 5;
+        Integer expected2 = 8;
+        Integer expected3 = 13;
+        //when
+        list.add(8);
+        list.add(1);
+        list.add(13);
+        list.add(5);
+        list.sort();
+        Integer actual0 = list.get(0);
+        Integer actual1 = list.get(1);
+        Integer actual2 = list.get(2);
+        Integer actual3 = list.get(3);
+        //then
+        list.display();
+//        Assert.assertEquals(expected0, actual0);
+//        Assert.assertEquals(expected1, actual1);
+//        Assert.assertEquals(expected2, actual2);
+//        Assert.assertEquals(expected3, actual3);
     }
 
 }
