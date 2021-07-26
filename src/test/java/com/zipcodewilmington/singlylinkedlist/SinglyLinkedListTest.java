@@ -132,11 +132,54 @@ public class SinglyLinkedListTest {
         Integer actual2 = list.get(2);
         Integer actual3 = list.get(3);
         //then
-        list.display();
-//        Assert.assertEquals(expected0, actual0);
-//        Assert.assertEquals(expected1, actual1);
-//        Assert.assertEquals(expected2, actual2);
-//        Assert.assertEquals(expected3, actual3);
+        Assert.assertEquals(expected0, actual0);
+        Assert.assertEquals(expected1, actual1);
+        Assert.assertEquals(expected2, actual2);
+        Assert.assertEquals(expected3, actual3);
     }
 
+    @Test
+    public void testReverse() {
+        //given
+        SinglyLinkedList<Integer> list = new SinglyLinkedList<Integer>();
+        Integer expected0 = 1;
+        Integer expected1 = 5;
+        Integer expected2 = 8;
+        Integer expected3 = 13;
+        //when
+        list.add(13);
+        list.add(8);
+        list.add(5);
+        list.add(1);
+        list.reverse();
+        Integer actual0 = list.get(0);
+        Integer actual1 = list.get(1);
+        Integer actual2 = list.get(2);
+        Integer actual3 = list.get(3);
+        //then
+        list.display();
+        Assert.assertEquals(expected0, actual0);
+        Assert.assertEquals(expected1, actual1);
+        Assert.assertEquals(expected2, actual2);
+        Assert.assertEquals(expected3, actual3);
+    }
+
+    @Test
+    public void testSlice() {
+        //given
+        SinglyLinkedList<Integer> list = new SinglyLinkedList<Integer>();
+        Integer expected = 4;
+        //when
+        list.add(13);
+        list.add(8);
+        list.add(5);
+        list.add(1);
+        list.add(12);
+        list.add(9);
+        SinglyLinkedList<Integer> slicedList = list.slice(1, 4);
+        Integer actual = slicedList.size();
+        //then
+        slicedList.display();
+        Assert.assertEquals(expected, actual);
+    }
 }

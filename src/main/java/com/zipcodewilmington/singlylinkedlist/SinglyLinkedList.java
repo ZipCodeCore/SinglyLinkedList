@@ -85,6 +85,7 @@ public class SinglyLinkedList<T extends Comparable<T>>  {
         return null;
     }
 
+
     public SinglyLinkedList<T> copy() {
         SinglyLinkedList<T> newList = new SinglyLinkedList<T>();
         Node temp = head;
@@ -109,6 +110,32 @@ public class SinglyLinkedList<T extends Comparable<T>>  {
                 current = current.next;
             }
         }
+    }
+
+    public void reverse() {
+        Node original = head;
+        Node previous = null;
+        Node current = null;
+
+        while(original != null) {
+            current = original;
+            original = original.next;
+
+            current.next = previous;
+            previous = current;
+            head = current;
+        }
+    }
+
+    public SinglyLinkedList<T> slice(Integer startIndex, Integer endIndex) {
+        SinglyLinkedList<T> slicedList = new SinglyLinkedList<T>();
+
+        for(int i = 0; i <= endIndex; i++) {
+            if(i >= startIndex) {
+                slicedList.add(get(i));
+            }
+        }
+        return slicedList;
     }
 
     public void display() {
