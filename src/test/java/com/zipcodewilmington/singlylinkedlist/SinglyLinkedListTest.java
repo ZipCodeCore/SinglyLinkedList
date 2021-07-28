@@ -30,7 +30,7 @@ public class SinglyLinkedListTest {
         singlyLinkedList.add(1);
         singlyLinkedList.add(2);
         // When
-        singlyLinkedList.remove(2);
+        singlyLinkedList.remove(1);
         Integer expectedSize = 1;
         Integer actualSize = singlyLinkedList.size();
         // Then
@@ -54,12 +54,12 @@ public class SinglyLinkedListTest {
     public void testFind() {
         // Given
         SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
-        singlyLinkedList.add("one");
-        singlyLinkedList.add("two");
-        singlyLinkedList.add("three");
-        Integer expectedIndex = 1;
+        singlyLinkedList.add(1);
+        singlyLinkedList.add(2);
+        singlyLinkedList.add(3);
+        Integer expectedIndex = 2;
         // When
-        Object actualIndex = singlyLinkedList.find("three");
+        Object actualIndex = singlyLinkedList.find(3);
         // Then
         Assert.assertEquals(expectedIndex,actualIndex);
     }

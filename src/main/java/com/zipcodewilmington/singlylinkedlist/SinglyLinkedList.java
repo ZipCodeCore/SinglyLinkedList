@@ -19,6 +19,7 @@ public class SinglyLinkedList {
 
     public Node head = null;
     public Node tail = null;
+    public int numOfElements;
 
     public void add(Object data) {
         Node newNode = new Node(data);
@@ -31,30 +32,51 @@ public class SinglyLinkedList {
         tail = newNode;
     }
 
-    public Object remove(Integer index) {  // REFACTOR TO RETURN TYPE VOID
-        SinglyLinkedList list = new SinglyLinkedList();
-        Node current = list.head;
-        Node previous = null;
-        if (index == 0 && current != null) {
-            list.head = current.next;
-            return list;
-        }
-        int counter = 0;
-        while(current != null) {
-            if(counter == index) {
-                previous.next = current.next;
-                break;
-            } else {
-                previous = current;
-                current = current.next;
-                counter++;
-            }
-        }
-        if (current == null) {
-            return -1;
-        }
-        return list;
+    public void remove(Integer index) {  // REFACTOR TO RETURN TYPE VOID
+
     }
+//        Node current = head;
+//
+//        if (index == 0) {
+//            head = current.next;
+//            return;
+//        }
+//        int tracker = 0;
+//        Node previousNode = head;
+//        current = head.next;
+//        while (current != null) {
+//            if(tracker == index) {
+//                previousNode.next = current.next;
+//                return;
+//            }
+//            tracker++;
+//            previousNode = current;
+//            current = current.next;
+//        }
+//    }
+//        SinglyLinkedList list = new SinglyLinkedList();
+//        Node current = list.head;
+//        Node previous = null;
+//        if (index == 0 && current != null) {
+//            list.head = current.next;
+//            return (Integer) list.get(index);
+//        }
+//        int counter = 0;
+//        while(current != null) {
+//            if(counter == index) {
+//                previous.next = current.next;
+//                break;
+//            } else {
+//                previous = current;
+//                current = current.next;
+//                counter++;
+//            }
+//        }
+//        if (current == null) {
+//            return null;
+//        }
+//        return (Integer) list.get(index);
+//    }
 
 
     public Boolean contains(Object data) {
@@ -68,27 +90,18 @@ public class SinglyLinkedList {
         return false;
     }
 
-    public Object find(Object data) {  // NOT WORKING
+    public Object find(Object data) {
         Node current = head;
         int index = 1;
-        boolean flag = false;
-        if (head == null) {
-            return -1;
-        } else {
             while (current != null) {
                 if (current.data == data) {
-                    flag = true;
+                    return index - 1;
                 }
                 index++;
                 current = current.next;
             }
+            return -1;
         }
-        if (flag) {
-            return index;
-        }
-        return -1;
-    }
-
 
     public Integer size() {
         Integer counter = 0;
