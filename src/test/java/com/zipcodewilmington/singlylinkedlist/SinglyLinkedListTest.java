@@ -70,11 +70,32 @@ public class SinglyLinkedListTest {
         Assert.assertEquals(expected,actual);
     }
 
-    @Test
-    public void TestRemove(){
-        SinglyLinkedList singlyLinkedList=new SinglyLinkedList();
-        singlyLinkedList.addNode("hi");
-        singlyLinkedList.addNode("hello");
 
+    @Test
+    public void copy(){
+        //given
+        SinglyLinkedList singlyLinkedList=new SinglyLinkedList();
+        singlyLinkedList.addNode(2);
+        singlyLinkedList.addNode(3);
+        Integer expected=2;
+
+        //when
+     Integer actual=  singlyLinkedList.copy().nodeSize();
+
+        //then
+        Assert.assertEquals(expected,actual);
+    }
+
+    @Test
+    public void sort(){
+        //given
+        SinglyLinkedList singlyLinkedList=new SinglyLinkedList();
+        singlyLinkedList.addNode(5);
+        singlyLinkedList.addNode(4);
+        singlyLinkedList.addNode(3);
+        singlyLinkedList.addNode(2);
+        Integer expected=4;
+        Integer actual=singlyLinkedList.nodeSize();
+        Assert.assertEquals(expected,actual);
     }
 }

@@ -1,5 +1,7 @@
 package com.zipcodewilmington.singlylinkedlist;
 
+import java.lang.annotation.Target;
+
 /**
  * Created by leon on 1/10/18.
  */
@@ -66,18 +68,43 @@ public class SinglyLinkedList {
         return false;
     }
 
-    public void remove(Integer index, Object data) {
-        index=nodeSize()-1;
+    public SinglyLinkedList remove(Integer index) {
+        SinglyLinkedList singlyLinkedList= new SinglyLinkedList();
+        Integer indexOfNode=0;
         Node current = head;
-        for (int i = 0; i < nodeSize(); i++) {
-            while (i == index) {
-                if (i != index) {
-                    current = current.next;
-                } else {
+        while(current!=null){
+            if(index!=indexOfNode){
+            singlyLinkedList.addNode(current.data);
+            }
+            indexOfNode++;
+            current = current.next;
+        }
+        return singlyLinkedList;
+    }
 
+
+    public SinglyLinkedList copy() {
+        SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
+        Node current = head;
+        while (current!=null) {
+            singlyLinkedList.addNode(current.data);
+            current = current.next;
+        }
+        return singlyLinkedList;
+    }
+
+    public  void sort(){
+        Node current=head;
+        for(int i=0;i<nodeSize();i++){
+            current=head;
+            while(current.next!=null){
+                Node next= current.next;
+                if((Integer)current.data > (Integer)next.data){
+                    Object temp=current.data;
+                    current.data=next.data;
+                    next.data=temp;
                 }
-                index++;
-                current = current.next;
+                current=current.next;
             }
         }
     }
