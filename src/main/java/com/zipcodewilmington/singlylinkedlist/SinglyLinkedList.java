@@ -19,7 +19,6 @@ public class SinglyLinkedList {
 
     public Node head = null;
     public Node tail = null;
-    public int numOfElements;
 
     public void add(Object data) {
         Node newNode = new Node(data);
@@ -33,6 +32,26 @@ public class SinglyLinkedList {
     }
 
     public void remove(Integer index) {  // REFACTOR TO RETURN TYPE VOID
+        Node current = head;
+        Node nextPoint = head.next;
+        int tracker = 0;
+        if(index.equals(tracker)) {
+            head = current.next;
+            return;
+        }
+        tracker++;
+        while(true) {
+            tracker++;
+            current = nextPoint;
+            nextPoint = current.next;
+            if(index.equals(tracker)) {
+                current.next = nextPoint.next;
+                if(nextPoint.next == null) {
+                    current.next = null;
+                    tail = current;
+                }
+            }
+        }
 
     }
 //        Node current = head;
@@ -92,10 +111,10 @@ public class SinglyLinkedList {
 
     public Object find(Object data) {
         Node current = head;
-        int index = 1;
+        int index = 0;
             while (current != null) {
                 if (current.data == data) {
-                    return index - 1;
+                    return index;
                 }
                 index++;
                 current = current.next;
