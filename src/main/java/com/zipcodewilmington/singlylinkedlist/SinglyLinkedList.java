@@ -7,43 +7,40 @@ import java.util.List;
  * Created by leon on 1/10/18.
  */
 public class SinglyLinkedList {
-    Node head;
 
-    static class Node {
-        int data;
+
+
+
+    class Node {
+        Object data;
         Node next;
 
-        Node(int data) {
+        public Node(Object data) {
             this.data = data;
             next = null;
         }
-    }
 
-    public SinglyLinkedList add(int data) {
-        SinglyLinkedList list = new SinglyLinkedList();
+    }
+    public Node head;
+     public Node tail;
+
+    public void  add(Object data) {
         Node newNode = new Node(data);
-        newNode.next = null;
-        if (list.head == null) {
-            list.head = newNode;
+        if (this.head == null) {
+            this.head = newNode;
         } else {
-            Node last = list.head;
-            while (last.next != null) {
-                last = last.next;
-            }
-            last.next = newNode;
+            tail.next = newNode;
         }
-        return list;
+        tail = newNode;
+
     }
 
-    public static SinglyLinkedList remove(int index) {
-        SinglyLinkedList list = new SinglyLinkedList();
-        Node current = list.head;
+    public void  remove(int index) {
+        Node current = this.head;
         Node previous = null;
 
-        if (index == 0 && current != null) {
-            list.head = current.next;
-
-            return list;
+        if (index == 0 && current != null) { //this removes the head value
+            this.head = current.next;
         }
 
         int counter = 0;
@@ -53,7 +50,7 @@ public class SinglyLinkedList {
 
                 break;
             } else {
-                previous = current;
+                previous = current; //[head] -> [current] -> [current.next] -> []
                 current = current.next;
                 counter++;
             }
@@ -61,24 +58,57 @@ public class SinglyLinkedList {
         if (current == null) {
             System.out.println("not found");
         }
-        return list;
     }
 
-    public static Boolean contains(int key){
-        SinglyLinkedList list = new SinglyLinkedList();
-        Node current = list.head;
-        while(current != null && current.next != null){
-            if(current.data == key){
-                return true;
+    public Boolean contains(Object key){
+        Node current = this.head;
+            while(current != null){
+                if(current.data == key) {
+                    return true;
+                }
+                    current = current.next;
 
             }
+            return false;
+    }
+    public int size() {
+        int counter = 0;
+        Node current = head;
+        while(current != null){
+            counter++;
+            current = current.next;
+        }
+        return counter;
+
+    }
+    public Integer find(int data) { // [head] -> [current] -> [current.next] -> []
+        Node current = this.head;
+        int index = 0;
+        while(current!= null){
+            if(current.data.equals(data)){
+                return index;
+
+            }
+            index++;
+            current = current.next;
         }
 
 
-return false;
+        return -1;
     }
-    public static int find(int index){
+
+    public Object get(int index) {
+        Node current = this.head;
+        int seek = 0;
+        while (current != null){
+            if(seek == index) {
+                return current.data;
+            }
+            seek++;
+            current = current.next;
+        }
 
         return -1;
     }
+
 }
