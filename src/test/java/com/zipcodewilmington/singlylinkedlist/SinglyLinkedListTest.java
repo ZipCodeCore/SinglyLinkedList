@@ -154,4 +154,43 @@ public class SinglyLinkedListTest {
         //then
         Assert.assertEquals(expected,actual);
     }
+    @Test
+    public void copyTest(){
+        //given
+        SinglyLinkedList list = new SinglyLinkedList();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.add(5);
+
+        //when
+        SinglyLinkedList newList = list.copy();
+        Integer expected = list.size();
+        Integer actual = newList.size();
+
+
+        //then
+        Assert.assertEquals(expected,actual);
+    }
+    @Test
+    public void sort(){
+        //given
+        SinglyLinkedList list = new SinglyLinkedList();
+        list.add(3);
+        list.add(1);
+        list.add(2);
+        list.add(5);
+        list.add(4);
+
+        //when
+        list.sort();
+
+        //then
+        Assert.assertTrue(list.find(1) == 0);
+        Assert.assertTrue(list.find(2) == 1);
+        Assert.assertTrue(list.find(3) == 2);
+        Assert.assertTrue(list.find(4) == 3);
+        Assert.assertTrue(list.find(5) == 4);
+    }
 }

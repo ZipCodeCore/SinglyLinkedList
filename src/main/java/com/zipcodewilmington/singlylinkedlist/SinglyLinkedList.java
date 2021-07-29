@@ -1,13 +1,18 @@
 package com.zipcodewilmington.singlylinkedlist;
 
 import javax.xml.soap.Node;
+import java.util.Iterator;
 import java.util.List;
 
 /**
  * Created by leon on 1/10/18.
  */
-public class SinglyLinkedList {
+public class SinglyLinkedList<SomeType> implements Iterable<SomeType> {
 
+
+    public Iterator<SomeType> iterator() {
+        return null;
+    }
 
 
 
@@ -21,10 +26,11 @@ public class SinglyLinkedList {
         }
 
     }
-    public Node head;
-     public Node tail;
 
-    public void  add(Object data) {
+    public Node head;
+    public Node tail;
+
+    public void add(Object data) {
         Node newNode = new Node(data);
         if (this.head == null) {
             this.head = newNode;
@@ -35,7 +41,7 @@ public class SinglyLinkedList {
 
     }
 
-    public void  remove(int index) {
+    public void remove(int index) {
         Node current = this.head;
         Node previous = null;
 
@@ -60,32 +66,34 @@ public class SinglyLinkedList {
         }
     }
 
-    public Boolean contains(Object key){
+    public Boolean contains(Object key) {
         Node current = this.head;
-            while(current != null){
-                if(current.data == key) {
-                    return true;
-                }
-                    current = current.next;
-
+        while (current != null) {
+            if (current.data == key) {
+                return true;
             }
-            return false;
+            current = current.next;
+
+        }
+        return false;
     }
+
     public int size() {
         int counter = 0;
         Node current = head;
-        while(current != null){
+        while (current != null) {
             counter++;
             current = current.next;
         }
         return counter;
 
     }
+
     public Integer find(int data) { // [head] -> [current] -> [current.next] -> []
         Node current = this.head;
         int index = 0;
-        while(current!= null){
-            if(current.data.equals(data)){
+        while (current != null) {
+            if (current.data.equals(data)) {
                 return index;
 
             }
@@ -100,8 +108,8 @@ public class SinglyLinkedList {
     public Object get(int index) {
         Node current = this.head;
         int seek = 0;
-        while (current != null){
-            if(seek == index) {
+        while (current != null) {
+            if (seek == index) {
                 return current.data;
             }
             seek++;
@@ -109,6 +117,31 @@ public class SinglyLinkedList {
         }
 
         return -1;
+    }
+
+    public SinglyLinkedList copy() {
+        SinglyLinkedList copiedList = new SinglyLinkedList();
+        Node current = this.head;
+       while(current != null){
+            copiedList.add(current.data);
+            current = current.next;
+        }
+
+        return copiedList;
+    }
+    public void sort() {
+        Node current = this.head;
+        for(int i = 0; i < size(); i++){
+            while(current.next != null){
+                Node next = current.next;
+                if((Integer)current.data > (Integer) next.data){
+                    Object temp = current.data;
+                    current.data = next.data;
+                    next.data = temp;
+                }
+                current = current.next;
+            }
+        }
     }
 
 }
