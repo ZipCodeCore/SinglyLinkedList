@@ -1,11 +1,13 @@
 package com.zipcodewilmington.singlylinkedlist;
 
 
+import sun.lwawt.macosx.CSystemTray;
 
 /**
  * Created by leon on 1/10/18.
  */
 public class SinglyLinkedList {
+
     class Node {
         Object data;
         Node next;
@@ -32,71 +34,48 @@ public class SinglyLinkedList {
     }
 
     public void remove(Integer index) {  // REFACTOR TO RETURN TYPE VOID
-        Node current = head;
-        Node nextPoint = head.next;
-        int tracker = 0;
-        if(index.equals(tracker)) {
-            head = current.next;
-            return;
+        Node current = this.head;
+        Node previous = null;
+
+        if (index == 0 && current != null) { // [head] -> [current] -> [current.next] -> [tail]
+            this.head = current.next;
         }
-        tracker++;
-        while(true) {
-            tracker++;
-            current = nextPoint;
-            nextPoint = current.next;
-            if(index.equals(tracker)) {
-                current.next = nextPoint.next;
-                if(nextPoint.next == null) {
-                    current.next = null;
-                    tail = current;
-                }
+        int counter = 0;
+        while(current != null) {
+            if(counter == index) {
+                previous.next = current.next;
+                break;
+            } else {
+                previous = current;
+                current = current.next;
+                counter++;
             }
         }
-
-    }
+        if(current == null) {
+            System.out.println("not found");
+        }
 //        Node current = head;
-//
-//        if (index == 0) {
+//        Node nextPoint = head.next;
+//        int tracker = 0;
+//        if(index.equals(tracker)) {
 //            head = current.next;
 //            return;
 //        }
-//        int tracker = 0;
-//        Node previousNode = head;
-//        current = head.next;
-//        while (current != null) {
-//            if(tracker == index) {
-//                previousNode.next = current.next;
-//                return;
-//            }
+//        tracker++;
+//        while(true) {
 //            tracker++;
-//            previousNode = current;
-//            current = current.next;
-//        }
-//    }
-//        SinglyLinkedList list = new SinglyLinkedList();
-//        Node current = list.head;
-//        Node previous = null;
-//        if (index == 0 && current != null) {
-//            list.head = current.next;
-//            return (Integer) list.get(index);
-//        }
-//        int counter = 0;
-//        while(current != null) {
-//            if(counter == index) {
-//                previous.next = current.next;
-//                break;
-//            } else {
-//                previous = current;
-//                current = current.next;
-//                counter++;
+//            current = nextPoint;
+//            nextPoint = current.next;
+//            if(index.equals(tracker)) {
+//                current.next = nextPoint.next;
+//                if(nextPoint.next == null) {
+//                    current.next = null;
+//                    tail = current;
+//                }
 //            }
 //        }
-//        if (current == null) {
-//            return null;
-//        }
-//        return (Integer) list.get(index);
-//    }
 
+    }
 
     public Boolean contains(Object data) {
         Node current = head;
@@ -146,11 +125,29 @@ public class SinglyLinkedList {
     }
 
     public SinglyLinkedList copy() {
-        return null;
+        SinglyLinkedList newList = new SinglyLinkedList();
+        Node current = head;
+        while(current  != null) {
+            newList.add(current.data);
+            current = current.next;
+        }
+        return newList;
     }
 
-    public void sort() {
 
+    public void sort() {
+        Node current = head;
+        for(int i = 0; i < size(); i++) {
+            while(current.next != null) {
+                Node next = current.next;
+                if((Integer) current.data > (Integer) next.data) {
+                    Object temp = current.data;
+                    current.data = next.data;
+                    next.data = temp;
+                }
+                current = current.next;
+            }
+        }
     }
 
 }
