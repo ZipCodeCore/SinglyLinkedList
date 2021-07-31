@@ -28,7 +28,7 @@ public class SinglyLinkedList<T extends Comparable<T>> {
         } else {
             tail.next = newNode;
         }
-        tail = newNode;
+        tail = newNode; //on the first iteration, head and tail mean the same thing
     }
 
 
@@ -65,9 +65,16 @@ public class SinglyLinkedList<T extends Comparable<T>> {
     public void remove(T valueToFind){
         Node current = head;
         Node last = head;
-        while(current.next != null){
+        while(current != null){
             if(current.data.equals(valueToFind))
-                last.next = current.next;
+                if(current.next == null) {
+                    last.next = null;
+                } else if(current == last){
+                    head = current.next;
+                }
+                else {
+                    last.next = current.next;
+                }
             last = current;
             current = current.next;
 
@@ -116,7 +123,10 @@ public class SinglyLinkedList<T extends Comparable<T>> {
         }
         current.data = valueToSet;
     }
-
+    //10    1
+    //15
+    //2
+    //1
     public void sort(){
         Node current = head;
         for(int i = 0; i < size(); i++){
@@ -154,6 +164,7 @@ public class SinglyLinkedList<T extends Comparable<T>> {
             current.next = prev;
             prev = current;
             head = current;
+            //this.display();
         }
     }
 

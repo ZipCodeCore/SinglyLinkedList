@@ -56,8 +56,8 @@ public class SinglyLinkedListTest {
         list.addNode("Car");
         list.addNode("Van");
 
-        list.remove("Car");
-        Integer expected = 3;
+        list.remove("Truck");
+        Integer expected = 4;
         Integer actual = list.size();
         list.display();
         Assert.assertEquals(expected, actual);
@@ -83,16 +83,17 @@ public class SinglyLinkedListTest {
         Float expected = 2.3f;
         Float expected2 = 1.8f;
 
+
         list.addNode(1.0f);
         list.addNode(1.3f);
         list.addNode(2.3f);
         list.addNode(1.5f);
 
         SinglyLinkedList<Float> copied = list.copy();
-        list.set(2, expected2);
+
+        list.set(2, expected2); //if shallow, thisw would cahnge both lists
 
         Float actual = copied.get(2);
-
         Float actual2 = list.get(2);
 
         Assert.assertEquals(expected, actual);
@@ -105,13 +106,15 @@ public class SinglyLinkedListTest {
         list.addNode(12);
         list.addNode(21);
         list.addNode(33);
+        list.addNode(1);
+        list.addNode(200);
         list.addNode(4);
 
         list.sort();
 
-        Integer expected = 4;
+        Integer expected = 1;
         Integer actual = list.get(0);
-
+        list.display();
         Assert.assertEquals(expected, actual);
     }
 
