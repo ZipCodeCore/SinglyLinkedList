@@ -90,4 +90,41 @@ public class SinglyLinkedListTest {
 
 }
 
+@Test
+public void copyTest(){
+    SinglyLinkedList<String> listina = new SinglyLinkedList<String>();
+    String expected = "ptd";
+    //WHEN
+    listina.add("Butter");
+    listina.add("lgo");
+    listina.add("ptd");
+
+    SinglyLinkedList<String> actual = listina.copy();
+    String actualPrimera = actual.get(0);
+    String actualDespues = actual.get(1);
+
+    Assert.assertEquals((String) "Butter", actualPrimera);
+
+
+}
+
+@Test
+    public void removeTest(){
+    SinglyLinkedList<Integer> listy = new SinglyLinkedList<Integer>();;
+    Integer expected = 2;
+
+    //WHEN
+    listy.add(7);
+    listy.add(13);
+    listy.add(20);
+
+
+    listy.remove(1);
+    Integer actual = listy.size();
+
+    Assert.assertEquals(expected, actual);
+}
+
+
+
 }

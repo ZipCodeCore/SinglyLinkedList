@@ -69,7 +69,7 @@ public class SinglyLinkedList< T extends Comparable<T>> {
     public T get(int index) {
         Node box = head;
         for (int i = 0; i < size(); i++) {
-          if (i ==index ){
+          if (i == index ){
               return box.data;
           }else box = box.next;
 
@@ -77,11 +77,34 @@ public class SinglyLinkedList< T extends Comparable<T>> {
         }
         return null;
     }
+
+
+    public SinglyLinkedList<T> copy(){
+        SinglyLinkedList<T> copy = new SinglyLinkedList<T>();
+
+        Node nodito = head;
+        for (int i = 0; i <= size(); i++) {
+            copy.add(nodito.data);
+            nodito = head.next;
+        }
+
+        return copy;
+    }
+    public void remove(Integer index) {
+        Node current = head;
+        Node last = head;
+        for (int i = 0; i < size(); i++) {
+            if(i != index) {
+                last = current;
+                current = current.next;
+            } else {
+                while(i < size() - 1) {
+                    last.next = current.next;
+                }
+            }
+        }
+    }
 }
-//
-//public void remove(int index){
-//Node
-//
-//}
+
 
 
