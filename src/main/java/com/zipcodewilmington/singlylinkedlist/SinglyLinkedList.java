@@ -24,7 +24,7 @@ public class SinglyLinkedList {
     public Node head = null;
     public Node tail = null;
 
-    public void addNode(Object data) {
+    public void add(Object data) {
 
         // Creating a node with given data
         Node newNode = new Node(data);
@@ -110,7 +110,7 @@ public class SinglyLinkedList {
         SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
         Node current = this.head;
         while (current != null) {
-            singlyLinkedList.addNode(current.data);
+            singlyLinkedList.add(current.data);
             current = current.next;
         }
         return singlyLinkedList;
