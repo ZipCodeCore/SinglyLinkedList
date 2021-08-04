@@ -44,40 +44,6 @@ public class SinglyLinkedListTest {
 
     }
 
-    @Test
-    public void containsTest(){
-        // Given
-        SinglyLinkedList list = new SinglyLinkedList();
-
-        // When
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        list.add(4);
-
-        Boolean actual = list.contains(3);
-
-        Assert.assertTrue(actual);
-        Assert.assertFalse(list.contains(6));
-    }
-
-    @Test
-    public void sizeTest(){
-        // Given
-        SinglyLinkedList list = new SinglyLinkedList();
-
-        // When
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        list.add(4);
-
-
-        int expected = 4;
-        int actual =list.size();
-
-        Assert.assertEquals(expected,actual);
-    }
 
     @Test
     public void findTest(){
@@ -114,6 +80,40 @@ public class SinglyLinkedListTest {
         Integer expected = 5;
 
         Assert.assertEquals(expected, actual);
+    }
+    @Test
+    public void containsTest(){
+        // Given
+        SinglyLinkedList list = new SinglyLinkedList();
+
+        // When
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+
+        Boolean actual = list.contains(3);
+
+        Assert.assertTrue(actual);
+        Assert.assertFalse(list.contains(6));
+    }
+
+    @Test
+    public void sizeTest(){
+        // Given
+        SinglyLinkedList list = new SinglyLinkedList();
+
+        // When
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+
+
+        int expected = 4;
+        int actual =list.size();
+
+        Assert.assertEquals(expected,actual);
     }
 
     @Test
