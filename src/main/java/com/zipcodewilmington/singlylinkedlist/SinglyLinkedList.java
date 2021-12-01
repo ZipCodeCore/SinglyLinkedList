@@ -61,6 +61,18 @@ public class SinglyLinkedList<T extends Comparable<T>> {
         return -1;
     }
 
+    public Node<T> get(Integer index){
+
+        Node current = head;
+        Integer currentIndex = 0;
+
+        while(currentIndex != index){
+            current = current.next;
+            currentIndex++;
+        }
+        return current;
+    }
+
     public Boolean contains(T data) {
         Node current = head;
 
@@ -71,6 +83,59 @@ public class SinglyLinkedList<T extends Comparable<T>> {
             current = current.next;
         }
         return false;
+    }
+
+
+
+    public void remove(Integer index) {
+        Node current = this.head;
+        Node previous = null;
+
+        if (index == 0 && current != null) {
+            this.head = current.next;
+        }
+        int counter = 0;
+        while (current != null) {
+            if (counter == index) {
+                previous.next = current.next;
+                break;
+            } else {
+                previous = current;
+                current = current.next;
+                counter++;
+            }
+        }
+    }
+
+    public SinglyLinkedList<T> copy() {
+        SinglyLinkedList<T> newList = new SinglyLinkedList<T>();
+        Node current = head;
+
+        while(current != null) {
+            newList.add((T) current.data);
+            current = current.next;
+        }
+        return newList;
+    }
+
+
+
+
+
+
+    public void display() {
+
+        Node current = head;
+        if(head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+        while(current != null) {
+
+            System.out.print(current.data + " ");
+            current = current.next;
+        }
+        System.out.println();
     }
 
 
