@@ -1,0 +1,151 @@
+name: Bug Report
+description: Create a report to help us improve
+title: "[Bug]: "
+labels: ["bug", "triage"]
+projects: ["Curriculum"]
+assignees:
+  - none
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+  - type: input
+    id: contact
+    attributes:
+      label: Contact Details
+      description: How can we get in touch with you if we need more info?
+      placeholder: ex. email@example.com
+    validations:
+      required: false
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: A clear and concise description of what the bug is. Include screenshots if applicable.
+      placeholder: Describe the bug.
+      value: "A bug happened!"
+    validations:
+      required: true
+  - type: textarea
+    id: to-reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Steps to reproduce the behavior.
+      placeholder: Describe the steps to reproduce the bug.
+      value: "1. Go to '...'\n2. Click on '....'\n3. Scroll down to '....'\n4. See error"
+    validations:
+      required: true
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: What did you expect to happen?
+      description: A clear and concise description of what you expected to happen.
+      placeholder: What should have happened.
+      value: "What should have happened was..."
+    validations:
+      required: true
+  - type: dropdown
+    id: cohort
+    attributes:
+      label: Cohort
+      description: Which cohort is affected?
+      multiple: false
+      options:
+        - Data Engineering
+        - Java
+        - All
+        - Admin
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: How severe is this bug?
+      multiple: false
+      options:
+        - Critical
+        - Major
+        - Minor
+        - Trivial
+      default: 1
+  - type: dropdown
+    id: operating-system
+    attributes:
+      label: Operating System
+      description: What Mac OS operating system are you using?
+      options:
+        - Sequoia
+        - Sonoma
+        - Ventura
+        - Monterey
+        - Big Sur
+        - Catalina
+        - Mojave
+        - High Sierra
+        - Sierra
+        - El Capitan
+        - Yosemite
+        - Mavericks
+        - Mountain Lion
+        - Lion
+        - Snow Leopard
+        - Leopard
+        - Tiger
+        - Panther
+        - Jaguar
+      default: 0
+    validations:
+      required: true
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      description: What component are you having an issue with?
+      options:
+        - Python
+        - Java
+        - JavaScript
+        - HTML
+        - CSS
+        - SQL
+        - Git
+        - GitHub
+        - Spring
+        - PySpark
+        - Pandas
+        - NumPy
+        - Matplotlib
+        - Seaborn
+  - type: input
+    id: component-version
+    attributes:
+      label: Component Version
+      description: What version of the component are you using?
+      placeholder: ex. 1.0.0
+    validations:
+      required: false
+  - type: dropdown
+    id: browsers
+    attributes:
+      label: What browsers are you seeing the problem on?
+      multiple: true
+      options:
+        - Firefox
+        - Chrome
+        - Safari
+        - Microsoft Edge
+      default: 2
+  - type: input
+    id: browser-version
+    attributes:
+      label: Browser Version
+      description: What version of the browser are you using?
+      placeholder: ex. 1.0.0
+    validations:
+      required: false
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
+      render: shell
